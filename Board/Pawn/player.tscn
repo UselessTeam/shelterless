@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://drdec5hdaakb4" path="res://Asset/Sprite/Player/Player-3.png" id="4_xgbm6"]
 [ext_resource type="Texture2D" uid="uid://chmwc3x213yp4" path="res://Asset/Sprite/Player/Player-1.png" id="5_liakd"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/LocomotionComponent.cs" id="6_kmute"]
+[ext_resource type="Script" path="res://Board/Pawn/Component/AnimationComponent.cs" id="7_8bl04"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wyis6"]
 animations = [{
@@ -28,24 +29,6 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
-
-[sub_resource type="CSharpScript" id="CSharpScript_rpjmb"]
-script/source = "using Godot;
-using System;
-
-public partial class AnimationComponent : Node
-{
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
-}
-"
 
 [sub_resource type="Animation" id="Animation_5mpr3"]
 resource_name = "jump"
@@ -135,7 +118,7 @@ _data = {
 "move": SubResource("Animation_tw5xv")
 }
 
-[node name="Pawn" type="Node2D"]
+[node name="Player" type="Node2D"]
 script = ExtResource("1_13sq6")
 
 [node name="Health" type="Node" parent="."]
@@ -150,7 +133,7 @@ position = Vector2(0, -259)
 sprite_frames = SubResource("SpriteFrames_wyis6")
 
 [node name="Animation" type="Node" parent="."]
-script = SubResource("CSharpScript_rpjmb")
+script = ExtResource("7_8bl04")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Animation"]
 root_node = NodePath("../..")

@@ -4,9 +4,16 @@ using System.Collections.Generic;
 
 public partial class LocomotionComponent : Component
 {
-    [Export] public bool IsRunning { private get; set; }
+    [Export] public bool IsRunning { private get; set; } = false;
     [Export(PropertyHint.Range, "0,1")] float MovementProgress;
 
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        if (@event.IsActionPressed("DragCamera"))
+        {
+            RunMovement(new Vector2(-756, 0));
+        }
+    }
 
     public void RunMovement(Vector2 movement)
     {

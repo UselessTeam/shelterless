@@ -23,8 +23,12 @@ public partial class Camera2D : Godot.Camera2D
             CurrentZoomTicks --;
             Zoom /= ZoomRatio;
         }
-        if (@event is InputEventMouseButton mouseButton && mouseButton.ButtonIndex == MouseButton.Right)
-            dragging = !dragging;
+        if (@event.IsActionPressed("DragCamera")){
+            dragging = true;
+        }
+        if (@event.IsActionReleased("DragCamera")){
+            dragging = false;
+        }
         if (dragging && @event is InputEventMouseMotion motion)
             Position -= motion.Relative / Zoom;
     }
