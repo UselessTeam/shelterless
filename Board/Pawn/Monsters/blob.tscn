@@ -19,10 +19,22 @@ tracks/0/path = NodePath("Sprites/BlobTop:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8, 0.8001, 0.8002, 0.8003),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.7, 0.8, 0.8001, 0.8002, 0.8003),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, -200), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(0, 20), Vector2(0, -200), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/BlobTop:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 1.125), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_v7e6x"]
@@ -89,4 +101,6 @@ texture = ExtResource("7_gg1br")
 texture = ExtResource("5_viclx")
 
 [node name="BlobTop" type="Sprite2D" parent="Sprites"]
+position = Vector2(0, -37.2671)
+scale = Vector2(0.909364, 1.1133)
 texture = ExtResource("6_76qy8")
