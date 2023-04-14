@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://oc00dn4oji5x"]
+[gd_scene load_steps=8 format=3 uid="uid://oua8cntrci0b"]
 
 [ext_resource type="Texture2D" uid="uid://cbk02hshyy2qn" path="res://Asset/Hexagon.png" id="1_8x5n8"]
 [ext_resource type="Script" path="res://Board/Board.cs" id="2_aev3t"]
-[ext_resource type="PackedScene" path="res://Board/camera_2d.tscn" id="2_j4q03"]
+[ext_resource type="PackedScene" uid="uid://e33luquuut21" path="res://Board/camera_2d.tscn" id="2_j4q03"]
 [ext_resource type="AudioStream" uid="uid://dj4wivhbeqlp7" path="res://Asset/Sound/Shelterless.wav" id="3_00nhu"]
-[ext_resource type="PackedScene" uid="uid://dpe34uqrkh4l8" path="res://Board/Pawn/pawn.tscn" id="4_w38xu"]
+[ext_resource type="PackedScene" uid="uid://deuh0v6fsqd57" path="res://Board/Pawn/pawn.tscn" id="4_w38xu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vpoy7"]
 texture = ExtResource("1_8x5n8")
