@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://Board/Pawn/Pawn.cs" id="1_la2bt"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/HealthComponent.cs" id="2_jspms"]
-[ext_resource type="Texture2D" uid="uid://d2v5ct48vi1h8" path="res://Asset/Sprite/BlueMonster/BlueMonster-1.png" id="3_250c5"]
-[ext_resource type="Texture2D" uid="uid://dl02meybva8ty" path="res://Asset/Sprite/BlueMonster/BlueMonster-3.png" id="4_vhwxh"]
-[ext_resource type="Texture2D" uid="uid://brvk22enq4hou" path="res://Asset/Sprite/BlueMonster/BlueMonster-2.png" id="5_duxnm"]
+[ext_resource type="Texture2D" uid="uid://jtihna5ndfig" path="res://Asset/Sprite/BlueMonster/BlueMonster-1.png" id="3_250c5"]
+[ext_resource type="Texture2D" uid="uid://vtso8s6c60ep" path="res://Asset/Sprite/BlueMonster/BlueMonster-3.png" id="4_vhwxh"]
+[ext_resource type="Texture2D" uid="uid://s1o702f21she" path="res://Asset/Sprite/BlueMonster/BlueMonster-2.png" id="5_duxnm"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/LocomotionComponent.cs" id="6_0qpjb"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/AnimationComponent.cs" id="7_awsxb"]
 
