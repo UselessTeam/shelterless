@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ba16jhpvkmra3"]
+[gd_scene load_steps=7 format=3 uid="uid://oc00dn4oji5x"]
 
 [ext_resource type="Texture2D" uid="uid://cbk02hshyy2qn" path="res://Asset/Hexagon.png" id="1_2d6qi"]
-[ext_resource type="PackedScene" path="res://Board/camera_2d.tscn" id="1_te7g0"]
-[ext_resource type="PackedScene" uid="uid://dpe34uqrkh4l8" path="res://Board/Pawn/pawn.tscn" id="3_58mw5"]
+[ext_resource type="PackedScene" uid="uid://e33luquuut21" path="res://Board/camera_2d.tscn" id="1_te7g0"]
+[ext_resource type="PackedScene" path="res://Board/Pawn/pawn.tscn" id="3_7qq6t"]
+[ext_resource type="AudioStream" uid="uid://dj4wivhbeqlp7" path="res://Asset/Sound/Shelterless.wav" id="3_kq573"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vpoy7"]
 texture = ExtResource("1_2d6qi")
@@ -22,14 +23,18 @@ sources/0 = SubResource("TileSetAtlasSource_vpoy7")
 
 [node name="TestBoard" type="Node2D"]
 
-[node name="Tiles" type="TileMap" parent="."]
-tile_set = SubResource("TileSet_4eoap")
-format = 2
-layer_0/tile_data = PackedInt32Array(131071, 0, 0, 0, 0, 0, 65536, 0, 0, 131072, 0, 0, 131073, 0, 0, 196608, 0, 0, 196609, 0, 0, 131074, 0, 0, 65537, 0, 0, 196610, 0, 0, 196611, 0, 0, 131076, 0, 0, 3, 0, 0, 5, 0, 0, 65540, 0, 0, 4, 0, 0, 65539, 0, 0, 131075, 0, 0, 65538, 0, 0, 1, 0, 0, -65535, 0, 0, 2, 0, 0)
-
 [node name="Camera2D" parent="." instance=ExtResource("1_te7g0")]
 MaxZoomTicks = 7
 ZoomRatio = 1.2
 
-[node name="Pawn" parent="." instance=ExtResource("3_58mw5")]
-position = Vector2(360, 173)
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_4eoap")
+format = 2
+layer_0/tile_data = PackedInt32Array(131071, 0, 0, 0, 0, 0, 65536, 0, 0, 131072, 0, 0, 131073, 0, 0, 196608, 0, 0, 196609, 0, 0, 131074, 0, 0, 65537, 0, 0, 196610, 0, 0, 196611, 0, 0, 131076, 0, 0, 3, 0, 0, 5, 0, 0, 65540, 0, 0, 4, 0, 0, 65539, 0, 0, 131075, 0, 0, 65538, 0, 0, 1, 0, 0, -65535, 0, 0, 2, 0, 0)
+
+[node name="Pawn" parent="TileMap" instance=ExtResource("3_7qq6t")]
+position = Vector2(2, 542)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_kq573")
+autoplay = true
