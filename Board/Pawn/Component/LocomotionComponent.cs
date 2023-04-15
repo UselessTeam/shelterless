@@ -11,7 +11,7 @@ public partial class LocomotionComponent : Component
     {
         if (@event.IsActionPressed("DragCamera"))
         {
-            RunMovement(new Vector2(-756, 0));
+            RunMovement(new Vector2(756, 0));
         }
     }
 
@@ -21,7 +21,12 @@ public partial class LocomotionComponent : Component
             throw (new Exception("LocomotionComponent is already running"));
         PositionStart = Pawn.Position;
         Movement = movement;
-        Pawn.Get<AnimationComponent>().AnimationPlayer.Play("move");
+        var animation = Pawn.Get<AnimationComponent>();
+        animation.AnimationPlayer.Play("move");
+        if (Movement.X > 0)
+            animation.LookRight();
+        else if (Movement.X < 0)
+            animation.LookLeft();
     }
 
     public event Action EndMovementEvent;

@@ -8,28 +8,6 @@
 [ext_resource type="Script" path="res://Board/Pawn/Component/LocomotionComponent.cs" id="6_kmute"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/AnimationComponent.cs" id="7_8bl04"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_wyis6"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_br5fh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_xgbm6")
-}],
-"loop": true,
-"name": &"attack",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_liakd")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [sub_resource type="Animation" id="Animation_5mpr3"]
 resource_name = "jump"
 length = 0.6
@@ -37,7 +15,7 @@ step = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Sprites/AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -78,7 +56,7 @@ step = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Sprites/AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -118,6 +96,28 @@ _data = {
 "move": SubResource("Animation_tw5xv")
 }
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_wyis6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_br5fh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xgbm6")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_liakd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Player" type="Node2D"]
 script = ExtResource("1_13sq6")
 
@@ -128,10 +128,6 @@ script = ExtResource("2_11mjc")
 script = ExtResource("6_kmute")
 MovementProgress = 1.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -259)
-sprite_frames = SubResource("SpriteFrames_wyis6")
-
 [node name="Animation" type="Node" parent="."]
 script = ExtResource("7_8bl04")
 
@@ -140,3 +136,9 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_448gm")
 }
+
+[node name="Sprites" type="Node2D" parent="."]
+position = Vector2(21, -254)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprites"]
+sprite_frames = SubResource("SpriteFrames_wyis6")
