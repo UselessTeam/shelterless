@@ -1,12 +1,30 @@
-[gd_scene load_steps=11 format=3 uid="uid://di25s3yrmfuf8"]
+[gd_scene load_steps=12 format=3 uid="uid://di25s3yrmfuf8"]
 
 [ext_resource type="Script" path="res://Board/Pawn/Pawn.cs" id="1_yk5s6"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/HealthComponent.cs" id="2_it6mk"]
-[ext_resource type="Texture2D" uid="uid://dmxp8bj6dfn58" path="res://Asset/Sprite/BlobMonster/BlobShadow.png" id="4_lx23a"]
-[ext_resource type="Texture2D" uid="uid://bqusanj3dyq5n" path="res://Asset/Sprite/BlobMonster/BlobBottom.png" id="5_viclx"]
+[ext_resource type="Texture2D" uid="uid://b08p76132ftff" path="res://Asset/Sprite/BlobMonster/BlobShadow.png" id="4_lx23a"]
+[ext_resource type="Texture2D" uid="uid://daqxf12ii7hw1" path="res://Asset/Sprite/BlobMonster/BlobBottom.png" id="5_viclx"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/LocomotionComponent.cs" id="6_7hviq"]
-[ext_resource type="Texture2D" uid="uid://dgbkicu53xuj5" path="res://Asset/Sprite/BlobMonster/BlobTop.png" id="6_76qy8"]
-[ext_resource type="Texture2D" uid="uid://dsut4ole8pdl7" path="res://Asset/Sprite/BlobMonster/BlobFingers.png" id="7_gg1br"]
+[ext_resource type="Texture2D" uid="uid://c0w8wnriyg1sc" path="res://Asset/Sprite/BlobMonster/BlobTop.png" id="6_76qy8"]
+[ext_resource type="Texture2D" uid="uid://bvwmmf6fm6pe4" path="res://Asset/Sprite/BlobMonster/BlobFingers.png" id="7_gg1br"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_6wr6m"]
+script/source = "using Godot;
+using System;
+
+public partial class AnimationComponent : Node
+{
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+	}
+
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+	}
+}
+"
 
 [sub_resource type="Animation" id="Animation_uuy1l"]
 resource_name = "bite"
@@ -78,12 +96,13 @@ script = ExtResource("1_yk5s6")
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_it6mk")
 
-[node name="Locomotion" type="Node2D" parent="."]
+[node name="Locomotion" type="Node" parent="."]
 script = ExtResource("6_7hviq")
-MovementProgress = 0.0
-IsRunning = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Locomotion"]
+[node name="Animation" type="Node" parent="."]
+script = SubResource("CSharpScript_6wr6m")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Animation"]
 root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_448gm")

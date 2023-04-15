@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d21df0d4cqnbv"]
+[gd_scene load_steps=12 format=3 uid="uid://d21df0d4cqnbv"]
 
 [ext_resource type="Script" path="res://Board/Pawn/Pawn.cs" id="1_la2bt"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/HealthComponent.cs" id="2_jspms"]
@@ -33,6 +33,24 @@ animations = [{
 "name": &"squish",
 "speed": 9.0
 }]
+
+[sub_resource type="CSharpScript" id="CSharpScript_8jcco"]
+script/source = "using Godot;
+using System;
+
+public partial class AnimationComponent : Node
+{
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+	}
+
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+	}
+}
+"
 
 [sub_resource type="Animation" id="Animation_ske07"]
 length = 0.001
@@ -105,11 +123,14 @@ script = ExtResource("2_jspms")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wyis6")
 
-[node name="Locomotion" type="Node2D" parent="."]
+[node name="Locomotion" type="Node" parent="."]
 script = ExtResource("6_0qpjb")
 MovementProgress = 1.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Locomotion"]
+[node name="Animation" type="Node" parent="."]
+script = SubResource("CSharpScript_8jcco")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Animation"]
 root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_448gm")
