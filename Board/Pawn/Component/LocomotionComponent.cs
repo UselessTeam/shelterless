@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class LocomotionComponent : Component
 {
@@ -13,7 +14,7 @@ public partial class LocomotionComponent : Component
             throw (new Exception("LocomotionComponent is already running"));
         PositionStart = Pawn.Position;
         Movement = movement;
-        GetNode<AnimationPlayer>("AnimationPlayer").Play("jump");
+        Pawn.Get<AnimationComponent>().AnimationPlayer.Play("move");
     }
 
     public event Action EndMovementEvent;
@@ -33,6 +34,10 @@ public partial class LocomotionComponent : Component
         {
             Pawn.Position = PositionStart + Movement * MovementProgress;
         }
+    }
+    override protected IEnumerable<Type> GetDependencies()
+    {
+        yield return typeof(AnimationComponent);
     }
 
 }
