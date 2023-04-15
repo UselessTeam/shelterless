@@ -26,10 +26,17 @@ public partial class Board : TileMap
 
     public override void _UnhandledInput(InputEvent @event)
     {
-        if (@event is InputEventMouse inputEventMouse)
+        if (@event.IsActionPressed("Action"))
         {
             Vector2I coords = LocalToMap(GetGlobalMousePosition());
-            GUI.Main?.MouseOnTile(this, coords, GetGlobalMousePosition(), inputEventMouse);
+            GUI.Main?.MouseOnTile(this, coords, GetGlobalMousePosition(), true);
+            GetViewport().SetInputAsHandled();
+        }
+        if (@event is InputEventMouseMotion)
+        {
+            Vector2I coords = LocalToMap(GetGlobalMousePosition());
+            GUI.Main?.MouseOnTile(this, coords, GetGlobalMousePosition(), false);
+            GetViewport().SetInputAsHandled();
         }
     }
 

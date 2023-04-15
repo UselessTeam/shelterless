@@ -15,6 +15,13 @@ texture_region_size = Vector2i(768, 512)
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i4q7o"]
+resource_name = "TileGUI"
+texture = ExtResource("1_8x5n8")
+texture_region_size = Vector2i(768, 504)
+0:0/0 = 0
+0:0/0/modulate = Color(0.380392, 1, 1, 0.462745)
+
 [sub_resource type="TileSet" id="TileSet_4eoap"]
 tile_shape = 3
 tile_size = Vector2i(768, 504)
@@ -23,11 +30,20 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.501961, 0.345098, 0.25098, 1)
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_vpoy7")
+sources/100 = SubResource("TileSetAtlasSource_i4q7o")
 
 [node name="Board" type="TileMap"]
 tile_set = SubResource("TileSet_4eoap")
 format = 2
-layer_0/tile_data = PackedInt32Array(131071, 0, 0, 0, 0, 0, 65536, 0, 0, 131072, 0, 0, 131073, 0, 0, 196608, 0, 0, 196609, 0, 0, 131074, 0, 0, 65537, 0, 0, 196610, 0, 0, 196611, 0, 0, 131076, 0, 0, 3, 0, 0, 5, 0, 0, 65540, 0, 0, 4, 0, 0, 65539, 0, 0, 131075, 0, 0, 65538, 0, 0, 1, 0, 0, -65535, 0, 0, 2, 0, 0)
+layer_0/name = "World"
+layer_0/tile_data = PackedInt32Array(131071, 0, 0, 0, 0, 0, 65536, 0, 0, 131072, 0, 0, 131073, 0, 0, 196608, 0, 0, 196609, 0, 0, 131074, 0, 0, 65537, 0, 0, 196611, 0, 0, 131076, 0, 0, 3, 0, 0, 5, 0, 0, 65540, 0, 0, 4, 0, 0, 65539, 0, 0, 131075, 0, 0, 65538, 0, 0, 1, 0, 0, -65535, 0, 0, 2, 0, 0, 196610, 0, 0)
+layer_1/name = "GUI"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array()
 script = ExtResource("2_aev3t")
 
 [node name="Camera" parent="." instance=ExtResource("2_j4q03")]

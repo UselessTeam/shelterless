@@ -18,18 +18,28 @@ public partial class Camera2D : Godot.Camera2D
         {
             CurrentZoomTicks++;
             Zoom *= ZoomRatio;
+            GetViewport().SetInputAsHandled();
         }
-        if (CurrentZoomTicks > MinZoomTicks && @event.IsActionPressed("ZoomOut")){
-            CurrentZoomTicks --;
+        if (CurrentZoomTicks > MinZoomTicks && @event.IsActionPressed("ZoomOut"))
+        {
+            CurrentZoomTicks--;
             Zoom /= ZoomRatio;
+            GetViewport().SetInputAsHandled();
         }
-        if (@event.IsActionPressed("DragCamera")){
+        if (@event.IsActionPressed("DragCamera"))
+        {
             dragging = true;
+            GetViewport().SetInputAsHandled();
         }
-        if (@event.IsActionReleased("DragCamera")){
+        if (@event.IsActionReleased("DragCamera"))
+        {
             dragging = false;
+            GetViewport().SetInputAsHandled();
         }
         if (dragging && @event is InputEventMouseMotion motion)
+        {
             Position -= motion.Relative / Zoom;
+            GetViewport().SetInputAsHandled();
+        }
     }
 }
