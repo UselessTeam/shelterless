@@ -115,12 +115,37 @@ public partial class Board : TileMap
         return null;
     }
 
-    public Pawn Player => GetFirstPawnWith<PlayerComponent>();
+    public Pawn Player => PlayerComponent.Main.Pawn;
 }
 
 public static class VectorUtils
 {
     public static readonly Vector2I INVALID_VECTOR2I = new Vector2I(int.MaxValue, int.MaxValue);
+    public enum Direction : byte
+    {
+        NONE,
+        SE,
+        E,
+        NE,
+        NW,
+        W,
+        SW,
+    }
+
+    public static Vector2I ToVector2I(this Direction direction)
+    {
+        return direction switch
+        {
+            Direction.NONE => Vector2I.Zero,
+            Direction.SE => Vector2I.Zero,
+            Direction.E => Vector2I.Zero,
+            Direction.NE => Vector2I.Zero,
+            Direction.NW => Vector2I.Zero,
+            Direction.W => Vector2I.Zero,
+            Direction.SW => Vector2I.Zero,
+            _ => INVALID_VECTOR2I,
+        };
+    }
     public static bool IsValid(this Vector2I vector)
     {
         return vector != INVALID_VECTOR2I;

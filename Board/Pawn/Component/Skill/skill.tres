@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://yxfwi05rio7j"]
+
+[ext_resource type="Script" path="res://Board/Pawn/Component/Skill/Skill.cs" id="1_5x3it"]
+
+[resource]
+script = ExtResource("1_5x3it")
+Name = ""
+Damage = 10
+Target = 9
+MinTargetRange = 0
+MaxTargetRange = 0
+Effect = PackedInt32Array()

@@ -14,6 +14,11 @@ public partial class Camera2D : Godot.Camera2D
 
     public override void _UnhandledInput(InputEvent @event)
     {
+        if (@event.IsActionPressed("CenterCamera"))
+        {
+            Position = PlayerComponent.Main.Pawn.Position;
+            GUI.Main.LooseFocus();
+        }
         if (CurrentZoomTicks < MaxZoomTicks && @event.IsActionPressed("ZoomIn"))
         {
             CurrentZoomTicks++;

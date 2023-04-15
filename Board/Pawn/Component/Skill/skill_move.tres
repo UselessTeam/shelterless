@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://clicx2cte2vn4"]
+
+[ext_resource type="Script" path="res://Board/Pawn/Component/Skill/Skill.cs" id="1_wwi5j"]
+
+[resource]
+script = ExtResource("1_wwi5j")
+Name = "Move"
+Target = 0
+TargetShape = 1
+MinTargetRange = 1
+MaxTargetRange = 1
+MustBeEmpty = true
+Move = true
+Damage = 0
+EffectShape = 1
+MinEffectRange = 0
+MaxEffectRange = 0
+Push = 0

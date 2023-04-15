@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://gimoc3vuq86"]
+[gd_scene load_steps=15 format=3 uid="uid://df81v21uh061v"]
 
 [ext_resource type="Script" path="res://Board/Pawn/Pawn.cs" id="1_13sq6"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/HealthComponent.cs" id="2_11mjc"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://Board/Pawn/Component/AnimationComponent.cs" id="7_8bl04"]
 [ext_resource type="Texture2D" uid="uid://cged54ku8gm2h" path="res://Asset/Sprite/Player/Player-Animate.png" id="8_3fkxc"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/PlayerComponent.cs" id="8_4erq0"]
+[ext_resource type="Script" path="res://Board/Pawn/Component/Skill/SkillComponent.cs" id="9_fvil6"]
+[ext_resource type="Resource" uid="uid://clicx2cte2vn4" path="res://Board/Pawn/Component/Skill/skill_move.tres" id="10_rbkue"]
 
 [sub_resource type="Animation" id="Animation_5i56o"]
 resource_name = "attack"
@@ -122,6 +124,9 @@ animations = [{
 [node name="Player" type="Node2D"]
 script = ExtResource("1_13sq6")
 
+[node name="Player" type="Node" parent="."]
+script = ExtResource("8_4erq0")
+
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_11mjc")
 
@@ -144,5 +149,6 @@ position = Vector2(21, -254)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprites"]
 sprite_frames = SubResource("SpriteFrames_wyis6")
 
-[node name="Player" type="Node" parent="."]
-script = ExtResource("8_4erq0")
+[node name="Skill" type="Node" parent="."]
+script = ExtResource("9_fvil6")
+Skills = Array[Resource]([ExtResource("10_rbkue")])

@@ -33,6 +33,7 @@ public partial class GUI : CanvasLayer
     }
     private static bool printedWarning = false;
     private static GUI main;
+    private Board focusedBoard;
 
     public override void _EnterTree()
     {
@@ -43,6 +44,7 @@ public partial class GUI : CanvasLayer
     public void MouseOnTile(Board board, Vector2I coords, Vector2 position, bool action)
     {
         //TODO: Dispatch to current GUI state
+        focusedBoard = board;
         SetDebugText($"Coords: {coords} ({coords.Magnitude()}) / Action: {action}");
         if (!action)
         {
@@ -52,6 +54,11 @@ public partial class GUI : CanvasLayer
         {
             TileClick(board, coords);
         }
+    }
+
+    public void LooseFocus()
+    {
+        focusedBoard.ClearLayer(GUI_TILE_LAYER);
     }
 
     private void TileHover(Board board, Vector2I coords)
@@ -64,7 +71,7 @@ public partial class GUI : CanvasLayer
                 coords,
                 GUI_TILE_SET,
                 atlasCoords: new Vector2I(0, 0),
-                alternativeTile: (int)(board.Player.Coords.Distance(coords) switch
+                alternativeTile: (int)(board.Player?.Coords.Distance(coords) switch
                 {
                     0 => GUITile.BLUE,
                     1 => GUITile.GREEN,
@@ -77,9 +84,12 @@ public partial class GUI : CanvasLayer
 
     private void TileClick(Board board, Vector2I coords)
     {
-        board.ClearLayer(GUI_TILE_LAYER);
-        board.Player.Get<LocomotionComponent>().RunToCoords(coords);
-        board.Player.SetCoords(coords);
+        if (board.Player?.Coords.Distance(coords) == 1)
+        {
+            board.ClearLayer(GUI_TILE_LAYER);
+            board.Player?.Get<LocomotionComponent>().RunToCoords(coords);
+            board.Player?.SetCoords(coords);
+        }
     }
 
     public void SetDebugText(String text)

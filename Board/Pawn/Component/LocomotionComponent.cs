@@ -9,6 +9,7 @@ public partial class LocomotionComponent : Component
     public void RunToCoords(Vector2I target)
     {
         RunToTargetPosition(Pawn.Board.MapToLocal(target));
+        Pawn.SetCoords(target);
     }
 
     public void RunToTargetPosition(Vector2 target)
