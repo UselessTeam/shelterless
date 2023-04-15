@@ -3,13 +3,41 @@ using System;
 
 public partial class HealthComponent : Component
 {
-    public int CurrentHealth { get; private set; }
-    public int MaxHealth { get; private set; }
-    public float healthRatio { get => MaxHealth <= 0 ? 0f : CurrentHealth / MaxHealth; }
+    [Export(PropertyHint.Range, "1,1000,or_greater")]
+    public int CurrentHealth { get; private set; } = 100;
 
-    public override void _Ready()
+    [Export(PropertyHint.Range, "1,1000,or_greater")]
+    public int MaxHealth { get; private set; } = 100;
+    public float healthRatio { get => MaxHealth <= 0 ? 0f : (float)CurrentHealth / MaxHealth; }
+
+    [Signal]
+    public delegate void HealthChangedEventHandler(int oldValue, int newValue);
+    [Signal]
+    public delegate void DeathEventHandler();
+
+    public void ChangeHealth(int value)
     {
-        base._Ready();
-        GD.Print(healthRatio);
+        SetHealth(CurrentHealth + value);
+    }
+
+    public void SetHealth(int value)
+    {
+        if (value > MaxHealth)
+        {
+            value = MaxHealth;
+        }
+        else if (value < 0)
+        {
+            value = 0;
+        }
+        if (value != CurrentHealth)
+        {
+            EmitSignal(SignalName.HealthChanged, CurrentHealth, value);
+            if (value == 0)
+            {
+                EmitSignal(SignalName.Death);
+            }
+            CurrentHealth = value;
+        }
     }
 }
