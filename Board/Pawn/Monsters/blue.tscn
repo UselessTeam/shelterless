@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d21df0d4cqnbv"]
+[gd_scene load_steps=13 format=3 uid="uid://d21df0d4cqnbv"]
 
 [ext_resource type="Script" path="res://Board/Pawn/Pawn.cs" id="1_la2bt"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/HealthComponent.cs" id="2_jspms"]
@@ -50,8 +50,114 @@ tracks/2/keys = {
 "values": [Vector2(0, 0), Vector2(0, 100), Vector2(0, -300), Vector2(0, 50), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_s763b"]
+resource_name = "attack"
+length = 0.8
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/FullBody:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1.51572, 1, 1),
+"update": 0,
+"values": [0.0, -0.450295, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/FullBody:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1.46409, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-123, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/FullBody/AxeLeftArm:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 3.14159, 6.28319]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/FullBody/AxeRightArm:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1.27456, 1, 1),
+"update": 0,
+"values": [0.0, 2.59716, 6.28319]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprites/FullBody:scale")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(1.41421, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.13), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2tq8x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/FullBody:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-117, 9)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/FullBody:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.450295]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/FullBody/AxeLeftArm:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.14159]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_448gm"]
 _data = {
+"RESET": SubResource("Animation_2tq8x"),
+"attack": SubResource("Animation_s763b"),
 "move": SubResource("Animation_5mpr3")
 }
 
@@ -81,12 +187,22 @@ position = Vector2(-10, -249)
 texture = ExtResource("5_nwga1")
 
 [node name="FullBody" type="Node2D" parent="Sprites"]
+position = Vector2(-117, 9)
+rotation = -0.450295
 
-[node name="RightArm" type="Sprite2D" parent="Sprites/FullBody"]
+[node name="AxeRightArm" type="Node2D" parent="Sprites/FullBody"]
+rotation = 6.28319
+
+[node name="RightArm" type="Sprite2D" parent="Sprites/FullBody/AxeRightArm"]
 texture = ExtResource("5_lg68m")
 
 [node name="Body" type="Sprite2D" parent="Sprites/FullBody"]
 texture = ExtResource("5_f4msp")
 
-[node name="LeftArm" type="Sprite2D" parent="Sprites/FullBody"]
+[node name="AxeLeftArm" type="Node2D" parent="Sprites/FullBody"]
+position = Vector2(132, 9)
+rotation = 3.14159
+
+[node name="LeftArm" type="Sprite2D" parent="Sprites/FullBody/AxeLeftArm"]
+position = Vector2(-132, -9)
 texture = ExtResource("7_wbs74")
