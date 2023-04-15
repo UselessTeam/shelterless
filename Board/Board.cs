@@ -86,4 +86,29 @@ public partial class Board : TileMap
             return null;
         }
     }
+
+    public IEnumerable<Pawn> GetPawnsWith<T>() where T : Component
+    {
+        foreach (Pawn pawn in Pawns)
+        {
+            if (pawn.Has<T>())
+            {
+                yield return pawn;
+            }
+        }
+    }
+
+    public Pawn GetFirstPawnWith<T>() where T : Component
+    {
+        foreach (Pawn pawn in Pawns)
+        {
+            if (pawn.Has<T>())
+            {
+                return pawn;
+            }
+        }
+        return null;
+    }
+
+    public Pawn Player => GetFirstPawnWith<PlayerComponent>();
 }

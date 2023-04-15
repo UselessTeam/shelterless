@@ -48,6 +48,26 @@ public partial class Pawn : Node2D
         return (T)component;
     }
 
+    public Component Get(Type type)
+    {
+        Component component = Components.GetValueOrDefault(type);
+        if (component is null)
+        {
+            return null;
+        }
+        return component;
+    }
+
+    public bool Has<T>() where T : Component
+    {
+        return Components.ContainsKey(typeof(T));
+    }
+
+    public bool Has(Type type)
+    {
+        return Components.ContainsKey(type);
+    }
+
     internal void SetCoords(Vector2I coords)
     {
         // Should only be called by Board
