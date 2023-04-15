@@ -2,19 +2,11 @@ using Godot;
 using System.Linq;
 using System.Collections.Generic;
 
-public partial class Board : Node2D
+public partial class Board : TileMap
 {
     public static readonly Vector2I INVALID_COORDS = new Vector2I(int.MaxValue, int.MaxValue);
-    [Export]
-    public TileMap Map { get; private set; }
     private Dictionary<Vector2I, HashSet<Pawn>> PawnByCoords = new Dictionary<Vector2I, HashSet<Pawn>>();
     private HashSet<Pawn> Pawns = new HashSet<Pawn>();
-
-    public override void _EnterTree()
-    {
-        base._EnterTree();
-        GD.Print(":D");
-    }
 
     internal void Register(Pawn pawn)
     {
@@ -24,7 +16,7 @@ public partial class Board : Node2D
             GD.PrintErr($"Coords for pawn {pawn} weren't null {pawn.Coords}");
             pawn.SetCoords(INVALID_COORDS);
         }
-        MovePawn(pawn, Map.LocalToMap(pawn.Position));
+        MovePawn(pawn, LocalToMap(pawn.Position));
     }
 
     internal void Unregister(Pawn pawn)
@@ -39,7 +31,7 @@ public partial class Board : Node2D
             && mouseButton.ButtonIndex == MouseButton.Left)
         {
             // TODO: Remove, test only
-            MovePawn(Pawns.First(), Map.LocalToMap(GetGlobalMousePosition()));
+            MovePawn(Pawns.First(), LocalToMap(GetGlobalMousePosition()));
         }
     }
 

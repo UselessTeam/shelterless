@@ -54,6 +54,6 @@ public partial class Pawn : Node2D
         // Call 'MovePawn' in Board to move pawn
         Coords = coords;
         // TODO: Think about where to put this
-        Position = Board.Map.MapToLocal(coords);
+        Position = Board.MapToLocal(coords);
     }
 }
