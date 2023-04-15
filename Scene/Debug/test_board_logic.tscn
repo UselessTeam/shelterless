@@ -21,9 +21,9 @@ terrain_set_0/terrain_0/color = Color(0.501961, 0.345098, 0.25098, 1)
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_vpoy7")
 
-[node name="TestBoard" type="Node2D" node_paths=PackedStringArray("TileMap")]
+[node name="TestBoard" type="Node2D" node_paths=PackedStringArray("Map")]
 script = ExtResource("1_pylty")
-TileMap = NodePath("Tiles")
+Map = NodePath("Tiles")
 
 [node name="Tiles" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_4eoap")

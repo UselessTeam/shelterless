@@ -2,13 +2,19 @@ using Godot;
 using System.Linq;
 using System.Collections.Generic;
 
-public partial class Board : Node
+public partial class Board : Node2D
 {
     public static readonly Vector2I INVALID_COORDS = new Vector2I(int.MaxValue, int.MaxValue);
     [Export]
-    public TileMap Tiles { get; private set; }
+    public TileMap Map { get; private set; }
     private Dictionary<Vector2I, HashSet<Pawn>> PawnByCoords = new Dictionary<Vector2I, HashSet<Pawn>>();
     private HashSet<Pawn> Pawns = new HashSet<Pawn>();
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        GD.Print(":D");
+    }
 
     internal void Register(Pawn pawn)
     {
@@ -18,13 +24,23 @@ public partial class Board : Node
             GD.PrintErr($"Coords for pawn {pawn} weren't null {pawn.Coords}");
             pawn.SetCoords(INVALID_COORDS);
         }
-        MovePawn(pawn, Tiles.LocalToMap(pawn.Position));
+        MovePawn(pawn, Map.LocalToMap(pawn.Position));
     }
 
     internal void Unregister(Pawn pawn)
     {
         MovePawn(pawn, INVALID_COORDS);
         Pawns.Remove(pawn);
+    }
+
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        if (@event is InputEventMouseButton mouseButton
+            && mouseButton.ButtonIndex == MouseButton.Left)
+        {
+            // TODO: Remove, test only
+            MovePawn(Pawns.First(), Map.LocalToMap(GetGlobalMousePosition()));
+        }
     }
 
     public void MovePawn(Pawn pawn, Vector2I coords)
@@ -35,13 +51,13 @@ public partial class Board : Node
         }
         if (pawn.Coords != INVALID_COORDS)
         {
-            if (PawnByCoords[coords].Count == 1)
+            if (PawnByCoords[pawn.Coords].Count == 1)
             {
-                PawnByCoords.Remove(coords);
+                PawnByCoords.Remove(pawn.Coords);
             }
             else
             {
-                PawnByCoords[coords].Remove(pawn);
+                PawnByCoords[pawn.Coords].Remove(pawn);
             }
         }
         if (coords != INVALID_COORDS)
