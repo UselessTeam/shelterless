@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://s7rwkk3o5s2j"]
+
+[ext_resource type="PackedScene" uid="uid://oc00dn4oji5x" path="res://Board/board.tscn" id="1_ui17o"]
+[ext_resource type="PackedScene" uid="uid://dfc5tnay8o2xl" path="res://GUI/gui.tscn" id="2_rw7i6"]
+
+[node name="test_gui" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="GUI" parent="." instance=ExtResource("2_rw7i6")]
+
+[node name="Board" parent="." instance=ExtResource("1_ui17o")]

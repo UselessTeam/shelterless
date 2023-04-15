@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfc5tnay8o2xl"]
+
+[ext_resource type="Script" path="res://GUI/GUI.cs" id="1_2mpgr"]
+
+[node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("DebugText")]
+script = ExtResource("1_2mpgr")
+DebugText = NodePath("DebugText")
+
+[node name="Bar" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 64)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Attack" type="Button" parent="Bar"]
+layout_mode = 2
+text = "Attack"
+
+[node name="Move" type="Button" parent="Bar"]
+layout_mode = 2
+text = "Move"
+
+[node name="Cancel" type="Button" parent="Bar"]
+layout_mode = 2
+text = "Cancel"
+
+[node name="DebugText" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 26.0
+grow_horizontal = 2
+text = "..."
