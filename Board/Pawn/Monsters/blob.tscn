@@ -2,34 +2,68 @@
 
 [ext_resource type="Script" path="res://Board/Pawn/Pawn.cs" id="1_yk5s6"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/HealthComponent.cs" id="2_it6mk"]
+[ext_resource type="Script" path="res://Board/Pawn/Component/AnimationComponent.cs" id="4_epfbg"]
 [ext_resource type="Texture2D" uid="uid://b08p76132ftff" path="res://Asset/Sprite/BlobMonster/BlobShadow.png" id="4_lx23a"]
 [ext_resource type="Texture2D" uid="uid://daqxf12ii7hw1" path="res://Asset/Sprite/BlobMonster/BlobBottom.png" id="5_viclx"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/LocomotionComponent.cs" id="6_7hviq"]
 [ext_resource type="Texture2D" uid="uid://c0w8wnriyg1sc" path="res://Asset/Sprite/BlobMonster/BlobTop.png" id="6_76qy8"]
 [ext_resource type="Texture2D" uid="uid://bvwmmf6fm6pe4" path="res://Asset/Sprite/BlobMonster/BlobFingers.png" id="7_gg1br"]
 
-[sub_resource type="CSharpScript" id="CSharpScript_6wr6m"]
-script/source = "using Godot;
-using System;
-
-public partial class AnimationComponent : Node
-{
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+[sub_resource type="Animation" id="Animation_v7e6x"]
+resource_name = "move"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/BlobFingers:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, -0.0872665, 0.0]
 }
-"
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/BlobTop:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 20), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Locomotion:IsRunning")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Locomotion:MovementProgress")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
 
 [sub_resource type="Animation" id="Animation_uuy1l"]
-resource_name = "bite"
+resource_name = "attack"
 length = 0.8
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -55,42 +89,13 @@ tracks/1/keys = {
 "values": [Vector2(1, 1), Vector2(0.9, 1.125), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_v7e6x"]
-resource_name = "move"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprites/BlobFingers:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0872665, -0.0872665, 0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprites/BlobTop:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 20), Vector2(0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_448gm"]
 _data = {
-"bite": SubResource("Animation_uuy1l"),
+"attack": SubResource("Animation_uuy1l"),
 "move": SubResource("Animation_v7e6x")
 }
 
-[node name="Pawn" type="Node2D"]
+[node name="Blob" type="Node2D"]
 script = ExtResource("1_yk5s6")
 
 [node name="Health" type="Node" parent="."]
@@ -98,9 +103,10 @@ script = ExtResource("2_it6mk")
 
 [node name="Locomotion" type="Node" parent="."]
 script = ExtResource("6_7hviq")
+MovementProgress = 1.0
 
 [node name="Animation" type="Node" parent="."]
-script = SubResource("CSharpScript_6wr6m")
+script = ExtResource("4_epfbg")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Animation"]
 root_node = NodePath("../..")
@@ -120,6 +126,4 @@ texture = ExtResource("7_gg1br")
 texture = ExtResource("5_viclx")
 
 [node name="BlobTop" type="Sprite2D" parent="Sprites"]
-position = Vector2(0, -37.2671)
-scale = Vector2(0.909364, 1.1133)
 texture = ExtResource("6_76qy8")

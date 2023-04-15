@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://oc00dn4oji5x"]
+[gd_scene load_steps=10 format=3 uid="uid://oua8cntrci0b"]
 
 [ext_resource type="Texture2D" uid="uid://cbk02hshyy2qn" path="res://Asset/Hexagon.png" id="1_8x5n8"]
 [ext_resource type="Script" path="res://Board/Board.cs" id="2_aev3t"]
-[ext_resource type="PackedScene" path="res://Board/camera_2d.tscn" id="2_j4q03"]
+[ext_resource type="PackedScene" uid="uid://e33luquuut21" path="res://Board/camera_2d.tscn" id="2_j4q03"]
 [ext_resource type="AudioStream" uid="uid://dj4wivhbeqlp7" path="res://Asset/Sound/Shelterless.wav" id="3_00nhu"]
-[ext_resource type="PackedScene" uid="uid://dpe34uqrkh4l8" path="res://Board/Pawn/pawn.tscn" id="4_w38xu"]
+[ext_resource type="PackedScene" uid="uid://d21df0d4cqnbv" path="res://Board/Pawn/Monsters/blue.tscn" id="5_dnals"]
+[ext_resource type="PackedScene" uid="uid://di25s3yrmfuf8" path="res://Board/Pawn/Monsters/blob.tscn" id="6_oryxh"]
+[ext_resource type="PackedScene" uid="uid://gimoc3vuq86" path="res://Board/Pawn/player.tscn" id="7_ryp4c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vpoy7"]
 texture = ExtResource("1_8x5n8")
@@ -36,5 +38,11 @@ ZoomRatio = 1.2
 stream = ExtResource("3_00nhu")
 autoplay = true
 
-[node name="Pawn" parent="." instance=ExtResource("4_w38xu")]
-position = Vector2(2, 542)
+[node name="Pawn" parent="." instance=ExtResource("5_dnals")]
+position = Vector2(6, 463)
+
+[node name="Pawn2" parent="." instance=ExtResource("6_oryxh")]
+position = Vector2(2323, 426)
+
+[node name="Pawn3" parent="." instance=ExtResource("7_ryp4c")]
+position = Vector2(1517, 1355)
