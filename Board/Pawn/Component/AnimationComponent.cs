@@ -3,7 +3,7 @@ using System;
 
 public partial class AnimationComponent : Component
 {
-    public AnimationPlayer AnimationPlayer
+    private AnimationPlayer AnimationPlayer
     {
         get
         {
@@ -11,8 +11,21 @@ public partial class AnimationComponent : Component
             return animationPlayer;
         }
     }
-
     private AnimationPlayer animationPlayer = null;
+
+    public void Play(string animation)
+    {
+        if (AnimationPlayer.IsPlaying())
+        {
+            AnimationPlayer.Advance(AnimationPlayer.CurrentAnimationLength - AnimationPlayer.CurrentAnimationPosition);
+        }
+        AnimationPlayer.Play(animation);
+    }
+
+    public void OnAnimationFinished(AnimationPlayer.AnimationFinishedEventHandler action)
+    {
+        AnimationPlayer.AnimationFinished += action;
+    }
 
     public void LookLeft()
     {

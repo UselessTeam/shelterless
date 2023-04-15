@@ -13,32 +13,14 @@ public partial class LocomotionComponent : Component
 
     public void RunToTargetPosition(Vector2 target)
     {
-        RunMovement(target - Pawn.Position);
-    }
-
-    public void RunMovement(Vector2 movement)
-    {
-        if (isRunning)
-            throw (new Exception("LocomotionComponent is already running"));
+        animationComponent.Play("move");
+        if (target.X - Pawn.Position.X > 0)
+            animationComponent.LookRight();
+        else if (target.X - Pawn.Position.X < 0)
+            animationComponent.LookLeft();
         isRunning = true;
         positionStart = Pawn.Position;
-        this.movement = movement;
-        var animation = Pawn.Get<AnimationComponent>();
-        animation.AnimationPlayer.Play("move");
-        if (this.movement.X > 0)
-            animation.LookRight();
-        else if (this.movement.X < 0)
-            animation.LookLeft();
-
-        var onAnimationFinished = new AnimationPlayer.AnimationFinishedEventHandler(_ =>
-            {
-                isRunning = false;
-                Pawn.Position = positionStart + this.movement;
-                EndMovementEvent?.Invoke();
-            }
-        );
-        animation.AnimationPlayer.AnimationFinished += onAnimationFinished;
-        EndMovementEvent += () => animation.AnimationPlayer.AnimationFinished -= onAnimationFinished;
+        positionEnd = target;
     }
 
     public event Action EndMovementEvent;
@@ -46,14 +28,32 @@ public partial class LocomotionComponent : Component
     private bool isRunning;
 
     Vector2 positionStart;
-    Vector2 movement;
+    Vector2 positionEnd;
+
+    AnimationComponent animationComponent => Pawn.Get<AnimationComponent>();
+
+    public override void _Ready()
+    {
+        base._Ready();
+
+        animationComponent.OnAnimationFinished(_ =>
+            {
+                if (isRunning)
+                {
+                    isRunning = false;
+                    Pawn.Position = this.positionEnd;
+                    EndMovementEvent?.Invoke();
+                }
+            }
+        );
+    }
 
     public override void _Process(double delta)
     {
         base._Process(delta);
         if (isRunning)
         {
-            Pawn.Position = positionStart + movement * MovementProgress;
+            Pawn.Position = positionStart * (1 - MovementProgress) + positionEnd * MovementProgress;
         }
     }
     override protected IEnumerable<Type> GetDependencies()
