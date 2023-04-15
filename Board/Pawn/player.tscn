@@ -1,16 +1,18 @@
-[gd_scene load_steps=12 format=3 uid="uid://gimoc3vuq86"]
+[gd_scene load_steps=14 format=3 uid="uid://gimoc3vuq86"]
 
 [ext_resource type="Script" path="res://Board/Pawn/Pawn.cs" id="1_13sq6"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/HealthComponent.cs" id="2_11mjc"]
 [ext_resource type="Texture2D" uid="uid://bwqrsayq148if" path="res://Asset/Sprite/Player/Player-2.png" id="3_br5fh"]
+[ext_resource type="Texture2D" uid="uid://drdec5hdaakb4" path="res://Asset/Sprite/Player/Player-3.png" id="4_xgbm6"]
 [ext_resource type="Texture2D" uid="uid://chmwc3x213yp4" path="res://Asset/Sprite/Player/Player-1.png" id="5_liakd"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/LocomotionComponent.cs" id="6_kmute"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/AnimationComponent.cs" id="7_8bl04"]
+[ext_resource type="Texture2D" uid="uid://cged54ku8gm2h" path="res://Asset/Sprite/Player/Player-Animate.png" id="8_3fkxc"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/PlayerComponent.cs" id="8_4erq0"]
 
-[sub_resource type="Animation" id="Animation_5mpr3"]
-resource_name = "jump"
-length = 0.6
+[sub_resource type="Animation" id="Animation_5i56o"]
+resource_name = "attack"
+length = 0.5
 step = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -19,68 +21,68 @@ tracks/0/path = NodePath("Sprites/AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.075, 0.425, 0.475, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [&"squish", &"jump", &"squish", &"default", &"default"]
+"values": [&"attack", &"default"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Locomotion:MovementProgress")
+tracks/1/path = NodePath("Sprites/AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(-0.025, 0, 0.6),
-"transitions": PackedFloat32Array(0.329878, 1, 0.0220971),
-"update": 0,
-"values": [0.0, 0.0, 1.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Locomotion:IsRunning")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.6),
+"times": PackedFloat32Array(0.05, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [0, 1]
 }
 
 [sub_resource type="Animation" id="Animation_tw5xv"]
 resource_name = "move"
-length = 0.6
+length = 0.525
 step = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprites/AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Locomotion:MovementProgress")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"default"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Locomotion:MovementProgress")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6),
+"times": PackedFloat32Array(0, 0.525),
 "transitions": PackedFloat32Array(1, 0.0220971),
 "update": 0,
 "values": [0.0, 1.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.525),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"move", &"default"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/AnimatedSprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.175, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 0, 1]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_448gm"]
 _data = {
-"jump": SubResource("Animation_5mpr3"),
+"attack": SubResource("Animation_5i56o"),
 "move": SubResource("Animation_tw5xv")
 }
 
@@ -89,6 +91,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_br5fh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xgbm6")
 }],
 "loop": true,
 "name": &"attack",
@@ -98,9 +103,20 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("5_liakd")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
-"speed": 5.0
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_liakd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3fkxc")
+}],
+"loop": true,
+"name": &"move",
+"speed": 7.0
 }]
 
 [node name="Player" type="Node2D"]
@@ -111,7 +127,7 @@ script = ExtResource("2_11mjc")
 
 [node name="Locomotion" type="Node" parent="."]
 script = ExtResource("6_kmute")
-MovementProgress = 0.791667
+MovementProgress = 1.0
 
 [node name="Animation" type="Node" parent="."]
 script = ExtResource("7_8bl04")
@@ -127,7 +143,6 @@ position = Vector2(21, -254)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprites"]
 sprite_frames = SubResource("SpriteFrames_wyis6")
-animation = &"attack"
 
 [node name="Player" type="Node" parent="."]
 script = ExtResource("8_4erq0")

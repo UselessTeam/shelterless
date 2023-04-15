@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d21df0d4cqnbv"]
+[gd_scene load_steps=12 format=3 uid="uid://d21df0d4cqnbv"]
 
 [ext_resource type="Script" path="res://Board/Pawn/Pawn.cs" id="1_la2bt"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/HealthComponent.cs" id="2_jspms"]
@@ -8,47 +8,6 @@
 [ext_resource type="Script" path="res://Board/Pawn/Component/LocomotionComponent.cs" id="6_0qpjb"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/AnimationComponent.cs" id="7_awsxb"]
 [ext_resource type="Texture2D" uid="uid://dji1xps7u5jqd" path="res://Asset/Sprite/BlueMonster/BlueLeftArm.png" id="7_wbs74"]
-
-[sub_resource type="Animation" id="Animation_5mpr3"]
-resource_name = "move"
-length = 0.6
-step = 0.025
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Locomotion:MovementProgress")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.075, 0.425, 0.6),
-"transitions": PackedFloat32Array(1, 0.329878, 0.0220971, 1),
-"update": 0,
-"values": [0.0, 0.0, 1.0, 1.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprites/FullBody/Body:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.075, 0.175, 0.475, 0.6),
-"transitions": PackedFloat32Array(0.450625, 1, 2.14355, 0.329877, 0.170755),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 0.7), Vector2(1, 1.2), Vector2(1, 0.8), Vector2(1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprites/FullBody:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.075, 0.25, 0.475, 0.6),
-"transitions": PackedFloat32Array(0.466516, 1, 1, 0.329877, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 100), Vector2(0, -300), Vector2(0, 50), Vector2(0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_s763b"]
 resource_name = "attack"
@@ -115,48 +74,49 @@ tracks/4/keys = {
 "values": [Vector2(1, 1), Vector2(1, 1.13), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_2tq8x"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_5mpr3"]
+resource_name = "move"
+length = 0.6
+step = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprites/FullBody:position")
+tracks/0/path = NodePath("Locomotion:MovementProgress")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.075, 0.425, 0.6),
+"transitions": PackedFloat32Array(1, 0.329878, 0.0220971, 1),
 "update": 0,
-"values": [Vector2(-117, 9)]
+"values": [0.0, 0.0, 1.0, 1.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprites/FullBody:rotation")
+tracks/1/path = NodePath("Sprites/FullBody/Body:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.075, 0.175, 0.475, 0.6),
+"transitions": PackedFloat32Array(0.450625, 1, 2.14355, 0.329877, 0.170755),
 "update": 0,
-"values": [-0.450295]
+"values": [Vector2(1, 1), Vector2(1, 0.7), Vector2(1, 1.2), Vector2(1, 0.8), Vector2(1, 1)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprites/FullBody/AxeLeftArm:rotation")
+tracks/2/path = NodePath("Sprites/FullBody:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.075, 0.25, 0.475, 0.6),
+"transitions": PackedFloat32Array(0.466516, 1, 1, 0.329877, 1),
 "update": 0,
-"values": [3.14159]
+"values": [Vector2(0, 0), Vector2(0, 100), Vector2(0, -300), Vector2(0, 50), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_448gm"]
 _data = {
-"RESET": SubResource("Animation_2tq8x"),
 "attack": SubResource("Animation_s763b"),
 "move": SubResource("Animation_5mpr3")
 }
@@ -187,11 +147,8 @@ position = Vector2(-10, -249)
 texture = ExtResource("5_nwga1")
 
 [node name="FullBody" type="Node2D" parent="Sprites"]
-position = Vector2(-117, 9)
-rotation = -0.450295
 
 [node name="AxeRightArm" type="Node2D" parent="Sprites/FullBody"]
-rotation = 6.28319
 
 [node name="RightArm" type="Sprite2D" parent="Sprites/FullBody/AxeRightArm"]
 texture = ExtResource("5_lg68m")
@@ -201,7 +158,6 @@ texture = ExtResource("5_f4msp")
 
 [node name="AxeLeftArm" type="Node2D" parent="Sprites/FullBody"]
 position = Vector2(132, 9)
-rotation = 3.14159
 
 [node name="LeftArm" type="Sprite2D" parent="Sprites/FullBody/AxeLeftArm"]
 position = Vector2(-132, -9)
