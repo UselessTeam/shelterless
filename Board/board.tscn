@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ufnqkere3tx1"]
+[gd_scene load_steps=11 format=3 uid="uid://ufnqkere3tx1"]
 
 [ext_resource type="Texture2D" uid="uid://cbk02hshyy2qn" path="res://Asset/Hexagon.png" id="1_8x5n8"]
 [ext_resource type="Script" path="res://Board/Board.cs" id="2_aev3t"]

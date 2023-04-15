@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public partial class LocomotionComponent : Component
 {
-    [Export] public bool IsRunning { private get; set; } = false;
     [Export(PropertyHint.Range, "0,1")] float MovementProgress;
 
     public void RunToCoords(Vector2I target)
@@ -17,10 +16,13 @@ public partial class LocomotionComponent : Component
         RunMovement(target - Pawn.Position);
     }
 
+    private bool isRunning;
+
     public void RunMovement(Vector2 movement)
     {
-        if (IsRunning)
+        if (isRunning)
             throw (new Exception("LocomotionComponent is already running"));
+        isRunning = true;
         PositionStart = Pawn.Position;
         Movement = movement;
         var animation = Pawn.Get<AnimationComponent>();
@@ -29,14 +31,17 @@ public partial class LocomotionComponent : Component
             animation.LookRight();
         else if (Movement.X < 0)
             animation.LookLeft();
+        animation.AnimationPlayer.AnimationFinished +=
+            (_ =>
+                {
+                    isRunning = false;
+                    Pawn.Position = PositionStart + Movement;
+                    EndMovementEvent?.Invoke();
+                }
+            );
     }
 
     public event Action EndMovementEvent;
-
-    private void NotifyEndMovement()
-    {
-        EndMovementEvent?.Invoke();
-    }
 
     Vector2 PositionStart;
     Vector2 Movement;
@@ -44,7 +49,7 @@ public partial class LocomotionComponent : Component
     public override void _Process(double delta)
     {
         base._Process(delta);
-        if (IsRunning)
+        if (isRunning)
         {
             Pawn.Position = PositionStart + Movement * MovementProgress;
         }
