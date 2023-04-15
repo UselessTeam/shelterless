@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://drc7xrdeb2d48"]
+
+[sub_resource type="TileSet" id="TileSet_4eoap"]
+tile_shape = 3
+tile_size = Vector2i(768, 512)
+terrain_set_0/mode = 0
+navigation_layer_0/layers = 1
+
+[node name="TestBoard" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_4eoap")
+format = 2

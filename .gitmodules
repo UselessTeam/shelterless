@@ -1,0 +1,3 @@
+[submodule "GodotCommonUtils"]
+	path = GodotCommonUtils
+	url = git@github.com:UselessTeam/GodotCommonUtils.git
