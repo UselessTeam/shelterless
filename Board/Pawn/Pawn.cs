@@ -14,8 +14,9 @@ public partial class Pawn : Node2D
         if (Board is null)
         {
             GD.PrintErr($"Could not find Board pawn '{Name}'");
+            return;
         }
-        Board?.Register(this);
+        Board.Register(this);
     }
 
     public override void _ExitTree()

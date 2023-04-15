@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://dq32gsctoawbo"]
+
+[ext_resource type="Script" path="res://Board/Board.cs" id="1_pylty"]
+[ext_resource type="Texture2D" uid="uid://cbk02hshyy2qn" path="res://Asset/Hexagon.png" id="2_tj4of"]
+[ext_resource type="PackedScene" path="res://Board/camera_2d.tscn" id="3_rbhk0"]
+[ext_resource type="PackedScene" uid="uid://dpe34uqrkh4l8" path="res://Board/Pawn/pawn.tscn" id="4_vcxi5"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vpoy7"]
+texture = ExtResource("2_tj4of")
+texture_region_size = Vector2i(768, 512)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+
+[sub_resource type="TileSet" id="TileSet_4eoap"]
+tile_shape = 3
+tile_size = Vector2i(768, 504)
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Terrain 0"
+terrain_set_0/terrain_0/color = Color(0.501961, 0.345098, 0.25098, 1)
+navigation_layer_0/layers = 1
+sources/0 = SubResource("TileSetAtlasSource_vpoy7")
+
+[node name="TestBoard" type="Node2D" node_paths=PackedStringArray("TileMap")]
+script = ExtResource("1_pylty")
+TileMap = NodePath("Tiles")
+
+[node name="Tiles" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_4eoap")
+format = 2
+layer_0/tile_data = PackedInt32Array(131071, 0, 0, 0, 0, 0, 65536, 0, 0, 131072, 0, 0, 131073, 0, 0, 196608, 0, 0, 196609, 0, 0, 131074, 0, 0, 65537, 0, 0, 196610, 0, 0, 196611, 0, 0, 131076, 0, 0, 3, 0, 0, 5, 0, 0, 65540, 0, 0, 4, 0, 0, 65539, 0, 0, 131075, 0, 0, 65538, 0, 0, 1, 0, 0, -65535, 0, 0, 2, 0, 0)
+
+[node name="Camera2D" parent="." instance=ExtResource("3_rbhk0")]
+MaxZoomTicks = 7
+ZoomRatio = 1.2
+
+[node name="Pawn" parent="." instance=ExtResource("4_vcxi5")]
+position = Vector2(360, 173)

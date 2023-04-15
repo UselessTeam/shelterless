@@ -5,13 +5,20 @@ using System.Collections.Generic;
 public partial class Board : Node
 {
     public static readonly Vector2I INVALID_COORDS = new Vector2I(int.MaxValue, int.MaxValue);
-    public TileMap TileMap { get; private set; }
+    [Export]
+    public TileMap Tiles { get; private set; }
     private Dictionary<Vector2I, HashSet<Pawn>> PawnByCoords = new Dictionary<Vector2I, HashSet<Pawn>>();
     private HashSet<Pawn> Pawns = new HashSet<Pawn>();
 
     internal void Register(Pawn pawn)
     {
         Pawns.Add(pawn);
+        if (pawn.Coords != INVALID_COORDS)
+        {
+            GD.PrintErr($"Coords for pawn {pawn} weren't null {pawn.Coords}");
+            pawn.SetCoords(INVALID_COORDS);
+        }
+        MovePawn(pawn, Tiles.LocalToMap(pawn.Position));
     }
 
     internal void Unregister(Pawn pawn)
@@ -22,6 +29,10 @@ public partial class Board : Node
 
     public void MovePawn(Pawn pawn, Vector2I coords)
     {
+        if (pawn.Coords == coords)
+        {
+            return;
+        }
         if (pawn.Coords != INVALID_COORDS)
         {
             if (PawnByCoords[coords].Count == 1)
