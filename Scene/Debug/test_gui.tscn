@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3i201gdf08e7"]
+[gd_scene load_steps=4 format=3 uid="uid://b3i201gdf08e7"]
 
 [ext_resource type="PackedScene" uid="uid://ufnqkere3tx1" path="res://Board/board.tscn" id="1_ui17o"]
 [ext_resource type="PackedScene" uid="uid://dfc5tnay8o2xl" path="res://GUI/gui.tscn" id="2_rw7i6"]
+[ext_resource type="PackedScene" uid="uid://gimoc3vuq86" path="res://Board/Pawn/player.tscn" id="3_dwcch"]
 
 [node name="TestGUI" type="Control"]
 layout_mode = 3
@@ -11,3 +12,6 @@ mouse_filter = 2
 [node name="GUI" parent="." instance=ExtResource("2_rw7i6")]
 
 [node name="Board" parent="." instance=ExtResource("1_ui17o")]
+
+[node name="Player" parent="Board" instance=ExtResource("3_dwcch")]
+position = Vector2(1140, 986)

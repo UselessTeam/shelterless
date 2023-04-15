@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://gimoc3vuq86"]
+[gd_scene load_steps=12 format=3 uid="uid://gimoc3vuq86"]
 
 [ext_resource type="Script" path="res://Board/Pawn/Pawn.cs" id="1_13sq6"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/HealthComponent.cs" id="2_11mjc"]
 [ext_resource type="Texture2D" uid="uid://bwqrsayq148if" path="res://Asset/Sprite/Player/Player-2.png" id="3_br5fh"]
-[ext_resource type="Texture2D" uid="uid://drdec5hdaakb4" path="res://Asset/Sprite/Player/Player-3.png" id="4_xgbm6"]
 [ext_resource type="Texture2D" uid="uid://chmwc3x213yp4" path="res://Asset/Sprite/Player/Player-1.png" id="5_liakd"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/LocomotionComponent.cs" id="6_kmute"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/AnimationComponent.cs" id="7_8bl04"]
@@ -90,9 +89,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_br5fh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_xgbm6")
 }],
 "loop": true,
 "name": &"attack",
@@ -115,7 +111,7 @@ script = ExtResource("2_11mjc")
 
 [node name="Locomotion" type="Node" parent="."]
 script = ExtResource("6_kmute")
-MovementProgress = 1.0
+MovementProgress = 0.791667
 
 [node name="Animation" type="Node" parent="."]
 script = ExtResource("7_8bl04")
@@ -131,6 +127,7 @@ position = Vector2(21, -254)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprites"]
 sprite_frames = SubResource("SpriteFrames_wyis6")
+animation = &"attack"
 
 [node name="Player" type="Node" parent="."]
 script = ExtResource("8_4erq0")
