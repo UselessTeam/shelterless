@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3i201gdf08e7"]
+[gd_scene load_steps=3 format=3 uid="uid://s7rwkk3o5s2j"]
 
-[ext_resource type="PackedScene" uid="uid://oua8cntrci0b" path="res://Board/board.tscn" id="1_ui17o"]
+[ext_resource type="PackedScene" uid="uid://ufnqkere3tx1" path="res://Board/board.tscn" id="1_ui17o"]
 [ext_resource type="PackedScene" uid="uid://dfc5tnay8o2xl" path="res://GUI/gui.tscn" id="2_rw7i6"]
 
 [node name="TestGUI" type="Control"]

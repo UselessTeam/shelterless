@@ -7,12 +7,14 @@ public partial class LocomotionComponent : Component
     [Export] public bool IsRunning { private get; set; } = false;
     [Export(PropertyHint.Range, "0,1")] float MovementProgress;
 
-    public override void _UnhandledInput(InputEvent @event)
+    public void RunToCoords(Vector2I target)
     {
-        if (@event.IsActionPressed("DragCamera"))
-        {
-            RunMovement(new Vector2(756, 0));
-        }
+        RunToTargetPosition(Pawn.Board.MapToLocal(target));
+    }
+
+    public void RunToTargetPosition(Vector2 target)
+    {
+        RunMovement(target - Pawn.Position);
     }
 
     public void RunMovement(Vector2 movement)

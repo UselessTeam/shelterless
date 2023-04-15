@@ -68,7 +68,12 @@ public partial class Pawn : Node2D
         return Components.ContainsKey(type);
     }
 
-    internal void SetCoords(Vector2I coords)
+    public void SetCoords(Vector2I coords)
+    {
+        Board.MovePawn(this, coords);
+    }
+
+    internal void OverrideCoords(Vector2I coords)
     {
         // Should only be called by Board
         // Call 'MovePawn' in Board to move pawn

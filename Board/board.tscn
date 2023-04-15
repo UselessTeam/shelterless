@@ -2,11 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://cbk02hshyy2qn" path="res://Asset/Hexagon.png" id="1_8x5n8"]
 [ext_resource type="Script" path="res://Board/Board.cs" id="2_aev3t"]
-[ext_resource type="PackedScene" uid="uid://e33luquuut21" path="res://Board/camera_2d.tscn" id="2_j4q03"]
+[ext_resource type="PackedScene" path="res://Board/camera_2d.tscn" id="2_j4q03"]
 [ext_resource type="AudioStream" uid="uid://dj4wivhbeqlp7" path="res://Asset/Sound/Shelterless.wav" id="3_00nhu"]
 [ext_resource type="PackedScene" uid="uid://d21df0d4cqnbv" path="res://Board/Pawn/Monsters/blue.tscn" id="5_dnals"]
-[ext_resource type="PackedScene" uid="uid://c00j0wfrycny8" path="res://Board/Pawn/Monsters/blob.tscn" id="7_jek75"]
-[ext_resource type="PackedScene" uid="uid://gimoc3vuq86" path="res://Board/Pawn/player.tscn" id="7_ryp4c"]
+[ext_resource type="PackedScene" uid="uid://df81v21uh061v" path="res://Board/Pawn/player.tscn" id="7_ryp4c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vpoy7"]
 texture = ExtResource("1_8x5n8")
@@ -16,21 +15,27 @@ texture_region_size = Vector2i(768, 512)
 0:0/0/terrain = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i4q7o"]
-resource_name = "TileGUI"
+resource_name = "GUITile"
 texture = ExtResource("1_8x5n8")
 texture_region_size = Vector2i(768, 504)
+0:0/next_alternative_id = 3
 0:0/0 = 0
 0:0/0/modulate = Color(0.380392, 1, 1, 0.462745)
+0:0/1 = 1
+0:0/1/modulate = Color(0.615686, 0.0470588, 0.254902, 0.568627)
+0:0/2 = 2
+0:0/2/modulate = Color(0.329412, 0.862745, 0.603922, 0.462745)
 
 [sub_resource type="TileSet" id="TileSet_4eoap"]
 tile_shape = 3
+tile_layout = 2
 tile_size = Vector2i(768, 504)
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.501961, 0.345098, 0.25098, 1)
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_vpoy7")
-sources/100 = SubResource("TileSetAtlasSource_i4q7o")
+sources/128 = SubResource("TileSetAtlasSource_i4q7o")
 
 [node name="Board" type="TileMap"]
 tile_set = SubResource("TileSet_4eoap")
@@ -53,9 +58,6 @@ ZoomRatio = 1.2
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Camera"]
 stream = ExtResource("3_00nhu")
 autoplay = true
-
-[node name="Blob" parent="." instance=ExtResource("7_jek75")]
-position = Vector2(2314, 451)
 
 [node name="Blue" parent="." instance=ExtResource("5_dnals")]
 position = Vector2(1144, 40)

@@ -13,7 +13,7 @@ public partial class Board : TileMap
         if (pawn.Coords.IsValid())
         {
             GD.PrintErr($"Coords for pawn {pawn} weren't null {pawn.Coords}");
-            pawn.SetCoords(VectorUtils.INVALID_VECTOR2I);
+            pawn.OverrideCoords(VectorUtils.INVALID_VECTOR2I);
         }
         MovePawn(pawn, LocalToMap(pawn.Position));
     }
@@ -64,7 +64,7 @@ public partial class Board : TileMap
                 PawnByCoords[coords] = new HashSet<Pawn>();
             }
             PawnByCoords[coords].Add(pawn);
-            pawn.SetCoords(coords);
+            pawn.OverrideCoords(coords);
         }
     }
 
@@ -128,5 +128,15 @@ public static class VectorUtils
     public static bool IsInvalid(this Vector2I vector)
     {
         return vector == INVALID_VECTOR2I;
+    }
+
+    public static int Magnitude(this Vector2I vector)
+    {
+        return Mathf.Max(Mathf.Max(Mathf.Abs(vector.X), Mathf.Abs(vector.Y)), Mathf.Abs(vector.X + vector.Y));
+    }
+
+    public static int Distance(this Vector2I vector, Vector2I other)
+    {
+        return (vector - other).Magnitude();
     }
 }
