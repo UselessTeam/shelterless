@@ -12,19 +12,24 @@ public partial class AnimationComponent : Component
         }
     }
     private AnimationPlayer animationPlayer = null;
+    private Action[] currentCallbacks;
+    private int currentCallbackIndex;
 
-    public void Play(string animation)
+    public void Play(string animation, params Action[] callbacks)
     {
         if (AnimationPlayer.IsPlaying())
         {
             AnimationPlayer.Advance(AnimationPlayer.CurrentAnimationLength - AnimationPlayer.CurrentAnimationPosition);
         }
+        currentCallbacks = callbacks;
+        currentCallbackIndex = 0;
         AnimationPlayer.Play(animation);
     }
 
-    public void OnAnimationFinished(AnimationPlayer.AnimationFinishedEventHandler action)
+    public void Trigger()
     {
-        AnimationPlayer.AnimationFinished += action;
+        currentCallbacks[currentCallbackIndex]();
+        currentCallbackIndex++;
     }
 
     public void LookLeft()

@@ -16,7 +16,10 @@ public static class SkillList
         MaxTargetRange = 1,
         Effect = (FunctionEffect)((Context context) =>
         {
-            context.PawnTarget.Get<HealthComponent>().ChangeHealth(-25);
+            context.PawnTarget.Get<AnimationComponent>().Play("attack", () =>
+            {
+                context.PawnTarget.Get<HealthComponent>().ChangeHealth(-25);
+            });
         })
     };
 }

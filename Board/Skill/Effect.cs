@@ -11,7 +11,6 @@ public class MoveEffect : Effect
     public void AppliedOn(Context context)
     {
         context.SourcePawn.Get<LocomotionComponent>().RunToCoords(context.CoordsTarget);
-        context.SourcePawn.SetCoords(context.CoordsTarget);
     }
 }
 

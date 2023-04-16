@@ -8,23 +8,21 @@ public partial class LocomotionComponent : Component
 
     public void RunToCoords(Vector2I target)
     {
-        RunToTargetPosition(Pawn.Board.MapToLocal(target));
-        Pawn.SetCoords(target);
-    }
-
-    public void RunToTargetPosition(Vector2 target)
-    {
-        animationComponent.Play("move");
-        if (target.X - Pawn.Position.X > 0)
-            animationComponent.LookRight();
-        else if (target.X - Pawn.Position.X < 0)
-            animationComponent.LookLeft();
+        Vector2 targetPosition = Pawn.Board.MapToLocal(target);
         isRunning = true;
+        if (targetPosition.X - Pawn.Position.X > 0)
+            animationComponent.LookRight();
+        else if (targetPosition.X - Pawn.Position.X < 0)
+            animationComponent.LookLeft();
         positionStart = Pawn.Position;
-        positionEnd = target;
+        positionEnd = targetPosition;
+        animationComponent.Play("move", () =>
+            {
+                isRunning = false;
+                Pawn.SetCoords(target);
+            }
+        );
     }
-
-    public event Action EndMovementEvent;
 
     private bool isRunning;
 
@@ -32,22 +30,6 @@ public partial class LocomotionComponent : Component
     Vector2 positionEnd;
 
     AnimationComponent animationComponent => Pawn.Get<AnimationComponent>();
-
-    public override void _Ready()
-    {
-        base._Ready();
-
-        animationComponent.OnAnimationFinished(_ =>
-            {
-                if (isRunning)
-                {
-                    isRunning = false;
-                    Pawn.Position = this.positionEnd;
-                    EndMovementEvent?.Invoke();
-                }
-            }
-        );
-    }
 
     public override void _Process(double delta)
     {
