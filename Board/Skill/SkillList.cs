@@ -16,9 +16,11 @@ public static class SkillList
         Target = Skill.TargetType.ENTITY,
         MinTargetRange = 1,
         MaxTargetRange = 1,
-        Effect = (FunctionEffect)((Context context) =>
+        Effect = new FunctionEffect
         {
-            context.SourcePawn.Get<AnimationComponent>().StartPlay(
+            Apply = async (Context context) =>
+        {
+            await context.SourcePawn.Get<AnimationComponent>().Play(
                 "attack",
                 context.SourcePawn.Coords.SideTowards(context.PawnTarget.Coords),
                 () =>
@@ -28,6 +30,7 @@ public static class SkillList
                     context.PawnTarget.Get<HealthComponent>().ChangeHealth(damage);
                 }
             );
-        })
+        }
+        }
     };
 }

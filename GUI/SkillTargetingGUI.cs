@@ -37,7 +37,7 @@ public partial class SkillTargetingGUI : Control
 
     private bool CanTarget(Vector2I coords, Vector2 position)
     {
-        int distance = context.SourcePawn.Coords.Distance(coords);
+        int distance = context.SourcePawn?.Coords.Distance(coords) ?? -1;
         if (distance < context.SourceSkill.MinTargetRange)
         {
             return false;

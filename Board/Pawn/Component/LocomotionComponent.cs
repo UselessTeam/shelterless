@@ -13,6 +13,7 @@ public partial class LocomotionComponent : Component
         isRunning = true;
         positionStart = Pawn.Position;
         positionEnd = targetPosition;
+        MovementProgress = 0f;
         await animationComponent.Play("move", Pawn.Coords.SideTowards(target), () =>
             {
                 Pawn.SetCoords(target);

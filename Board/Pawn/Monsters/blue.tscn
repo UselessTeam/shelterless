@@ -1,13 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://d21df0d4cqnbv"]
+[gd_scene load_steps=13 format=3 uid="uid://d21df0d4cqnbv"]
 
 [ext_resource type="Script" path="res://Board/Pawn/Pawn.cs" id="1_la2bt"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/HealthComponent.cs" id="2_jspms"]
-[ext_resource type="Texture2D" uid="uid://dagegt4qbr8cn" path="res://Asset/Sprite/BlueMonster/BlueBody.png" id="5_f4msp"]
-[ext_resource type="Texture2D" uid="uid://dln3nnxiyepn3" path="res://Asset/Sprite/BlueMonster/BlueRightArm.png" id="5_lg68m"]
-[ext_resource type="Texture2D" uid="uid://urwka6xccnyu" path="res://Asset/Sprite/BlueMonster/BlueShadow.png" id="5_nwga1"]
+[ext_resource type="Script" path="res://Board/Pawn/Component/MonsterAIComponent.cs" id="5_dkvmc"]
+[ext_resource type="Texture2D" uid="uid://62gknpujm5bh" path="res://Asset/Sprite/BlueMonster/BlueBody.png" id="5_f4msp"]
+[ext_resource type="Texture2D" uid="uid://03gjacntirib" path="res://Asset/Sprite/BlueMonster/BlueRightArm.png" id="5_lg68m"]
+[ext_resource type="Texture2D" uid="uid://buax6n1x7235p" path="res://Asset/Sprite/BlueMonster/BlueShadow.png" id="5_nwga1"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/LocomotionComponent.cs" id="6_0qpjb"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/AnimationComponent.cs" id="7_awsxb"]
-[ext_resource type="Texture2D" uid="uid://dji1xps7u5jqd" path="res://Asset/Sprite/BlueMonster/BlueLeftArm.png" id="7_wbs74"]
+[ext_resource type="Texture2D" uid="uid://ba6kmurp5366k" path="res://Asset/Sprite/BlueMonster/BlueLeftArm.png" id="7_wbs74"]
 
 [sub_resource type="Animation" id="Animation_s763b"]
 resource_name = "attack"
@@ -72,20 +73,6 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1.41421, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1, 1.13), Vector2(1, 1)]
-}
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Animation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"Trigger"
-}]
 }
 
 [sub_resource type="Animation" id="Animation_5mpr3"]
@@ -153,6 +140,9 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_448gm")
 }
+
+[node name="MonsterAI" type="Node" parent="."]
+script = ExtResource("5_dkvmc")
 
 [node name="Sprites" type="Node2D" parent="."]
 position = Vector2(-10, -249)

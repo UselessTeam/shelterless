@@ -4,10 +4,10 @@
 [ext_resource type="Script" path="res://Board/Pawn/Component/HealthComponent.cs" id="2_jcylr"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/LocomotionComponent.cs" id="3_yb6px"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/AnimationComponent.cs" id="4_gt67d"]
-[ext_resource type="Texture2D" uid="uid://b08p76132ftff" path="res://Asset/Sprite/BlobMonster/BlobShadow.png" id="5_qydqa"]
-[ext_resource type="Texture2D" uid="uid://bvwmmf6fm6pe4" path="res://Asset/Sprite/BlobMonster/BlobFingers.png" id="6_067ak"]
-[ext_resource type="Texture2D" uid="uid://daqxf12ii7hw1" path="res://Asset/Sprite/BlobMonster/BlobBottom.png" id="7_s2dgs"]
-[ext_resource type="Texture2D" uid="uid://c0w8wnriyg1sc" path="res://Asset/Sprite/BlobMonster/BlobTop.png" id="8_ris0c"]
+[ext_resource type="Texture2D" uid="uid://dmxp8bj6dfn58" path="res://Asset/Sprite/BlobMonster/BlobShadow.png" id="5_qydqa"]
+[ext_resource type="Texture2D" uid="uid://dsut4ole8pdl7" path="res://Asset/Sprite/BlobMonster/BlobFingers.png" id="6_067ak"]
+[ext_resource type="Texture2D" uid="uid://bqusanj3dyq5n" path="res://Asset/Sprite/BlobMonster/BlobBottom.png" id="7_s2dgs"]
+[ext_resource type="Texture2D" uid="uid://dgbkicu53xuj5" path="res://Asset/Sprite/BlobMonster/BlobTop.png" id="8_ris0c"]
 
 [sub_resource type="Animation" id="Animation_uuy1l"]
 resource_name = "attack"
