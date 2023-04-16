@@ -1,11 +1,42 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfc5tnay8o2xl"]
+[gd_scene load_steps=6 format=3 uid="uid://dfc5tnay8o2xl"]
 
 [ext_resource type="Script" path="res://GUI/GUI.cs" id="1_2mpgr"]
 [ext_resource type="Script" path="res://GUI/SkillTargetingGUI.cs" id="2_77ei4"]
 
+[sub_resource type="Curve" id="Curve_vix6e"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.363636), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bj7ej"]
+curve = SubResource("Curve_vix6e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5y8gw"]
+emission_shape = 3
+emission_box_extents = Vector3(1600, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(0.5, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 98, 0)
+initial_velocity_min = 855.72
+initial_velocity_max = 1000.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+tangential_accel_min = 73.33
+tangential_accel_max = 100.0
+scale_min = 2.0
+scale_max = 6.0
+scale_curve = SubResource("CurveTexture_bj7ej")
+color = Color(0.231373, 0.717647, 0.752941, 1)
+
 [node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("DebugText")]
 script = ExtResource("1_2mpgr")
 DebugText = NodePath("DebugText")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(380, -31)
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_5y8gw")
+lifetime = 2.0
 
 [node name="SkillTargeting" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 64)

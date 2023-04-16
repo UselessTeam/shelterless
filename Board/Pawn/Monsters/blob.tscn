@@ -115,5 +115,4 @@ texture = ExtResource("6_067ak")
 texture = ExtResource("7_s2dgs")
 
 [node name="BlobTop" type="Sprite2D" parent="Sprites"]
-scale = Vector2(0.966667, 1.04167)
 texture = ExtResource("8_ris0c")
