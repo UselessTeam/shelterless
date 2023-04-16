@@ -1,12 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://ufnqkere3tx1"]
+[gd_scene load_steps=11 format=3 uid="uid://ufnqkere3tx1"]
 
 [ext_resource type="Texture2D" uid="uid://cbk02hshyy2qn" path="res://Asset/Hexagon.png" id="1_8x5n8"]
 [ext_resource type="Script" path="res://Board/Board.cs" id="2_aev3t"]
 [ext_resource type="PackedScene" uid="uid://e33luquuut21" path="res://Board/camera_2d.tscn" id="2_j4q03"]
+[ext_resource type="PackedScene" uid="uid://cev6qh57ntae" path="res://Board/Tile/poison_tile.tscn" id="2_ows5b"]
 [ext_resource type="AudioStream" uid="uid://dj4wivhbeqlp7" path="res://Asset/Sound/Shelterless.wav" id="3_00nhu"]
 [ext_resource type="PackedScene" uid="uid://d21df0d4cqnbv" path="res://Board/Pawn/Monsters/blue.tscn" id="5_dnals"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vpoy7"]
+resource_name = "NormalTile"
 texture = ExtResource("1_8x5n8")
 texture_region_size = Vector2i(768, 512)
 0:0/0 = 0
@@ -25,6 +27,10 @@ texture_region_size = Vector2i(768, 504)
 0:0/2 = 2
 0:0/2/modulate = Color(0.329412, 0.862745, 0.603922, 0.462745)
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_p75ja"]
+resource_name = "PoisonTile"
+scenes/1/scene = ExtResource("2_ows5b")
+
 [sub_resource type="TileSet" id="TileSet_4eoap"]
 tile_shape = 3
 tile_layout = 2
@@ -35,6 +41,7 @@ terrain_set_0/terrain_0/color = Color(0.501961, 0.345098, 0.25098, 1)
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_vpoy7")
 sources/128 = SubResource("TileSetAtlasSource_i4q7o")
+sources/2 = SubResource("TileSetScenesCollectionSource_p75ja")
 
 [node name="Board" type="TileMap"]
 tile_set = SubResource("TileSet_4eoap")
@@ -70,3 +77,5 @@ position = Vector2(-1129, -1163)
 
 [node name="BottomRightLimit" type="Node2D" parent="."]
 position = Vector2(5738, 2585)
+
+[node name="PoisonTile" parent="." instance=ExtResource("2_ows5b")]
