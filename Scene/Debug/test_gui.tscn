@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ufnqkere3tx1" path="res://Board/board.tscn" id="1_ui17o"]
 [ext_resource type="PackedScene" uid="uid://dfc5tnay8o2xl" path="res://GUI/gui.tscn" id="2_rw7i6"]
-[ext_resource type="PackedScene" uid="uid://8e6hld61bx70" path="res://Board/Pawn/player.tscn" id="3_dwcch"]
+[ext_resource type="PackedScene" uid="uid://df81v21uh061v" path="res://Board/Pawn/player.tscn" id="3_dwcch"]
 
 [node name="TestGUI" type="Control"]
 layout_mode = 3

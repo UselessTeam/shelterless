@@ -15,6 +15,11 @@ public partial class AnimationComponent : Component
     private Action[] currentCallbacks;
     private int currentCallbackIndex;
 
+    public override void _Ready()
+    {
+        base._Ready();
+        AnimationPlayer.AnimationFinished += OnAnimationFinish;
+    }
     public void Play(string animation, params Action[] callbacks)
     {
         if (AnimationPlayer.IsPlaying())
@@ -28,8 +33,29 @@ public partial class AnimationComponent : Component
 
     public void Trigger()
     {
-        currentCallbacks[currentCallbackIndex]();
+        if (currentCallbackIndex >= currentCallbacks.Length)
+        {
+            GD.PushError($"Already all triggers (count: {currentCallbacks.Length}) had been consumed for animation {AnimationPlayer.CurrentAnimation}, but requesting a {currentCallbackIndex}th");
+        }
+        else
+        {
+            currentCallbacks[currentCallbackIndex]();
+        }
         currentCallbackIndex++;
+    }
+
+    public void OnAnimationFinish(StringName _)
+    {
+        if (currentCallbacks.Length - currentCallbackIndex >= 2)
+        {
+            GD.PrintErr($"Weird amount of final trigger: {currentCallbacks.Length - currentCallbackIndex}");
+        }
+        while (currentCallbackIndex < currentCallbacks.Length)
+        {
+            currentCallbacks[currentCallbackIndex]();
+            currentCallbackIndex++;
+        }
+        currentCallbacks = null;
     }
 
     public void LookLeft()

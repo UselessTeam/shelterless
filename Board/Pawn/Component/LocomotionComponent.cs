@@ -9,6 +9,12 @@ public partial class LocomotionComponent : Component
     public void RunToCoords(Vector2I target)
     {
         Vector2 targetPosition = Pawn.Board.MapToLocal(target);
+        animationComponent.Play("move", () =>
+            {
+                isRunning = false;
+                Pawn.SetCoords(target);
+            }
+        );
         isRunning = true;
         if (targetPosition.X - Pawn.Position.X > 0)
             animationComponent.LookRight();
@@ -16,12 +22,6 @@ public partial class LocomotionComponent : Component
             animationComponent.LookLeft();
         positionStart = Pawn.Position;
         positionEnd = targetPosition;
-        animationComponent.Play("move", () =>
-            {
-                isRunning = false;
-                Pawn.SetCoords(target);
-            }
-        );
     }
 
     private bool isRunning;
