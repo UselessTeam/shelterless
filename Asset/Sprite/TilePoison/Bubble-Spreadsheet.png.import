@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxagx65yaixs2"
-path="res://.godot/imported/BeeRightArm.png-88f8b54a21340d3c728fb0f4e3209078.ctex"
+uid="uid://c7fpvtn8o4kyb"
+path="res://.godot/imported/Bubble-Spreadsheet.png-450b1d72b6c61bc0680d3c48c7060119.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/Sprite/BeeMonster/BeeRightArm.png"
-dest_files=["res://.godot/imported/BeeRightArm.png-88f8b54a21340d3c728fb0f4e3209078.ctex"]
+source_file="res://Asset/Sprite/TilePoison/Bubble-Spreadsheet.png"
+dest_files=["res://.godot/imported/Bubble-Spreadsheet.png-450b1d72b6c61bc0680d3c48c7060119.ctex"]
 
 [params]
 

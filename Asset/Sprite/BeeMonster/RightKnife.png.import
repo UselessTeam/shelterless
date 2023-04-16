@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://berar7tu2k4xw"
-path="res://.godot/imported/PoisonTileBubble-6.png-d40f47ef3a2dc5f78e5c179c5450c33a.ctex"
+uid="uid://b66eiwpjdvufd"
+path="res://.godot/imported/RightKnife.png-96c92040e776b306b56572e04c7cf0c1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/TilePoison/PoisonTileBubble-6.png"
-dest_files=["res://.godot/imported/PoisonTileBubble-6.png-d40f47ef3a2dc5f78e5c179c5450c33a.ctex"]
+source_file="res://Asset/Sprite/BeeMonster/RightKnife.png"
+dest_files=["res://.godot/imported/RightKnife.png-96c92040e776b306b56572e04c7cf0c1.ctex"]
 
 [params]
 

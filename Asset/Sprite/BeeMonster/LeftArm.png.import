@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbk02hshyy2qn"
-path="res://.godot/imported/Hexagon.png-f7413fed2c77f8ea5b7a97ac2bbc097b.ctex"
+uid="uid://cd8an6ywoqs7v"
+path="res://.godot/imported/LeftArm.png-c54c3480ab1ded39624a1239b5c84270.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/Hexagon.png"
-dest_files=["res://.godot/imported/Hexagon.png-f7413fed2c77f8ea5b7a97ac2bbc097b.ctex"]
+source_file="res://Asset/Sprite/BeeMonster/LeftArm.png"
+dest_files=["res://.godot/imported/LeftArm.png-c54c3480ab1ded39624a1239b5c84270.ctex"]
 
 [params]
 

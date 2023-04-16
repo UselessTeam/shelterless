@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhtx0ccltx4pj"
-path="res://.godot/imported/PoisonTileBubble-1.png-e77dbba0a977cdf5cd52eaee952fb3d6.ctex"
+uid="uid://cw0fuueqmt2c7"
+path="res://.godot/imported/TileHole.png-e365000c2266a58943ba05a426c8b084.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/TilePoison/PoisonTileBubble-1.png"
-dest_files=["res://.godot/imported/PoisonTileBubble-1.png-e77dbba0a977cdf5cd52eaee952fb3d6.ctex"]
+source_file="res://Asset/Sprite/TileHole.png"
+dest_files=["res://.godot/imported/TileHole.png-e365000c2266a58943ba05a426c8b084.ctex"]
 
 [params]
 

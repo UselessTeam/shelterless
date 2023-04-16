@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dq32gsctoawbo"]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://Board/Board.cs" id="1_pylty"]
-[ext_resource type="Texture2D" uid="uid://cbk02hshyy2qn" path="res://Asset/Hexagon.png" id="2_tj4of"]
-[ext_resource type="PackedScene" path="res://Board/camera_2d.tscn" id="3_rbhk0"]
-[ext_resource type="PackedScene" uid="uid://dpe34uqrkh4l8" path="res://Board/Pawn/pawn.tscn" id="4_vcxi5"]
+[ext_resource type="Texture2D" uid="uid://cbk02hshyy2qn" path="res://Asset/Sprite/Hexagon.png" id="2_tj4of"]
+[ext_resource type="PackedScene" uid="uid://e33luquuut21" path="res://Board/camera_2d.tscn" id="3_rbhk0"]
+[ext_resource type="PackedScene" path="res://Board/Pawn/pawn.tscn" id="4_vcxi5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vpoy7"]
 texture = ExtResource("2_tj4of")

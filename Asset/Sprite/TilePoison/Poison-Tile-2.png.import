@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://isdau64tv4j7"
-path="res://.godot/imported/PoisonTileBubble-2.png-534e4ec2082f3f4cea5df63080fb859c.ctex"
+uid="uid://bd8n71psqs77o"
+path="res://.godot/imported/Poison-Tile-2.png-c63c6fd0a8bd250e664ff5f799f6ec05.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/TilePoison/PoisonTileBubble-2.png"
-dest_files=["res://.godot/imported/PoisonTileBubble-2.png-534e4ec2082f3f4cea5df63080fb859c.ctex"]
+source_file="res://Asset/Sprite/TilePoison/Poison-Tile-2.png"
+dest_files=["res://.godot/imported/Poison-Tile-2.png-c63c6fd0a8bd250e664ff5f799f6ec05.ctex"]
 
 [params]
 

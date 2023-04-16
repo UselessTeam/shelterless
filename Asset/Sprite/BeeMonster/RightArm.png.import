@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgvf2y5yk5t76"
-path="res://.godot/imported/PoisonTile.png-6a76422e41153255de3001ee9c22dff6.ctex"
+uid="uid://cumn8ro4s7rpf"
+path="res://.godot/imported/RightArm.png-5002e3385408c6dbe406557b51466914.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/TilePoison/PoisonTile.png"
-dest_files=["res://.godot/imported/PoisonTile.png-6a76422e41153255de3001ee9c22dff6.ctex"]
+source_file="res://Asset/Sprite/BeeMonster/RightArm.png"
+dest_files=["res://.godot/imported/RightArm.png-5002e3385408c6dbe406557b51466914.ctex"]
 
 [params]
 
