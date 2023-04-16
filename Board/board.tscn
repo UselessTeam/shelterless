@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cbk02hshyy2qn" path="res://Asset/Hexagon.png" id="1_8x5n8"]
 [ext_resource type="Script" path="res://Board/Board.cs" id="2_aev3t"]
-[ext_resource type="PackedScene" path="res://Board/camera_2d.tscn" id="2_j4q03"]
+[ext_resource type="PackedScene" uid="uid://e33luquuut21" path="res://Board/camera_2d.tscn" id="2_j4q03"]
 [ext_resource type="AudioStream" uid="uid://dj4wivhbeqlp7" path="res://Asset/Sound/Shelterless.wav" id="3_00nhu"]
 [ext_resource type="PackedScene" uid="uid://d21df0d4cqnbv" path="res://Board/Pawn/Monsters/blue.tscn" id="5_dnals"]
 
