@@ -2,15 +2,14 @@
 
 [ext_resource type="Script" path="res://Board/Pawn/Pawn.cs" id="1_13sq6"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/HealthComponent.cs" id="2_11mjc"]
-[ext_resource type="Texture2D" uid="uid://bwqrsayq148if" path="res://Asset/Sprite/Player/Player-2.png" id="3_br5fh"]
-[ext_resource type="Texture2D" uid="uid://drdec5hdaakb4" path="res://Asset/Sprite/Player/Player-3.png" id="4_xgbm6"]
-[ext_resource type="Texture2D" uid="uid://chmwc3x213yp4" path="res://Asset/Sprite/Player/Player-1.png" id="5_liakd"]
+[ext_resource type="Texture2D" uid="uid://c8fpwgchqx7pl" path="res://Asset/Sprite/Player/Player-2.png" id="3_br5fh"]
+[ext_resource type="Texture2D" uid="uid://wjbgpfadtlls" path="res://Asset/Sprite/Player/Player-3.png" id="4_xgbm6"]
+[ext_resource type="Texture2D" uid="uid://cb6wp4fhgob5j" path="res://Asset/Sprite/Player/Player-1.png" id="5_liakd"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/LocomotionComponent.cs" id="6_kmute"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/AnimationComponent.cs" id="7_8bl04"]
 [ext_resource type="Texture2D" uid="uid://cged54ku8gm2h" path="res://Asset/Sprite/Player/Player-Animate.png" id="8_3fkxc"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/PlayerComponent.cs" id="8_4erq0"]
-[ext_resource type="Script" path="res://Board/Pawn/Component/Skill/SkillComponent.cs" id="9_fvil6"]
-[ext_resource type="Resource" uid="uid://clicx2cte2vn4" path="res://Board/Pawn/Component/Skill/skill_move.tres" id="10_rbkue"]
+[ext_resource type="Script" path="res://Board/Pawn/SkillComponent.cs" id="10_6irhr"]
 
 [sub_resource type="Animation" id="Animation_5i56o"]
 resource_name = "attack"
@@ -150,5 +149,4 @@ position = Vector2(21, -254)
 sprite_frames = SubResource("SpriteFrames_wyis6")
 
 [node name="Skill" type="Node" parent="."]
-script = ExtResource("9_fvil6")
-Skills = Array[Resource]([ExtResource("10_rbkue")])
+script = ExtResource("10_6irhr")

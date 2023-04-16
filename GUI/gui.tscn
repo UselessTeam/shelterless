@@ -1,12 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfc5tnay8o2xl"]
+[gd_scene load_steps=3 format=3 uid="uid://dfc5tnay8o2xl"]
 
 [ext_resource type="Script" path="res://GUI/GUI.cs" id="1_2mpgr"]
+[ext_resource type="Script" path="res://GUI/SkillTargetingGUI.cs" id="2_77ei4"]
 
 [node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("DebugText")]
 script = ExtResource("1_2mpgr")
 DebugText = NodePath("DebugText")
 
-[node name="Bar" type="HBoxContainer" parent="."]
+[node name="SkillTargeting" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 64)
 anchors_preset = 12
 anchor_top = 1.0
@@ -16,16 +17,17 @@ offset_top = -31.0
 grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
+script = ExtResource("2_77ei4")
 
-[node name="Attack" type="Button" parent="Bar"]
+[node name="Attack" type="Button" parent="SkillTargeting"]
 layout_mode = 2
 text = "Attack"
 
-[node name="Move" type="Button" parent="Bar"]
+[node name="Move" type="Button" parent="SkillTargeting"]
 layout_mode = 2
 text = "Move"
 
-[node name="Cancel" type="Button" parent="Bar"]
+[node name="Cancel" type="Button" parent="SkillTargeting"]
 layout_mode = 2
 text = "Cancel"
 
@@ -35,3 +37,7 @@ anchor_right = 1.0
 offset_bottom = 26.0
 grow_horizontal = 2
 text = "..."
+
+[connection signal="pressed" from="SkillTargeting/Attack" to="." method="SelectSkill" binds= ["attack"]]
+[connection signal="pressed" from="SkillTargeting/Move" to="." method="SelectSkill" binds= ["move"]]
+[connection signal="pressed" from="SkillTargeting/Cancel" to="." method="LooseFocus"]

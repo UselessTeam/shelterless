@@ -31,18 +31,5 @@ public partial class Skill : Resource
     [Export]
     public bool MustBeEmpty = false;
 
-    [ExportGroup("Effect")]
-    [Export]
-    public bool Move = false;
-    [Export]
-    public int Damage = 10;
-    [Export]
-    public Shape EffectShape = Shape.ALL;
-    [Export]
-    public int MinEffectRange = 0;
-    [Export]
-    public int MaxEffectRange = 0;
-    // Can be negative for pulling
-    [Export(PropertyHint.Range, "-3,3")]
-    public int Push = 0;
+    public Effect Effect;
 }

@@ -6,15 +6,6 @@ public partial class GUI : CanvasLayer
     [Export]
     Label DebugText;
 
-    public const int GUI_TILE_LAYER = 1;
-    public const int GUI_TILE_SET = 128;
-    enum GUITile : int
-    {
-        BLUE = 0,
-        RED = 1,
-        GREEN = 2,
-    }
-
     public static GUI Main
     {
         get
@@ -33,66 +24,50 @@ public partial class GUI : CanvasLayer
     }
     private static bool printedWarning = false;
     private static GUI main;
-    private Board focusedBoard;
-
     public override void _EnterTree()
     {
         base._EnterTree();
         Main = this;
     }
 
+    public SkillTargetingGUI SkillTargeting;
+
+    public override void _Ready()
+    {
+        base._Ready();
+        SkillTargeting = GetNode<SkillTargetingGUI>("SkillTargeting");
+    }
+
+    public void SelectSkill(string skillName)
+    {
+        Skill skill = skillName switch
+        {
+            "attack" => SkillList.Attack,
+            "move" => SkillList.Move,
+            _ => null,
+        };
+        SkillTargeting.LoadSkill(skill, PlayerComponent.Main.Pawn);
+    }
+
     public void MouseOnTile(Board board, Vector2I coords, Vector2 position, bool action)
     {
         //TODO: Dispatch to current GUI state
-        focusedBoard = board;
-        SetDebugText($"Coords: {coords} ({coords.Magnitude()}) / Action: {action}");
         if (!action)
         {
-            TileHover(board, coords);
+            SkillTargeting.Hover(board, coords, position);
         }
         if (action)
         {
-            TileClick(board, coords);
+            SkillTargeting.Click(board, coords, position);
         }
     }
 
     public void LooseFocus()
     {
-        focusedBoard.ClearLayer(GUI_TILE_LAYER);
+        SkillTargeting.Cancel();
     }
 
-    private void TileHover(Board board, Vector2I coords)
-    {
-        board.ClearLayer(GUI_TILE_LAYER);
-        if (coords.IsValid())
-        {
-            board.SetCell(
-                GUI_TILE_LAYER,
-                coords,
-                GUI_TILE_SET,
-                atlasCoords: new Vector2I(0, 0),
-                alternativeTile: (int)(board.Player?.Coords.Distance(coords) switch
-                {
-                    0 => GUITile.BLUE,
-                    1 => GUITile.GREEN,
-                    _ => GUITile.RED,
-                })
-            );
-        }
-    }
-
-
-    private void TileClick(Board board, Vector2I coords)
-    {
-        if (board.Player?.Coords.Distance(coords) == 1)
-        {
-            board.ClearLayer(GUI_TILE_LAYER);
-            board.Player?.Get<LocomotionComponent>().RunToCoords(coords);
-            board.Player?.SetCoords(coords);
-        }
-    }
-
-    public void SetDebugText(String text)
+    public void SetDebugText(string text)
     {
         if (DebugText is not null)
         {
