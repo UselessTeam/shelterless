@@ -1,6 +1,7 @@
 using Godot;
 using System.Linq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public partial class Board : TileMap
 {
@@ -38,6 +39,45 @@ public partial class Board : TileMap
             GUI.Main?.MouseOnTile(this, coords, GetGlobalMousePosition(), false);
             GetViewport().SetInputAsHandled();
         }
+    }
+
+    public override void _Ready()
+    {
+        base._Ready();
+        RunningGame = RunGame();
+    }
+
+    public bool Busy;
+    private Task RunningGame;
+    private async Task RunGame()
+    {
+        GD.Print("Running Game");
+        while (true)
+        {
+            GD.Print("Player turn");
+            await RunPlayerTurn();
+            GD.Print("Monster turn");
+            await RunMonsterTurn();
+        }
+    }
+    public async Task RunPlayerTurn()
+    {
+        Busy = true;
+        foreach (Pawn pawn in GetPawnsWith<PlayerComponent>())
+        {
+            await GUI.Main.ControlPawn(Player);
+        }
+        Busy = false;
+    }
+
+    public async Task RunMonsterTurn()
+    {
+        Busy = true;
+        foreach (Pawn pawn in GetPawnsWith<MonsterAIComponent>())
+        {
+            await pawn.Get<MonsterAIComponent>().RunTurn();
+        }
+        Busy = false;
     }
 
     private static List<Vector2I> BuildPath(Dictionary<Vector2I, Vector2I> steps, Vector2I begin, Vector2I end)

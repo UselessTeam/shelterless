@@ -1,12 +1,19 @@
 using Godot;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+
 public partial class MonsterAIComponent : Component
 {
-    public void TickTurn()
+    public async Task RunTurn()
     {
         Context context = new Context();
         context.SourcePawn = Pawn;
         context.Origin = Pawn.Coords;
+        Decide(context);
+        if (context.SourceSkill is not null)
+        {
+            await context.Run();
+        }
     }
     public void Decide(Context context)
     {

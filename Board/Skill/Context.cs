@@ -1,6 +1,7 @@
+using System.Threading.Tasks;
 using Godot;
 
-public class Context
+public partial class Context : GodotObject
 {
     public interface ITarget { }
     public struct TargetCoords : ITarget
@@ -50,4 +51,9 @@ public class Context
         }
     }
     public VectorUtils.Direction DirectionTarget => Target is TargetDirection direction ? direction : VectorUtils.Direction.NONE;
+
+    public async Task Run()
+    {
+        await SourceSkill.Effect.RunOn(this);
+    }
 }

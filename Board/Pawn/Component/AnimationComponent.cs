@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class AnimationComponent : Component
 {
@@ -20,7 +21,7 @@ public partial class AnimationComponent : Component
         base._Ready();
         AnimationPlayer.AnimationFinished += OnAnimationFinish;
     }
-    public void Play(string animation, Sign sign = Sign.NEUTRAL, params Action[] callbacks)
+    public void StartPlay(string animation, Sign sign = Sign.NEUTRAL, params Action[] callbacks)
     {
         switch (sign)
         {
@@ -38,6 +39,12 @@ public partial class AnimationComponent : Component
         currentCallbacks = callbacks;
         currentCallbackIndex = 0;
         AnimationPlayer.Play(animation);
+    }
+
+    public async Task Play(string animation, Sign sign = Sign.NEUTRAL, params Action[] callbacks)
+    {
+        StartPlay(animation, sign, callbacks);
+        await ToSignal(AnimationPlayer, AnimationPlayer.SignalName.AnimationFinished);
     }
 
     public void PlayText(string text)

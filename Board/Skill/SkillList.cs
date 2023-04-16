@@ -18,7 +18,7 @@ public static class SkillList
         MaxTargetRange = 1,
         Effect = (FunctionEffect)((Context context) =>
         {
-            context.SourcePawn.Get<AnimationComponent>().Play(
+            context.SourcePawn.Get<AnimationComponent>().StartPlay(
                 "attack",
                 context.SourcePawn.Coords.SideTowards(context.PawnTarget.Coords),
                 () =>

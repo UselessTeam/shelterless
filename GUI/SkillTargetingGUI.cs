@@ -4,6 +4,8 @@ using Godot;
 
 public partial class SkillTargetingGUI : Control
 {
+    [Signal]
+    public delegate void SkillReadyEventHandler(Context context);
     private Board focusedBoard;
     private Context context;
     const int GUI_TILE_LAYER = 1;
@@ -16,7 +18,7 @@ public partial class SkillTargetingGUI : Control
     }
     private void Clear()
     {
-        focusedBoard.ClearLayer(GUI_TILE_LAYER);
+        focusedBoard?.ClearLayer(GUI_TILE_LAYER);
         context = null;
     }
     public void Cancel()
@@ -95,7 +97,7 @@ public partial class SkillTargetingGUI : Control
                     GD.PrintErr("TODO: Different target type");
                     return;
             }
-            context.SourceSkill.Effect.AppliedOn(context);
+            EmitSignal(SignalName.SkillReady, context);
             Clear();
         }
     }

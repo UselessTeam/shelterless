@@ -1,10 +1,27 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class GUI : CanvasLayer
 {
     [Export]
     Label DebugText;
+    [Signal]
+    public delegate void FinishControlEventHandler();
+    private Pawn controlledPawn;
+    public async Task ControlPawn(Pawn pawn)
+    {
+        controlledPawn = pawn;
+        Context context = (Context)(await ToSignal(SkillTargeting, SkillTargetingGUI.SignalName.SkillReady))[0];
+        if (controlledPawn != context.SourcePawn)
+        {
+            GD.PrintErr("Wrong pawn in context");
+            return;
+        }
+        controlledPawn = null;
+        await context.SourceSkill.Effect.RunOn(context);
+        EmitSignal(SignalName.FinishControl);
+    }
 
     public static GUI Main
     {
@@ -46,11 +63,15 @@ public partial class GUI : CanvasLayer
             "move" => SkillList.Move,
             _ => null,
         };
-        SkillTargeting.LoadSkill(skill, PlayerComponent.Main.Pawn);
+        SkillTargeting.LoadSkill(skill, controlledPawn);
     }
 
     public void MouseOnTile(Board board, Vector2I coords, Vector2 position, bool action)
     {
+        if (controlledPawn is null)
+        {
+            return;
+        }
         //TODO: Dispatch to current GUI state
         if (!action)
         {

@@ -1,23 +1,24 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public partial class LocomotionComponent : Component
 {
     [Export(PropertyHint.Range, "0,1")] float MovementProgress;
 
-    public void MoveTo(Vector2I target)
+    public async Task MoveTo(Vector2I target)
     {
         Vector2 targetPosition = Pawn.Board.MapToLocal(target);
-        animationComponent.Play("move", Pawn.Coords.SideTowards(target), () =>
-            {
-                isRunning = false;
-                Pawn.SetCoords(target);
-            }
-        );
         isRunning = true;
         positionStart = Pawn.Position;
         positionEnd = targetPosition;
+        await animationComponent.Play("move", Pawn.Coords.SideTowards(target), () =>
+            {
+                Pawn.SetCoords(target);
+            }
+        );
+        isRunning = false;
     }
 
     private bool isRunning;
