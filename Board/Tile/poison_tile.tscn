@@ -31,7 +31,7 @@ texture = ExtResource("1_fywvs")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_6g351")
-position = Vector2(0, -126)
+position = Vector2(0, -160)
 amount = 3
 sub_emitter = NodePath(".")
 process_material = SubResource("ParticleProcessMaterial_pd3fn")

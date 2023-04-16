@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://3oqeqrqxqpre"]
+[gd_scene load_steps=32 format=3 uid="uid://3oqeqrqxqpre"]
 
 [ext_resource type="Script" path="res://Board/Pawn/Pawn.cs" id="1_13sq6"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/HealthComponent.cs" id="2_11mjc"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://blvgrw1j8pp7s" path="res://Asset/Sprite/Player/PlayerMouth1.png" id="15_lmhg8"]
 [ext_resource type="Texture2D" uid="uid://cc4hw0jisr3ql" path="res://Asset/Sprite/Player/PlayerMouth2.png" id="16_m7awv"]
 [ext_resource type="Texture2D" uid="uid://cjq2xqenmnr0f" path="res://Asset/Sprite/Player/PlayerMouth3.png" id="17_mugnd"]
+[ext_resource type="Script" path="res://Board/Pawn/Customizable.cs" id="17_tdfyq"]
 [ext_resource type="Texture2D" uid="uid://iuqi1s5slu0y" path="res://Asset/Sprite/Player/PlayerShorts.png" id="18_23jok"]
 [ext_resource type="Texture2D" uid="uid://dcpxshiw53qah" path="res://Asset/Sprite/Player/PlayerLeftLeg.png" id="19_1uop8"]
 [ext_resource type="Texture2D" uid="uid://drfnxu20qvd4x" path="res://Asset/Sprite/Player/PlayerRightLeg.png" id="20_rwvfx"]
@@ -192,33 +193,18 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("9_jteol")
-}],
-"loop": true,
-"name": &"1",
-"speed": 5.0
 }, {
-"frames": [{
 "duration": 1.0,
 "texture": ExtResource("10_upsau")
-}],
-"loop": true,
-"name": &"2",
-"speed": 5.0
 }, {
-"frames": [{
 "duration": 1.0,
 "texture": ExtResource("11_0kkh2")
-}],
-"loop": true,
-"name": &"3",
-"speed": 5.0
 }, {
-"frames": [{
 "duration": 1.0,
 "texture": ExtResource("12_i4m6l")
 }],
 "loop": true,
-"name": &"4",
+"name": &"default",
 "speed": 5.0
 }]
 
@@ -227,17 +213,12 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("9_3reda")
-}],
-"loop": true,
-"name": &"1",
-"speed": 5.0
 }, {
-"frames": [{
 "duration": 1.0,
 "texture": ExtResource("10_wrkoy")
 }],
 "loop": true,
-"name": &"2",
+"name": &"default",
 "speed": 5.0
 }]
 
@@ -246,25 +227,15 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("15_lmhg8")
-}],
-"loop": true,
-"name": &"1",
-"speed": 5.0
 }, {
-"frames": [{
 "duration": 1.0,
 "texture": ExtResource("16_m7awv")
-}],
-"loop": true,
-"name": &"2",
-"speed": 5.0
 }, {
-"frames": [{
 "duration": 1.0,
 "texture": ExtResource("17_mugnd")
 }],
 "loop": true,
-"name": &"3",
+"name": &"default",
 "speed": 5.0
 }]
 
@@ -339,15 +310,18 @@ texture = ExtResource("8_q52em")
 
 [node name="Hair" type="AnimatedSprite2D" parent="Sprites/Torso/HeadSprite"]
 sprite_frames = SubResource("SpriteFrames_maxd4")
-animation = &"4"
+script = ExtResource("17_tdfyq")
+Id = 1
 
 [node name="Eyes" type="AnimatedSprite2D" parent="Sprites/Torso/HeadSprite"]
 sprite_frames = SubResource("SpriteFrames_mu3qa")
-animation = &"1"
+script = ExtResource("17_tdfyq")
+Id = 2
 
 [node name="Mouth" type="AnimatedSprite2D" parent="Sprites/Torso/HeadSprite"]
 sprite_frames = SubResource("SpriteFrames_eqinq")
-animation = &"1"
+script = ExtResource("17_tdfyq")
+Id = 3
 
 [node name="Shorts" type="Sprite2D" parent="Sprites/Torso"]
 position = Vector2(-8, -102)
