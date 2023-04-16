@@ -36,10 +36,10 @@ tracks/0/path = NodePath("Sprites/Torso:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.45, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1, 0.9), Vector2(1, 1)]
+"values": [Vector2(1, 1), Vector2(1, 0.9), Vector2(1, 0.9), Vector2(1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -60,10 +60,10 @@ tracks/2/path = NodePath("Sprites/LeftArm:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.45, 0.8),
+"transitions": PackedFloat32Array(1, 0.5, 1, 1),
 "update": 0,
-"values": [0.0, 0.129154, 0.0]
+"values": [0.0, 0.129154, 0.902335, 0.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -72,10 +72,10 @@ tracks/3/path = NodePath("Sprites/RightArm:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.45, 0.8),
+"transitions": PackedFloat32Array(1, 0.517632, 1, 1),
 "update": 0,
-"values": [0.0, -0.387463, 0.0]
+"values": [0.0, -0.387463, -0.101229, 0.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -84,10 +84,10 @@ tracks/4/path = NodePath("Sprites/RightArm/Spear:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.45, 0.8),
+"transitions": PackedFloat32Array(1, 0.406126, 1, 1),
 "update": 0,
-"values": [0.0, -0.579449, 0.0]
+"values": [0.0, -0.579449, -1.11352, 0.0]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -96,10 +96,10 @@ tracks/5/path = NodePath("Sprites/Torso:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.45, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -0.129154, 0.0]
+"values": [0.0, -0.129154, -0.129154, 0.0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -108,10 +108,22 @@ tracks/6/path = NodePath("Sprites/LeftArm:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.45, 0.8),
+"transitions": PackedFloat32Array(1, 0.34151, 1, 1),
 "update": 0,
-"values": [Vector2(-3, -29), Vector2(-28, -17), Vector2(-3, -29)]
+"values": [Vector2(-3, -29), Vector2(-28, -17), Vector2(-17, -51), Vector2(-3, -29)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sprites/RightArm/Spear:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.45, 0.525, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 0.378929, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-113, 83), Vector2(-113, 83), Vector2(-217.631, 74.3878), Vector2(-182.717, 64.687), Vector2(-148.673, 76.5328), Vector2(-113, 83)]
 }
 
 [sub_resource type="Animation" id="Animation_tw5xv"]
