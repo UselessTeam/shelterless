@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://df81v21uh061v"]
+[gd_scene load_steps=16 format=3 uid="uid://gimoc3vuq86"]
 
 [ext_resource type="Script" path="res://Board/Pawn/Pawn.cs" id="1_13sq6"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/HealthComponent.cs" id="2_11mjc"]

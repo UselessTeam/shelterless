@@ -52,12 +52,9 @@ script = ExtResource("2_aev3t")
 
 [node name="Camera" parent="." instance=ExtResource("2_j4q03")]
 position = Vector2(-11, 11)
-limit_left = 0
-limit_top = 0
-limit_right = 100000
-limit_bottom = 100000
-editor_draw_limits = true
-MaxZoomTicks = 7
+zoom = Vector2(0.34, 0.34)
+MinZoomTicks = -1
+MaxZoomTicks = 3
 ZoomRatio = 1.2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Camera"]
@@ -67,5 +64,8 @@ autoplay = true
 [node name="Blue" parent="." instance=ExtResource("5_dnals")]
 position = Vector2(1119, 247)
 
-[node name="UpLeftBorder" type="Node2D" parent="."]
-position = Vector2(-484, -524)
+[node name="TopLeftLimit" type="Node2D" parent="."]
+position = Vector2(-1129, -1163)
+
+[node name="BottomRightLimit" type="Node2D" parent="."]
+position = Vector2(5738, 2585)
