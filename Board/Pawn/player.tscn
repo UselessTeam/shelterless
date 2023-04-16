@@ -265,6 +265,7 @@ libraries = {
 position = Vector2(21, -254)
 
 [node name="Shadow" type="Sprite2D" parent="Sprites"]
+modulate = Color(1, 1, 1, 0.478431)
 texture = ExtResource("6_fdiax")
 
 [node name="Legs" type="Node2D" parent="Sprites"]

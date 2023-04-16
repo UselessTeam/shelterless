@@ -15,6 +15,9 @@ public partial class Camera2D : Godot.Camera2D
 
     Dictionary<int, Vector2> ZoomValues = new();
 
+
+    Vector2 topLeftLimit;
+    Vector2 bottomRightLimit;
     public override void _Ready()
     {
         base._Ready();
@@ -37,13 +40,13 @@ public partial class Camera2D : Godot.Camera2D
 
         Zoom = ZoomValues[CurrentZoomTicks];
 
-        var topLeftLimit = GetNode<Node2D>("../TopLeftLimit");
-        var bottomRightLimit = GetNode<Node2D>("../BottomRightLimit");
+        topLeftLimit = GetNode<Node2D>("../TopLeftLimit").Position;
+        bottomRightLimit = GetNode<Node2D>("../BottomRightLimit").Position;
 
-        LimitTop = (int) topLeftLimit.Position.Y;
-        LimitLeft = (int) topLeftLimit.Position.X;
-        LimitRight = (int) bottomRightLimit.Position.X;
-        LimitBottom = (int) bottomRightLimit.Position.Y;
+        LimitTop = (int)topLeftLimit.Y;
+        LimitLeft = (int)topLeftLimit.X;
+        LimitRight = (int)bottomRightLimit.X;
+        LimitBottom = (int)bottomRightLimit.Y;
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -58,12 +61,14 @@ public partial class Camera2D : Godot.Camera2D
             CurrentZoomTicks++;
             Zoom = ZoomValues[CurrentZoomTicks];
             GetViewport().SetInputAsHandled();
+            ClampPosition();
         }
         if (CurrentZoomTicks > MinZoomTicks && @event.IsActionPressed("ZoomOut"))
         {
             CurrentZoomTicks--;
             Zoom = ZoomValues[CurrentZoomTicks];
             GetViewport().SetInputAsHandled();
+            ClampPosition();
         }
         if (@event.IsActionPressed("DragCamera"))
         {
@@ -79,6 +84,15 @@ public partial class Camera2D : Godot.Camera2D
         {
             Position -= motion.Relative / Zoom;
             GetViewport().SetInputAsHandled();
+            ClampPosition();
         }
     }
+
+    void ClampPosition()
+    {
+
+        Position = Position.Clamp(topLeftLimit + GetViewportRect().Size, bottomRightLimit - GetViewportRect().Size);
+    }
+
+
 }
