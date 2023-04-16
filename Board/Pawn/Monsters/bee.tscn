@@ -1,0 +1,263 @@
+[gd_scene load_steps=16 format=3 uid="uid://bmltbsnh1d57f"]
+
+[ext_resource type="Script" path="res://Board/Pawn/Pawn.cs" id="1_7earx"]
+[ext_resource type="Script" path="res://Board/Pawn/Component/HealthComponent.cs" id="2_65uff"]
+[ext_resource type="Script" path="res://Board/Pawn/Component/LocomotionComponent.cs" id="3_5f7hk"]
+[ext_resource type="Script" path="res://Board/Pawn/Component/AnimationComponent.cs" id="4_ra3og"]
+[ext_resource type="Texture2D" uid="uid://crw0wauifqgb0" path="res://Asset/Sprite/BeeMonster/BeeBody.png" id="5_ot7sq"]
+[ext_resource type="Texture2D" uid="uid://ccare4lmwy84" path="res://Asset/Sprite/BeeMonster/BeeShadow.png" id="5_qg57x"]
+[ext_resource type="Texture2D" uid="uid://cd8an6ywoqs7v" path="res://Asset/Sprite/BeeMonster/LeftArm.png" id="7_eq1ms"]
+[ext_resource type="Texture2D" uid="uid://cumn8ro4s7rpf" path="res://Asset/Sprite/BeeMonster/RightArm.png" id="8_71abo"]
+[ext_resource type="Texture2D" uid="uid://b66eiwpjdvufd" path="res://Asset/Sprite/BeeMonster/RightKnife.png" id="9_lemo4"]
+[ext_resource type="Texture2D" uid="uid://dn4xidww8ibug" path="res://Asset/Sprite/BeeMonster/LeftKnife.png" id="10_2457u"]
+[ext_resource type="Texture2D" uid="uid://dfl4wwfnui6w2" path="res://Asset/Sprite/BeeMonster/BeeRightWing.png" id="11_3kidm"]
+[ext_resource type="Texture2D" uid="uid://b1233luib67rv" path="res://Asset/Sprite/BeeMonster/BeeLeftWing.png" id="11_p80hb"]
+
+[sub_resource type="Animation" id="Animation_uuy1l"]
+resource_name = "attack"
+length = 0.8
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Body/LeftArm:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.575, 0.675, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 2.43093, 0.28943, 0.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Body/RightArm:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.275, 0.45, 0.8),
+"transitions": PackedFloat32Array(1, 2.14355, 1, 1, 1),
+"update": 0,
+"values": [0.0, -1.00557, 0.165065, 0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Body/LeftArm/LKnife:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5, 0.675, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, -0.926987, 0.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/Body/RightArm/RKnife:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprites/Body/LeftArm:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.45, 0.55, 0.625, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.4, 1), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprites/Body:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.375, 0.575, 0.8),
+"transitions": PackedFloat32Array(1, 1.7411, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(59, 29), Vector2(-44, 10), Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprites/Body:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.55, 0.8),
+"transitions": PackedFloat32Array(1, 1.86607, 1, 1),
+"update": 0,
+"values": [0.0, 0.214736, -0.15708, 0.0]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Animation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.25, 0.55),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"Trigger"
+}, {
+"args": [],
+"method": &"Trigger"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_v7e6x"]
+resource_name = "move"
+length = 0.6
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Locomotion:MovementProgress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Body:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.325, 0.475, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-51, -25), Vector2(63, 31), Vector2(34, -13), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Body:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.45, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.139626, 0.139626, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/Body/RightWing:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.075, 0.225, 0.375, 0.525, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.527089, 0.853466, -0.527089, 0.853466, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprites/Body/LeftWing:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.075, 0.225, 0.375, 0.525, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.523599, 0.637045, -0.523599, 0.637045, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_448gm"]
+_data = {
+"attack": SubResource("Animation_uuy1l"),
+"move": SubResource("Animation_v7e6x")
+}
+
+[node name="Bee" type="Node2D"]
+script = ExtResource("1_7earx")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_65uff")
+
+[node name="Locomotion" type="Node" parent="."]
+script = ExtResource("3_5f7hk")
+
+[node name="Animation" type="Node" parent="."]
+script = ExtResource("4_ra3og")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Animation"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_448gm")
+}
+
+[node name="Sprites" type="Node2D" parent="."]
+position = Vector2(-18, -222)
+
+[node name="Shadow" type="Sprite2D" parent="Sprites"]
+modulate = Color(1, 1, 1, 0.537255)
+texture = ExtResource("5_qg57x")
+
+[node name="Body" type="Node2D" parent="Sprites"]
+
+[node name="RightArm" type="Node2D" parent="Sprites/Body"]
+position = Vector2(-117, -16)
+
+[node name="RightArm" type="Sprite2D" parent="Sprites/Body/RightArm"]
+position = Vector2(117, 16)
+texture = ExtResource("8_71abo")
+
+[node name="RKnife" type="Node2D" parent="Sprites/Body/RightArm"]
+position = Vector2(-63, 48)
+
+[node name="RightKnifeSprite" type="Sprite2D" parent="Sprites/Body/RightArm/RKnife"]
+position = Vector2(180, -32)
+texture = ExtResource("9_lemo4")
+
+[node name="RightWing" type="Node2D" parent="Sprites/Body"]
+position = Vector2(-44, -230)
+
+[node name="RWingSprite" type="Sprite2D" parent="Sprites/Body/RightWing"]
+position = Vector2(44, 230)
+texture = ExtResource("11_3kidm")
+
+[node name="Body" type="Sprite2D" parent="Sprites/Body"]
+texture = ExtResource("5_ot7sq")
+
+[node name="LeftArm" type="Node2D" parent="Sprites/Body"]
+position = Vector2(42, -12)
+
+[node name="LeftArm" type="Sprite2D" parent="Sprites/Body/LeftArm"]
+position = Vector2(-42, 12)
+texture = ExtResource("7_eq1ms")
+
+[node name="LKnife" type="Node2D" parent="Sprites/Body/LeftArm"]
+position = Vector2(-45, 91)
+
+[node name="LeftKnifeSprite" type="Sprite2D" parent="Sprites/Body/LeftArm/LKnife"]
+position = Vector2(3, -79)
+texture = ExtResource("10_2457u")
+
+[node name="LeftWing" type="Node2D" parent="Sprites/Body"]
+position = Vector2(13, -208)
+
+[node name="LWingSprite" type="Sprite2D" parent="Sprites/Body/LeftWing"]
+position = Vector2(-14, 207)
+texture = ExtResource("11_p80hb")

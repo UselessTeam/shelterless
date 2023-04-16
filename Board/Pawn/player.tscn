@@ -131,7 +131,7 @@ script = ExtResource("2_11mjc")
 
 [node name="Locomotion" type="Node" parent="."]
 script = ExtResource("6_kmute")
-MovementProgress = 1.0
+MovementProgress = 0.571429
 
 [node name="Animation" type="Node" parent="."]
 script = ExtResource("7_8bl04")
@@ -147,6 +147,8 @@ position = Vector2(21, -254)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprites"]
 sprite_frames = SubResource("SpriteFrames_wyis6")
+animation = &"attack"
+frame = 1
 
 [node name="Skill" type="Node" parent="."]
 script = ExtResource("10_tdd46")

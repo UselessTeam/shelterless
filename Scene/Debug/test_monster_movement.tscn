@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://clppclma4axvt"]
+[gd_scene load_steps=5 format=3 uid="uid://clppclma4axvt"]
 
 [ext_resource type="PackedScene" uid="uid://dfc5tnay8o2xl" path="res://GUI/gui.tscn" id="1_r8vns"]
-[ext_resource type="PackedScene" uid="uid://ufnqkere3tx1" path="res://Board/board.tscn" id="2_cta6f"]
+[ext_resource type="PackedScene" uid="uid://ck34j3il21vpj" path="res://Board/board.tscn" id="2_cta6f"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/PlayerComponent.cs" id="3_6madn"]
+[ext_resource type="PackedScene" uid="uid://bmltbsnh1d57f" path="res://Board/Pawn/Monsters/bee.tscn" id="3_r88fe"]
 
 [node name="TestGUI" type="Control"]
 layout_mode = 3
@@ -15,5 +16,8 @@ mouse_filter = 2
 
 [node name="Player" type="Node" parent="Board/Blue" index="4"]
 script = ExtResource("3_6madn")
+
+[node name="Blob" parent="Board" instance=ExtResource("3_r88fe")]
+position = Vector2(2716, 1016)
 
 [editable path="Board"]

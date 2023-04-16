@@ -1,4 +1,4 @@
-[gd_resource type="AnimatedTexture" load_steps=7 format=3]
+[gd_resource type="AnimatedTexture" load_steps=7 format=3 uid="uid://c37qggj67ocow"]
 
 [ext_resource type="Texture2D" uid="uid://bw5o4b58gk81b" path="res://Asset/Sprite/TilePoison/Poison-Tile-1.png" id="1_pcdat"]
 [ext_resource type="Texture2D" uid="uid://bd8n71psqs77o" path="res://Asset/Sprite/TilePoison/Poison-Tile-2.png" id="2_jm4cc"]
