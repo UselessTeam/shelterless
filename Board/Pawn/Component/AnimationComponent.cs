@@ -20,8 +20,17 @@ public partial class AnimationComponent : Component
         base._Ready();
         AnimationPlayer.AnimationFinished += OnAnimationFinish;
     }
-    public void Play(string animation, params Action[] callbacks)
+    public void Play(string animation, Sign sign = Sign.NEUTRAL, params Action[] callbacks)
     {
+        switch (sign)
+        {
+            case Sign.RIGHT:
+                LookRight();
+                break;
+            case Sign.LEFT:
+                LookLeft();
+                break;
+        }
         if (AnimationPlayer.IsPlaying())
         {
             AnimationPlayer.Advance(AnimationPlayer.CurrentAnimationLength - AnimationPlayer.CurrentAnimationPosition);

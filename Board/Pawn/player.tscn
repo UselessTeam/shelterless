@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://df81v21uh061v"]
+[gd_scene load_steps=15 format=3 uid="uid://c1xjepuan5ust"]
 
 [ext_resource type="Script" path="res://Board/Pawn/Pawn.cs" id="1_13sq6"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/HealthComponent.cs" id="2_11mjc"]
@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://Board/Pawn/Component/AnimationComponent.cs" id="7_8bl04"]
 [ext_resource type="Texture2D" uid="uid://cged54ku8gm2h" path="res://Asset/Sprite/Player/Player-Animate.png" id="8_3fkxc"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/PlayerComponent.cs" id="8_4erq0"]
-[ext_resource type="Script" path="res://Board/Pawn/SkillComponent.cs" id="10_6irhr"]
+[ext_resource type="Script" path="res://Board/Pawn/Component/SkillComponent.cs" id="10_tdd46"]
 
 [sub_resource type="Animation" id="Animation_5i56o"]
 resource_name = "attack"
@@ -149,4 +149,4 @@ position = Vector2(21, -254)
 sprite_frames = SubResource("SpriteFrames_wyis6")
 
 [node name="Skill" type="Node" parent="."]
-script = ExtResource("10_6irhr")
+script = ExtResource("10_tdd46")

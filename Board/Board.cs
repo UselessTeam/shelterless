@@ -164,4 +164,35 @@ public static class VectorUtils
     {
         return (vector - other).Magnitude();
     }
+
+    public static Sign SideTowards(this Vector2I origin, Vector2I target)
+    {
+        Vector2I delta = (target - origin);
+        return (2 * delta.X + delta.Y).Sign();
+    }
+    public static Sign Sign(this int value)
+    {
+        if (value > 0)
+            return global::Sign.POSITIVE;
+        else if (value < 0)
+            return global::Sign.NEGATIVE;
+        return global::Sign.NEUTRAL;
+    }
+    public static Sign Sign(this float value)
+    {
+        if (value > 0)
+            return global::Sign.POSITIVE;
+        else if (value < 0)
+            return global::Sign.NEGATIVE;
+        return global::Sign.NEUTRAL;
+    }
+}
+
+public enum Sign : sbyte
+{
+    NEGATIVE = -1,
+    NEUTRAL = 0,
+    POSITIVE = 1,
+    LEFT = NEGATIVE,
+    RIGHT = POSITIVE,
 }

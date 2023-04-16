@@ -60,6 +60,7 @@ public partial class SkillTargetingGUI : Control
         {
             return;
         }
+        GUI.Main.SetDebugText($"Coords {coords}");
         board.ClearLayer(GUI_TILE_LAYER);
         if (coords.IsValid())
         {
