@@ -1,3 +1,5 @@
+using Godot;
+
 public static class SkillList
 {
     public static Skill Move = new Skill
@@ -21,7 +23,9 @@ public static class SkillList
                 context.SourcePawn.Coords.SideTowards(context.PawnTarget.Coords),
                 () =>
                 {
-                    context.PawnTarget.Get<HealthComponent>().ChangeHealth(-25);
+                    int damage = -25;
+                    context.PawnTarget.Get<AnimationComponent>().PlayText($"{damage}", Colors.Red);
+                    context.PawnTarget.Get<HealthComponent>().ChangeHealth(damage);
                 }
             );
         })

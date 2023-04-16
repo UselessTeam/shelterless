@@ -1,6 +1,6 @@
 using Godot;
 
-public static class NodeExtension
+public static class NodeUtils
 {
     public static T GetAncestor<T>(this Node node) where T : Node
     {
