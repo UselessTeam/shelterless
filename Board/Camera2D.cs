@@ -9,7 +9,7 @@ public partial class Camera2D : Godot.Camera2D
 
     [Export] float ZoomRatio;
 
-    int CurrentZoomTicks;
+    [Export] int CurrentZoomTicks;
 
     bool dragging = false;
 
@@ -20,6 +20,8 @@ public partial class Camera2D : Godot.Camera2D
         base._Ready();
         if (MinZoomTicks > 0 || MaxZoomTicks < 0)
             throw new Exception("ZoomTicks are wrongly set");
+        if (MinZoomTicks > CurrentZoomTicks || MaxZoomTicks < CurrentZoomTicks)
+            throw new Exception("CurrentZoomTicks is wrongly set");
         var zoomIn = Zoom;
         for (int i = 0; i <= MaxZoomTicks; i++)
         {
@@ -32,6 +34,8 @@ public partial class Camera2D : Godot.Camera2D
             zoomOut /= ZoomRatio;
             ZoomValues[i] = zoomOut;
         }
+
+        Zoom = ZoomValues[CurrentZoomTicks];
 
         var topLeftLimit = GetNode<Node2D>("../TopLeftLimit");
         var bottomRightLimit = GetNode<Node2D>("../BottomRightLimit");
