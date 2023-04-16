@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://d21df0d4cqnbv"]
+[gd_scene load_steps=13 format=3 uid="uid://d21df0d4cqnbv"]
 
 [ext_resource type="Script" path="res://Board/Pawn/Pawn.cs" id="1_la2bt"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/HealthComponent.cs" id="2_jspms"]
+[ext_resource type="Script" path="res://Board/Pawn/Component/MonsterAIComponent.cs" id="5_5hcwv"]
 [ext_resource type="Texture2D" uid="uid://dagegt4qbr8cn" path="res://Asset/Sprite/BlueMonster/BlueBody.png" id="5_f4msp"]
 [ext_resource type="Texture2D" uid="uid://dln3nnxiyepn3" path="res://Asset/Sprite/BlueMonster/BlueRightArm.png" id="5_lg68m"]
 [ext_resource type="Texture2D" uid="uid://urwka6xccnyu" path="res://Asset/Sprite/BlueMonster/BlueShadow.png" id="5_nwga1"]
@@ -154,8 +155,11 @@ libraries = {
 "": SubResource("AnimationLibrary_448gm")
 }
 
+[node name="MonsterAI" type="Node" parent="."]
+script = ExtResource("5_5hcwv")
+
 [node name="Sprites" type="Node2D" parent="."]
-position = Vector2(-10, -249)
+position = Vector2(10, -215)
 
 [node name="Shadow" type="Sprite2D" parent="Sprites"]
 texture = ExtResource("5_nwga1")
