@@ -51,6 +51,12 @@ layer_1/tile_data = PackedInt32Array()
 script = ExtResource("2_aev3t")
 
 [node name="Camera" parent="." instance=ExtResource("2_j4q03")]
+position = Vector2(-11, 11)
+limit_left = 0
+limit_top = 0
+limit_right = 100000
+limit_bottom = 100000
+editor_draw_limits = true
 MaxZoomTicks = 7
 ZoomRatio = 1.2
 
@@ -60,3 +66,6 @@ autoplay = true
 
 [node name="Blue" parent="." instance=ExtResource("5_dnals")]
 position = Vector2(1119, 247)
+
+[node name="UpLeftBorder" type="Node2D" parent="."]
+position = Vector2(-484, -524)
