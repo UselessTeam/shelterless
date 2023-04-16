@@ -6,7 +6,7 @@ public partial class LocomotionComponent : Component
 {
     [Export(PropertyHint.Range, "0,1")] float MovementProgress;
 
-    public void RunToCoords(Vector2I target)
+    public void MoveTo(Vector2I target)
     {
         Vector2 targetPosition = Pawn.Board.MapToLocal(target);
         animationComponent.Play("move", Pawn.Coords.SideTowards(target), () =>

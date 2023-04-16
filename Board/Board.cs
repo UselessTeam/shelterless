@@ -40,6 +40,61 @@ public partial class Board : TileMap
         }
     }
 
+    private static List<Vector2I> BuildPath(Dictionary<Vector2I, Vector2I> steps, Vector2I begin, Vector2I end)
+    {
+        List<Vector2I> path = new List<Vector2I>();
+        Vector2I step = end;
+        while (step != begin)
+        {
+            path.Insert(0, step);
+            step = steps[end];
+        }
+        return path;
+    }
+    public List<Vector2I> Pathfind(Vector2I origin, Vector2I target, bool nextTo = true)
+    {
+        // TODO: Use A* once we have time to optimize
+        Dictionary<Vector2I, Vector2I> reached = new Dictionary<Vector2I, Vector2I> {
+            {origin, origin}
+        };
+        Queue<Vector2I> exploring = new Queue<Vector2I>();
+        exploring.Enqueue(origin);
+        while (exploring.Count > 0)
+        {
+            Vector2I tile = exploring.Dequeue();
+            foreach (Vector2I neighbor in tile.Neighbors())
+            {
+                if (Walkable(neighbor) && !reached.ContainsKey(neighbor))
+                {
+                    reached[neighbor] = tile;
+                    if (nextTo)
+                    {
+                        if (neighbor.Distance(target) == 1)
+                        {
+                            return BuildPath(reached, origin, neighbor);
+                        }
+                    }
+                    else if (neighbor == target)
+                    {
+                        return BuildPath(reached, origin, target);
+                    }
+                    exploring.Enqueue(neighbor);
+                }
+            }
+        }
+        return null;
+    }
+
+    public bool Exists(Vector2I coords)
+    {
+        return GetCellSourceId(0, coords) >= 0;
+    }
+
+    public bool Walkable(Vector2I coords)
+    {
+        return Exists(coords) && GetFirstPawnAt(coords) == null;
+    }
+
     public void MovePawn(Pawn pawn, Vector2I coords)
     {
         if (pawn.Coords == coords)
@@ -132,19 +187,35 @@ public static class VectorUtils
         SW,
     }
 
+    public static readonly Direction[] Directions = {
+        Direction.SE,
+        Direction.E,
+        Direction.NE,
+        Direction.NW,
+        Direction.W,
+        Direction.SW,
+    };
+
     public static Vector2I ToVector2I(this Direction direction)
     {
         return direction switch
         {
             Direction.NONE => Vector2I.Zero,
-            Direction.SE => Vector2I.Zero,
-            Direction.E => Vector2I.Zero,
-            Direction.NE => Vector2I.Zero,
-            Direction.NW => Vector2I.Zero,
-            Direction.W => Vector2I.Zero,
-            Direction.SW => Vector2I.Zero,
+            Direction.SE => new Vector2I(0, 1),
+            Direction.E => new Vector2I(1, 0),
+            Direction.NE => new Vector2I(1, -1),
+            Direction.NW => new Vector2I(0, -1),
+            Direction.W => new Vector2I(-1, 0),
+            Direction.SW => new Vector2I(-1, 1),
             _ => INVALID_VECTOR2I,
         };
+    }
+    public static IEnumerable<Vector2I> Neighbors(this Vector2I center)
+    {
+        foreach (Direction direction in Directions)
+        {
+            yield return center + direction.ToVector2I();
+        }
     }
     public static bool IsValid(this Vector2I vector)
     {
