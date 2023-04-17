@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d21df0d4cqnbv"]
+[gd_scene load_steps=14 format=3 uid="uid://d21df0d4cqnbv"]
 
 [ext_resource type="Script" path="res://Board/Pawn/Pawn.cs" id="1_la2bt"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/HealthComponent.cs" id="2_jspms"]
@@ -130,9 +130,74 @@ tracks/2/keys = {
 "values": [Vector2(0, 0), Vector2(0, 100), Vector2(0, -300), Vector2(0, 50), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_ggltb"]
+resource_name = "death"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/FullBody/AxeRightArm:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [6.28319, 8.67488]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/FullBody/AxeLeftArm:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 3.27104]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/FullBody:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.68302, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(283, 41)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprites/FullBody:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.68302, 1),
+"update": 0,
+"values": [0.0, 1.5511]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprites:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(2.2974, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_448gm"]
 _data = {
 "attack": SubResource("Animation_s763b"),
+"death": SubResource("Animation_ggltb"),
 "move": SubResource("Animation_5mpr3")
 }
 
@@ -167,6 +232,7 @@ texture = ExtResource("5_nwga1")
 [node name="FullBody" type="Node2D" parent="Sprites"]
 
 [node name="AxeRightArm" type="Node2D" parent="Sprites/FullBody"]
+rotation = 6.28319
 
 [node name="RightArm" type="Sprite2D" parent="Sprites/FullBody/AxeRightArm"]
 texture = ExtResource("5_lg68m")
