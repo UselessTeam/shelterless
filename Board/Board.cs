@@ -87,7 +87,7 @@ public partial class Board : TileMap
         while (step != begin)
         {
             path.Insert(0, step);
-            step = steps[end];
+            step = steps[step];
         }
         return path;
     }
