@@ -50,7 +50,17 @@ public partial class Context : GodotObject
             Target = (TargetPawn)value;
         }
     }
-    public VectorUtils.Direction DirectionTarget => Target is TargetDirection direction ? direction : VectorUtils.Direction.NONE;
+    public VectorUtils.Direction DirectionTarget
+    {
+        get
+        {
+            return Target is TargetDirection direction ? direction : VectorUtils.Direction.NONE;
+        }
+        set
+        {
+            Target = (TargetDirection)value;
+        }
+    }
 
     public async Task Run()
     {

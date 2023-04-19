@@ -250,6 +250,27 @@ public static class VectorUtils
             _ => INVALID_VECTOR2I,
         };
     }
+
+    public static Direction ToDirection(this Vector2I vector)
+    {
+        if (vector == Vector2I.Zero)
+        {
+            return Direction.NONE;
+        }
+        if (vector.X == 0)
+        {
+            return vector.Y > 0 ? Direction.SE : Direction.NW;
+        }
+        if (vector.Y == 0)
+        {
+            return vector.X > 0 ? Direction.E : Direction.W;
+        }
+        if (vector.X == -vector.Y)
+        {
+            return vector.X > 0 ? Direction.NE : Direction.SW;
+        }
+        return Direction.NONE;
+    }
     public static IEnumerable<Vector2I> Neighbors(this Vector2I center)
     {
         foreach (Direction direction in Directions)

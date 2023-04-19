@@ -54,6 +54,10 @@ script = ExtResource("2_77ei4")
 layout_mode = 2
 text = "Attack"
 
+[node name="Push" type="Button" parent="SkillTargeting"]
+layout_mode = 2
+text = "Push"
+
 [node name="Move" type="Button" parent="SkillTargeting"]
 layout_mode = 2
 text = "Move"
@@ -70,5 +74,6 @@ grow_horizontal = 2
 text = "..."
 
 [connection signal="pressed" from="SkillTargeting/Attack" to="." method="SelectSkill" binds= ["attack"]]
+[connection signal="pressed" from="SkillTargeting/Push" to="." method="SelectSkill" binds= ["push"]]
 [connection signal="pressed" from="SkillTargeting/Move" to="." method="SelectSkill" binds= ["move"]]
 [connection signal="pressed" from="SkillTargeting/Cancel" to="." method="LooseFocus"]

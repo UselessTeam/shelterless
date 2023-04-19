@@ -1,11 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://ck34j3il21vpj"]
+[gd_scene load_steps=13 format=3 uid="uid://ufnqkere3tx1"]
 
 [ext_resource type="Texture2D" uid="uid://cbk02hshyy2qn" path="res://Asset/Sprite/Hexagon.png" id="1_g75ad"]
 [ext_resource type="Script" path="res://Board/Board.cs" id="2_aev3t"]
-[ext_resource type="PackedScene" uid="uid://e33luquuut21" path="res://Board/camera_2d.tscn" id="2_j4q03"]
-[ext_resource type="PackedScene" uid="uid://c7jl4g6uxuugf" path="res://Board/Tile/poison_tile.tscn" id="2_ows5b"]
+[ext_resource type="PackedScene" path="res://Board/camera_2d.tscn" id="2_j4q03"]
+[ext_resource type="PackedScene" uid="uid://cev6qh57ntae" path="res://Board/Tile/poison_tile.tscn" id="2_ows5b"]
 [ext_resource type="AudioStream" uid="uid://dj4wivhbeqlp7" path="res://Asset/Sound/Shelterless.wav" id="3_00nhu"]
-[ext_resource type="PackedScene" uid="uid://gtlppc1a3fmj" path="res://Board/Tile/fire_tile.tscn" id="3_477uo"]
+[ext_resource type="PackedScene" path="res://Board/Tile/fire_tile.tscn" id="3_477uo"]
 [ext_resource type="PackedScene" uid="uid://d21df0d4cqnbv" path="res://Board/Pawn/Monsters/blue.tscn" id="5_dnals"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vpoy7"]

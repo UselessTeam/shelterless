@@ -7,14 +7,6 @@ public interface Effect
     public abstract Task RunOn(Context context);
 }
 
-public class MoveEffect : Effect
-{
-    public async Task RunOn(Context context)
-    {
-        await context.SourcePawn.Get<LocomotionComponent>().MoveTo(context.CoordsTarget);
-    }
-}
-
 public class FunctionEffect : Effect
 {
     public Func<Context, Task> Apply;

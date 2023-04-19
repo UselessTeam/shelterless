@@ -12,6 +12,8 @@ public partial class AnimationComponent : Component
             return animationPlayer;
         }
     }
+    [Signal]
+    public delegate void DoneEventHandler();
     private AnimationPlayer animationPlayer = null;
     private Action[] currentCallbacks;
     private int currentCallbackIndex;
@@ -44,7 +46,7 @@ public partial class AnimationComponent : Component
     public async Task Play(string animation, Sign sign = Sign.NEUTRAL, params Action[] callbacks)
     {
         StartPlay(animation, sign, callbacks);
-        await ToSignal(AnimationPlayer, AnimationPlayer.SignalName.AnimationFinished);
+        await ToSignal(this, SignalName.Done);
     }
 
     public void PlayText(string text)
@@ -83,6 +85,7 @@ public partial class AnimationComponent : Component
             currentCallbackIndex++;
         }
         currentCallbacks = null;
+        EmitSignal(SignalName.Done);
     }
 
     public void LookLeft()

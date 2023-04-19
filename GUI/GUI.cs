@@ -57,12 +57,21 @@ public partial class GUI : CanvasLayer
 
     public void SelectSkill(string skillName)
     {
+        if (controlledPawn is null)
+        {
+            return;
+        }
         Skill skill = skillName switch
         {
-            "attack" => SkillList.Attack,
+            "attack" => SkillList.SingleAttack,
             "move" => SkillList.Move,
+            "push" => SkillList.Push,
             _ => null,
         };
+        if (skill is null)
+        {
+            return;
+        }
         SkillTargeting.LoadSkill(skill, controlledPawn);
     }
 

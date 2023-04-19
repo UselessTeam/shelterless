@@ -30,7 +30,7 @@ public partial class MonsterAIComponent : Component
         }
         else if (distanceToPlayer == 1)
         {
-            context.SourceSkill = SkillList.Attack;
+            context.SourceSkill = SkillList.SingleAttack;
             context.PawnTarget = Pawn.Board.Player;
             return;
         }

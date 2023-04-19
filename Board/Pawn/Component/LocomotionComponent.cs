@@ -14,12 +14,30 @@ public partial class LocomotionComponent : Component
         positionStart = Pawn.Position;
         positionEnd = targetPosition;
         MovementProgress = 0f;
-        await animationComponent.Play("move", Pawn.Coords.SideTowards(target), () =>
-            {
-                Pawn.SetCoords(target);
-            }
-        );
+        await animationComponent.Play("move", Pawn.Coords.SideTowards(target));
+        Pawn.SetCoords(target);
         isRunning = false;
+    }
+
+    public async Task PushTowards(VectorUtils.Direction direction, int intensity)
+    {
+        int pushed = 0;
+        int pressed = 0;
+        while (intensity > 0)
+        {
+            if (!Pawn.Board.Walkable(Pawn.Coords + direction.ToVector2I() * (pushed + 1)))
+            {
+                pressed = intensity;
+                break;
+            }
+            pushed += 1;
+            intensity -= 1;
+        }
+        await MoveTo(Pawn.Coords + direction.ToVector2I() * pushed);
+        if (pressed > 0)
+        {
+            GD.Print($"TODO: monster 'pressed' by {pressed} tiles");
+        }
     }
 
     private bool isRunning;

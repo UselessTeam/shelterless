@@ -31,13 +31,17 @@ public partial class SkillTargetingGUI : Control
     }
     public void LoadSkill(Skill skill, Pawn player)
     {
-        context = new Context { SourceSkill = skill, SourcePawn = player };
+        context = new Context { SourceSkill = skill, SourcePawn = player, Origin = player.Coords };
         GUI.Main.SetDebugText($"Skill {skill.Name} loaded");
     }
 
     private bool CanTarget(Vector2I coords, Vector2 position)
     {
-        int distance = context.SourcePawn?.Coords.Distance(coords) ?? -1;
+        int distance = context?.Origin.Distance(coords) ?? -1;
+        if (context.SourceSkill.Target == Skill.TargetType.DIRECTION)
+        {
+            return (coords - context.Origin).ToDirection() != VectorUtils.Direction.NONE;
+        }
         if (distance < context.SourceSkill.MinTargetRange)
         {
             return false;
@@ -92,6 +96,9 @@ public partial class SkillTargetingGUI : Control
                     break;
                 case (Skill.TargetType.ENTITY):
                     context.PawnTarget = board.GetFirstPawnAt(coords);
+                    break;
+                case (Skill.TargetType.DIRECTION):
+                    context.DirectionTarget = (coords - context.Origin).ToDirection();
                     break;
                 default:
                     GD.PrintErr("TODO: Different target type");
