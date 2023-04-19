@@ -28,11 +28,14 @@ scale_max = 16.0
 color_ramp = SubResource("GradientTexture1D_bcr3s")
 
 [node name="FireTile" type="Node2D"]
+z_index = -1
+y_sort_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_xr2kd")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = 1
 position = Vector2(-3, -49)
 amount = 200
 process_material = SubResource("ParticleProcessMaterial_wdv1y")

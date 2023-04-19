@@ -50,11 +50,12 @@ sources/2 = SubResource("TileSetScenesCollectionSource_p75ja")
 sources/3 = SubResource("TileSetScenesCollectionSource_muuwf")
 
 [node name="Board" type="TileMap"]
+position = Vector2(0, -4)
 tile_set = SubResource("TileSet_4eoap")
 format = 2
 layer_0/name = "World"
 layer_0/z_index = -1
-layer_0/tile_data = PackedInt32Array(131071, 0, 0, 0, 0, 0, 65536, 0, 0, 131072, 0, 0, 131073, 0, 0, 196608, 0, 0, 196609, 0, 0, 131074, 0, 0, 65537, 0, 0, 196611, 0, 0, 131076, 0, 0, 3, 0, 0, 5, 0, 0, 65540, 0, 0, 4, 0, 0, 65539, 0, 0, 131075, 0, 0, 65538, 0, 0, 1, 0, 0, -65535, 0, 0, 2, 0, 0, 196610, 0, 0, 65535, 3, 65536, 131070, 3, 65536)
+layer_0/tile_data = PackedInt32Array(131071, 0, 0, 0, 0, 0, 65536, 0, 0, 131072, 0, 0, 131073, 0, 0, 196608, 0, 0, 196609, 0, 0, 131074, 0, 0, 65537, 0, 0, 196611, 0, 0, 131076, 0, 0, 3, 0, 0, 5, 0, 0, 65540, 0, 0, 4, 0, 0, 65539, 0, 0, 131075, 0, 0, 65538, 0, 0, 1, 0, 0, -65535, 0, 0, 2, 0, 0, 196610, 0, 0, 65535, 3, 65536, 131070, 2, 65536, 196605, 2, 65536, 131069, 2, 65536)
 layer_1/name = "GUI"
 layer_1/enabled = true
 layer_1/modulate = Color(1, 1, 1, 1)
@@ -77,12 +78,10 @@ stream = ExtResource("3_00nhu")
 autoplay = true
 
 [node name="Blue" parent="." instance=ExtResource("5_dnals")]
-position = Vector2(1119, 247)
+position = Vector2(3452, 1013)
 
 [node name="TopLeftLimit" type="Node2D" parent="."]
 position = Vector2(-1129, -1163)
 
 [node name="BottomRightLimit" type="Node2D" parent="."]
 position = Vector2(5738, 2585)
-
-[node name="PoisonTile" parent="." instance=ExtResource("2_ows5b")]

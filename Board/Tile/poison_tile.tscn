@@ -24,14 +24,14 @@ anim_speed_min = 1.0
 anim_speed_max = 1.0
 
 [node name="PoisonTile" type="Node2D"]
+z_index = -1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -126)
 texture = ExtResource("1_fywvs")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_6g351")
-position = Vector2(0, -138)
+position = Vector2(0, -12)
 amount = 3
 sub_emitter = NodePath(".")
 process_material = SubResource("ParticleProcessMaterial_pd3fn")
