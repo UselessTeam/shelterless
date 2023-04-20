@@ -31,5 +31,5 @@ public partial class Skill : Resource
     [Export]
     public bool MustBeEmpty = false;
 
-    public Effect Effect;
+    public EffectRule<Context> Effect;
 }

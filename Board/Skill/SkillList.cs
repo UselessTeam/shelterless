@@ -3,72 +3,100 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EffectClass
-{
-    public class Move : Effect
-    {
-        public async Task RunOn(Context context)
-        {
-            await context.SourcePawn.Get<LocomotionComponent>().MoveTo(context.CoordsTarget);
-        }
-    }
-
-    public class MultiDamage : Effect
-    {
-        private int Count = 1;
-        public MultiDamage(int count = 1)
-        {
-            Count = count;
-        }
-        public async Task RunOn(Context context)
-        {
-            Action damageOnce = () => Damage(context.SourcePawn, context.PawnTarget);
-            Action[] damageMulti = Enumerable.Range(0, Count).Select(i => damageOnce).ToArray();
-            await context.SourcePawn.Get<AnimationComponent>().Play(
-                "attack",
-                context.SourcePawn.Coords.SideTowards(context.PawnTarget.Coords),
-                damageMulti
-            );
-        }
-
-        public static void Damage(Pawn source, Pawn target)
-        {
-            int damage = -source.Get<SkillComponent>()?.Damage ?? 10;
-            target.Get<AnimationComponent>().PlayText($"{damage}", Colors.Red);
-            target.Get<HealthComponent>().ChangeHealth(damage);
-        }
-    }
-
-    public class SlideInDirectionEffect : Effect
-    {
-        private int Slide = 1;
-        public SlideInDirectionEffect(int slide = 0)
-        {
-            Slide = slide;
-        }
-        public async Task RunOn(Context context)
-        {
-            Vector2I targetCoord = context.Origin + context.DirectionTarget.ToVector2I();
-            Pawn targetPawn = context.SourcePawn.Board.GetFirstPawnAt(targetCoord);
-            if (targetPawn is null)
-            {
-                GD.PrintErr("No pawn to slide!");
-                return;
-            }
-            await context.SourcePawn.Get<AnimationComponent>().Play(
-                "attack",
-                context.SourcePawn.Coords.SideTowards(targetCoord),
-                () => targetPawn.Get<LocomotionComponent>()?.PushTowards(context.DirectionTarget, Slide)
-            );
-        }
-    }
-}
 public static class Effects
 {
-    public static Effect Move = new EffectClass.Move();
-    public static Effect SingleDamage = new EffectClass.MultiDamage(1);
-    public static Effect DoubleDamage = new EffectClass.MultiDamage(2);
-    public static Effect PushOne = new EffectClass.SlideInDirectionEffect(1);
+    public record MoveContext(Pawn Pawn, Vector2I Target);
+    public static readonly EffectRule<MoveContext> Move = new AnimationEffectRule<MoveContext>(
+        (MoveContext context) => new AnimationContext
+        {
+            Component = context.Pawn.Get<AnimationComponent>(),
+            Name = "move",
+            Side = context.Pawn.Coords.SideTowards(context.Target),
+        }
+    ).Then((MoveContext context) =>
+        {
+            context.Pawn.Get<LocomotionComponent>()?.StartMovement(context.Target);
+        }
+    ).Then((MoveContext context) =>
+        {
+            context.Pawn.Get<LocomotionComponent>()?.EndMovement(context.Target);
+        }
+    );
+
+    public record DamageContext(Pawn Attacker, Pawn Receiver, int Damage);
+    public static readonly MultiEffectRule<DamageContext> Damage = new AnimationEffectRule<DamageContext>(
+        (DamageContext context) => new AnimationContext
+        {
+            Component = context.Attacker.Get<AnimationComponent>(),
+            Name = "attack",
+            Side = context.Attacker.Coords.SideTowards(context.Receiver.Coords),
+        }
+    ).Skip().Then((DamageContext context) =>
+        {
+            context.Receiver.Get<AnimationComponent>().PlayText($"-{context.Damage}", Colors.Red);
+            context.Receiver.Get<HealthComponent>().ChangeHealth(-context.Damage);
+        }
+    );
+
+    public record PushContext(Pawn Pawn, VectorUtils.Direction Direction, int Strength);
+    public record PushAugmentedContext(Pawn Pawn, VectorUtils.Direction Direction, Vector2I Destination, int Crush);
+    public static readonly EffectRule<PushContext> Push = new AnimationEffectRule<PushAugmentedContext>(
+        (PushAugmentedContext context) =>
+        {
+            return new AnimationContext
+            {
+                Component = context.Pawn.Get<AnimationComponent>(),
+                Name = "move",
+                Side = context.Direction.ToSide().Opposite(),
+            };
+        }
+    ).Then((PushAugmentedContext context) =>
+        {
+            context.Pawn.Get<LocomotionComponent>()?.StartMovement(context.Destination);
+        }
+    ).Then((PushAugmentedContext context) =>
+        {
+            context.Pawn.Get<LocomotionComponent>()?.EndMovement(context.Destination);
+            if (context.Crush > 0)
+            {
+                GD.Print($"TODO: monster 'crushed' by {context.Crush} tiles");
+            }
+        }
+    ).WithSelect((PushContext context) =>
+        {
+            int pushed = 0;
+            int crushed = 0;
+            int strength = context.Strength;
+            while (strength > 0)
+            {
+                if (!context.Pawn.Board.Walkable(context.Pawn.Coords + context.Direction.ToVector2I() * (pushed + 1)))
+                {
+                    crushed = strength;
+                    break;
+                }
+                pushed += 1;
+                strength -= 1;
+            }
+            return new PushAugmentedContext(
+                Pawn: context.Pawn,
+                Direction: context.Direction,
+                Destination: context.Pawn.Coords + context.Direction.ToVector2I() * pushed,
+                Crush: crushed
+            );
+        }
+    );
+
+    public record PushAttackContext(Pawn Attacker, Pawn Receiver, VectorUtils.Direction Direction, int Strength);
+    public static readonly EffectRule<PushAttackContext> PushAttack = new AnimationEffectRule<PushAttackContext>(
+        (PushAttackContext context) => new AnimationContext
+        {
+            Component = context.Attacker.Get<AnimationComponent>(),
+            Name = "attack",
+            Side = context.Attacker.Coords.SideTowards(context.Receiver.Coords),
+        }
+    ).Skip().Then(
+        Push.WithSelect((PushAttackContext context) => new PushContext(context.Receiver, context.Direction, context.Strength))
+    );
 }
 
 public static class SkillList
@@ -79,15 +107,25 @@ public static class SkillList
         Target = Skill.TargetType.TILE,
         MinTargetRange = 1,
         MaxTargetRange = 1,
-        Effect = Effects.Move,
+        Effect = Effects.Move.WithSelect(
+            (Context context) => new Effects.MoveContext(context.SourcePawn, context.CoordsTarget)
+        ),
     };
+
     public static Skill Push = new Skill
     {
         Name = "Push",
         Target = Skill.TargetType.DIRECTION,
         MinTargetRange = 1,
         MaxTargetRange = 1,
-        Effect = Effects.PushOne,
+        Effect = Effects.PushAttack.WithSelect(
+            (Context context) =>
+            {
+                Vector2I targetCoord = context.Origin + context.DirectionTarget.ToVector2I();
+                Pawn targetPawn = context.SourcePawn.Board.GetFirstPawnAt(targetCoord);
+                return new Effects.PushAttackContext(context.SourcePawn, targetPawn, context.DirectionTarget, 1);
+            }
+        ),
     };
     public static Skill SingleAttack = new Skill
     {
@@ -95,7 +133,13 @@ public static class SkillList
         Target = Skill.TargetType.ENTITY,
         MinTargetRange = 1,
         MaxTargetRange = 1,
-        Effect = Effects.SingleDamage,
+        Effect = Effects.Damage.WithSelect(
+            (Context context) =>
+            {
+                int damage = context.SourcePawn.Get<SkillComponent>()?.Damage ?? 10;
+                return new Effects.DamageContext(context.SourcePawn, context.PawnTarget, damage);
+            }
+        ),
     };
     public static Skill DoubleAttack = new Skill
     {
@@ -103,6 +147,12 @@ public static class SkillList
         Target = Skill.TargetType.ENTITY,
         MinTargetRange = 1,
         MaxTargetRange = 1,
-        Effect = Effects.DoubleDamage,
+        Effect = Effects.Damage.Copy().Repeat(2).WithSelect(
+            (Context context) =>
+            {
+                int damage = context.SourcePawn.Get<SkillComponent>()?.Damage ?? 10;
+                return new Effects.DamageContext(context.SourcePawn, context.PawnTarget, damage);
+            }
+        ),
     };
 }

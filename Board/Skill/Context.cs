@@ -64,6 +64,6 @@ public partial class Context : GodotObject
 
     public async Task Run()
     {
-        await SourceSkill.Effect.RunOn(this);
+        await SourceSkill.Effect.ExecuteAsync(this);
     }
 }

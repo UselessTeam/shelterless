@@ -19,7 +19,7 @@ public partial class GUI : CanvasLayer
             return;
         }
         controlledPawn = null;
-        await context.SourceSkill.Effect.RunOn(context);
+        await context.Run();
         EmitSignal(SignalName.FinishControl);
     }
 

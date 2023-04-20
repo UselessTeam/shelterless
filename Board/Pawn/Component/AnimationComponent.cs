@@ -12,18 +12,17 @@ public partial class AnimationComponent : Component
             return animationPlayer;
         }
     }
+    private AnimationPlayer animationPlayer = null;
     [Signal]
     public delegate void DoneEventHandler();
-    private AnimationPlayer animationPlayer = null;
-    private Action[] currentCallbacks;
-    private int currentCallbackIndex;
+    private TaskSequence taskSequence;
 
     public override void _Ready()
     {
         base._Ready();
         AnimationPlayer.AnimationFinished += OnAnimationFinish;
     }
-    public void StartPlay(string animation, Sign sign = Sign.NEUTRAL, params Action[] callbacks)
+    public void StartPlay(string animation, Sign sign = Sign.NEUTRAL, TaskSequence taskSequence = null)
     {
         switch (sign)
         {
@@ -37,16 +36,18 @@ public partial class AnimationComponent : Component
         if (AnimationPlayer.IsPlaying())
         {
             AnimationPlayer.Advance(AnimationPlayer.CurrentAnimationLength - AnimationPlayer.CurrentAnimationPosition);
+            // TODO: Yield
         }
-        currentCallbacks = callbacks;
-        currentCallbackIndex = 0;
+        this.taskSequence = taskSequence;
+        taskSequence?.StartNext();
         AnimationPlayer.Play(animation);
     }
 
-    public async Task Play(string animation, Sign sign = Sign.NEUTRAL, params Action[] callbacks)
+    public async Task Play(string animation, Sign sign = Sign.NEUTRAL, TaskSequence taskSequence = null)
     {
-        StartPlay(animation, sign, callbacks);
+        StartPlay(animation, sign, taskSequence);
         await ToSignal(this, SignalName.Done);
+        await taskSequence.Join();
     }
 
     public void PlayText(string text)
@@ -62,29 +63,24 @@ public partial class AnimationComponent : Component
 
     public void Trigger()
     {
-        if (currentCallbackIndex >= currentCallbacks.Length)
+        try
         {
-            GD.PushError($"Already all triggers (count: {currentCallbacks.Length}) had been consumed for animation {AnimationPlayer.CurrentAnimation}, but requesting a {currentCallbackIndex}th");
+            taskSequence?.StartNext();
         }
-        else
+        catch (IndexOutOfRangeException exception)
         {
-            currentCallbacks[currentCallbackIndex]();
+            GD.PrintErr($"Error during {AnimationPlayer.CurrentAnimation}");
+            GD.PushError(exception);
         }
-        currentCallbackIndex++;
     }
 
     public void OnAnimationFinish(StringName _)
     {
-        if (currentCallbacks.Length - currentCallbackIndex >= 2)
+        if ((taskSequence?.GetRemainingCount() ?? 0) >= 2)
         {
-            GD.PrintErr($"Weird amount of final trigger: {currentCallbacks.Length - currentCallbackIndex}");
+            GD.PrintErr($"Weird amount of final trigger: {taskSequence.GetRemainingCount()}");
         }
-        while (currentCallbackIndex < currentCallbacks.Length)
-        {
-            currentCallbacks[currentCallbackIndex]();
-            currentCallbackIndex++;
-        }
-        currentCallbacks = null;
+        taskSequence.StartRemaining();
         EmitSignal(SignalName.Done);
     }
 

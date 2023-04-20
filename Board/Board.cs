@@ -251,6 +251,16 @@ public static class VectorUtils
         };
     }
 
+    public static Sign ToSide(this Direction direction)
+    {
+        return direction switch
+        {
+            Direction.SE | Direction.E | Direction.NE => global::Sign.POSITIVE,
+            Direction.SW | Direction.W | Direction.NW => global::Sign.NEGATIVE,
+            _ => global::Sign.NEUTRAL,
+        };
+    }
+
     public static Direction ToDirection(this Vector2I vector)
     {
         if (vector == Vector2I.Zero)
@@ -317,6 +327,15 @@ public static class VectorUtils
         else if (value < 0)
             return global::Sign.NEGATIVE;
         return global::Sign.NEUTRAL;
+    }
+    public static Sign Opposite(this Sign value)
+    {
+        return value switch
+        {
+            global::Sign.NEGATIVE => global::Sign.POSITIVE,
+            global::Sign.POSITIVE => global::Sign.NEGATIVE,
+            _ => global::Sign.NEUTRAL,
+        };
     }
 }
 
