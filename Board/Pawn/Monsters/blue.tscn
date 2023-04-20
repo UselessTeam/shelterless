@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d21df0d4cqnbv"]
+[gd_scene load_steps=16 format=3 uid="uid://d21df0d4cqnbv"]
 
 [ext_resource type="Script" path="res://Board/Pawn/Pawn.cs" id="1_la2bt"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/HealthComponent.cs" id="2_jspms"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Board/Pawn/Component/LocomotionComponent.cs" id="6_0qpjb"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/AnimationComponent.cs" id="7_awsxb"]
 [ext_resource type="Texture2D" uid="uid://dji1xps7u5jqd" path="res://Asset/Sprite/BlueMonster/BlueLeftArm.png" id="7_wbs74"]
+[ext_resource type="Script" path="res://Board/Pawn/Component/SkillComponent.cs" id="10_q1cyj"]
 
 [sub_resource type="Animation" id="Animation_s763b"]
 resource_name = "attack"
@@ -194,11 +195,28 @@ tracks/2/keys = {
 "values": [Vector2(0, 0), Vector2(0, 100), Vector2(0, -300), Vector2(0, 50), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_mavcl"]
+resource_name = "pushed"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Locomotion:MovementProgress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_448gm"]
 _data = {
 "attack": SubResource("Animation_s763b"),
 "death": SubResource("Animation_ggltb"),
-"move": SubResource("Animation_5mpr3")
+"move": SubResource("Animation_5mpr3"),
+"pushed": SubResource("Animation_mavcl")
 }
 
 [node name="Blue" type="Node2D"]
@@ -206,10 +224,16 @@ script = ExtResource("1_la2bt")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_jspms")
+CurrentHealth = 50
+MaxHealth = 50
+
+[node name="Skill" type="Node" parent="."]
+script = ExtResource("10_q1cyj")
+Damage = 15
+Weight = 1
 
 [node name="Locomotion" type="Node" parent="."]
 script = ExtResource("6_0qpjb")
-MovementProgress = 1.0
 
 [node name="Animation" type="Node" parent="."]
 script = ExtResource("7_awsxb")
@@ -232,7 +256,6 @@ texture = ExtResource("5_nwga1")
 [node name="FullBody" type="Node2D" parent="Sprites"]
 
 [node name="AxeRightArm" type="Node2D" parent="Sprites/FullBody"]
-rotation = 6.28319
 
 [node name="RightArm" type="Sprite2D" parent="Sprites/FullBody/AxeRightArm"]
 texture = ExtResource("5_lg68m")

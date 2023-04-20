@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bmltbsnh1d57f"]
+[gd_scene load_steps=20 format=3 uid="uid://bmltbsnh1d57f"]
 
 [ext_resource type="Script" path="res://Board/Pawn/Pawn.cs" id="1_7earx"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/HealthComponent.cs" id="2_65uff"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dfl4wwfnui6w2" path="res://Asset/Sprite/BeeMonster/BeeRightWing.png" id="11_3kidm"]
 [ext_resource type="Texture2D" uid="uid://b1233luib67rv" path="res://Asset/Sprite/BeeMonster/BeeLeftWing.png" id="11_p80hb"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/MonsterAIComponent.cs" id="13_a4300"]
+[ext_resource type="Script" path="res://Board/Pawn/Component/SkillComponent.cs" id="14_4syjq"]
 
 [sub_resource type="Animation" id="Animation_uuy1l"]
 resource_name = "attack"
@@ -322,11 +323,28 @@ tracks/4/keys = {
 "values": [0.0, -0.523599, 0.637045, -0.523599, 0.637045, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_1uurg"]
+resource_name = "pushed"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Locomotion:MovementProgress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_448gm"]
 _data = {
 "attack": SubResource("Animation_uuy1l"),
 "death": SubResource("Animation_j62ah"),
-"move": SubResource("Animation_v7e6x")
+"move": SubResource("Animation_v7e6x"),
+"pushed": SubResource("Animation_1uurg")
 }
 
 [node name="Bee" type="Node2D"]
@@ -334,10 +352,15 @@ script = ExtResource("1_7earx")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_65uff")
+CurrentHealth = 30
+MaxHealth = 30
+
+[node name="Skill" type="Node" parent="."]
+script = ExtResource("14_4syjq")
+Damage = 15
 
 [node name="Locomotion" type="Node" parent="."]
 script = ExtResource("3_5f7hk")
-MovementProgress = 1.0
 
 [node name="Animation" type="Node" parent="."]
 script = ExtResource("4_ra3og")
@@ -356,8 +379,6 @@ modulate = Color(1, 1, 1, 0.537255)
 texture = ExtResource("5_qg57x")
 
 [node name="Body" type="Node2D" parent="Sprites"]
-position = Vector2(-29.3333, 6.66667)
-rotation = -0.094248
 
 [node name="RightArm" type="Node2D" parent="Sprites/Body"]
 position = Vector2(-117, -16)

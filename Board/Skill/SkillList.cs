@@ -46,7 +46,7 @@ public static class Effects
             return new AnimationContext
             {
                 Component = context.Pawn.Get<AnimationComponent>(),
-                Name = "move",
+                Name = "pushed",
                 Side = context.Direction.ToSide().Opposite(),
             };
         }
@@ -123,7 +123,8 @@ public static class SkillList
             {
                 Vector2I targetCoord = context.Origin + context.DirectionTarget.ToVector2I();
                 Pawn targetPawn = context.SourcePawn.Board.GetFirstPawnAt(targetCoord);
-                return new Effects.PushAttackContext(context.SourcePawn, targetPawn, context.DirectionTarget, 1);
+                return new Effects.PushAttackContext(context.SourcePawn, targetPawn, context.DirectionTarget,
+                            context.SourcePawn.Get<SkillComponent>().PushStrength - targetPawn.Get<SkillComponent>().Weight);
             }
         ),
     };

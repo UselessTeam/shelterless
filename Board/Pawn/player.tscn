@@ -327,6 +327,11 @@ script = ExtResource("8_4erq0")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_11mjc")
+CurrentHealth = 200
+MaxHealth = 200
+
+[node name="Skill" type="Node" parent="."]
+script = ExtResource("9_fvil6")
 
 [node name="Locomotion" type="Node" parent="."]
 script = ExtResource("6_kmute")
@@ -415,6 +420,3 @@ position = Vector2(29, -144)
 position = Vector2(-39, 43)
 rotation = -0.00363861
 texture = ExtResource("23_pkkcr")
-
-[node name="Skill" type="Node" parent="."]
-script = ExtResource("9_fvil6")

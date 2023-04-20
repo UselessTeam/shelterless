@@ -2,10 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://cbk02hshyy2qn" path="res://Asset/Sprite/Hexagon.png" id="1_g75ad"]
 [ext_resource type="Script" path="res://Board/Board.cs" id="2_aev3t"]
-[ext_resource type="PackedScene" path="res://Board/camera_2d.tscn" id="2_j4q03"]
-[ext_resource type="PackedScene" uid="uid://cev6qh57ntae" path="res://Board/Tile/poison_tile.tscn" id="2_ows5b"]
+[ext_resource type="PackedScene" uid="uid://e33luquuut21" path="res://Board/camera_2d.tscn" id="2_j4q03"]
+[ext_resource type="PackedScene" uid="uid://c7jl4g6uxuugf" path="res://Board/Tile/poison_tile.tscn" id="2_ows5b"]
 [ext_resource type="AudioStream" uid="uid://dj4wivhbeqlp7" path="res://Asset/Sound/Shelterless.wav" id="3_00nhu"]
-[ext_resource type="PackedScene" path="res://Board/Tile/fire_tile.tscn" id="3_477uo"]
+[ext_resource type="PackedScene" uid="uid://gtlppc1a3fmj" path="res://Board/Tile/fire_tile.tscn" id="3_477uo"]
 [ext_resource type="PackedScene" uid="uid://d21df0d4cqnbv" path="res://Board/Pawn/Monsters/blue.tscn" id="5_dnals"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vpoy7"]
@@ -55,7 +55,7 @@ tile_set = SubResource("TileSet_4eoap")
 format = 2
 layer_0/name = "World"
 layer_0/z_index = -1
-layer_0/tile_data = PackedInt32Array(131071, 0, 0, 0, 0, 0, 65536, 0, 0, 131072, 0, 0, 131073, 0, 0, 196608, 0, 0, 196609, 0, 0, 131074, 0, 0, 65537, 0, 0, 196611, 0, 0, 131076, 0, 0, 3, 0, 0, 5, 0, 0, 65540, 0, 0, 4, 0, 0, 65539, 0, 0, 131075, 0, 0, 65538, 0, 0, 1, 0, 0, -65535, 0, 0, 2, 0, 0, 196610, 0, 0, 65535, 3, 65536, 131070, 2, 65536, 196605, 2, 65536, 131069, 2, 65536)
+layer_0/tile_data = PackedInt32Array(131071, 0, 0, 0, 0, 0, 65536, 0, 0, 131072, 0, 0, 131073, 0, 0, 196608, 0, 0, 196609, 0, 0, 131074, 0, 0, 65537, 0, 0, 196611, 0, 0, 131076, 0, 0, 3, 0, 0, 5, 0, 0, 65540, 0, 0, 4, 0, 0, 65539, 0, 0, 131075, 0, 0, 65538, 0, 0, 1, 0, 0, -65535, 0, 0, 2, 0, 0, 196610, 0, 0, 65535, 3, 65536, 131070, 2, 65536, -65534, 0, 0)
 layer_1/name = "GUI"
 layer_1/enabled = true
 layer_1/modulate = Color(1, 1, 1, 1)
