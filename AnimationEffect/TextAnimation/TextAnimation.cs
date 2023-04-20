@@ -10,7 +10,7 @@ public partial class TextAnimation : Node2D
     }
     public static TextAnimation Create(string text, Color color)
     {
-        TextAnimation obj = ResourceLoader.Load<PackedScene>("res://GUI/TextAnimation/text_animation.tscn").Instantiate<TextAnimation>();
+        TextAnimation obj = ResourceLoader.Load<PackedScene>("res://AnimationEffect/TextAnimation/text_animation.tscn").Instantiate<TextAnimation>();
         obj.Text = text;
         obj.Color = color;
         return obj;

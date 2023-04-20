@@ -33,15 +33,11 @@ public partial class HealthComponent : Component
         if (value != CurrentHealth)
         {
             EmitSignal(SignalName.HealthChanged, CurrentHealth, value);
-            if (value == 0)
-            {
-                Die();
-            }
             CurrentHealth = value;
         }
     }
 
-    private void Die()
+    public void Die()
     {
         EmitSignal(SignalName.Death);
         Pawn.QueueFree();

@@ -28,7 +28,11 @@ public class MultiEffectRule<TContext> : EffectRule<TContext>
     {
         foreach (EffectRule<TContext> subEffect in SubEffects)
         {
-            await subEffect?.ExecuteAsync(context);
+            Task task = subEffect?.ExecuteAsync(context);
+            if (task is not null)
+            {
+                await task;
+            }
         }
     }
 
@@ -59,6 +63,12 @@ public class MultiEffectRule<TContext> : EffectRule<TContext>
     public MultiEffectRule<TContext> ThenIf(Func<TContext, bool> condition, Action<TContext> subEffect)
     {
         SubEffects.Add(new ConditionalEffectRule<TContext>(condition, new FunctionEffectRule<TContext>(subEffect)));
+        return this;
+    }
+
+    public MultiEffectRule<TContext> Then(Func<TContext, Task> subEffect)
+    {
+        SubEffects.Add(new AsyncFunctionEffectRule<TContext>(subEffect));
         return this;
     }
 

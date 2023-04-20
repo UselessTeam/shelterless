@@ -26,3 +26,21 @@ public class FunctionEffectRule<TContext> : SyncEffectRule<TContext>
         return new FunctionEffectRule<TContext>(function);
     }
 }
+
+public class AsyncFunctionEffectRule<TContext> : EffectRule<TContext>
+{
+    private Func<TContext, Task> RunFunction;
+    public AsyncFunctionEffectRule(Func<TContext, Task> runFunction)
+    {
+        RunFunction = runFunction;
+    }
+    public override void Execute(TContext context) { }
+    public override Task ExecuteAsync(TContext context)
+    {
+        return RunFunction(context);
+    }
+    public static implicit operator AsyncFunctionEffectRule<TContext>(Func<TContext, Task> function)
+    {
+        return new Func<TContext, Task>(function);
+    }
+}

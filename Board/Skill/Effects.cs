@@ -1,9 +1,6 @@
 using Godot;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 
-public static class Effects
+public static partial class Effects
 {
     public record MoveContext(Pawn Pawn, Vector2I Target);
     public static readonly EffectRule<MoveContext> Move = new AnimationEffectRule<MoveContext>(
@@ -23,19 +20,30 @@ public static class Effects
         }
     );
 
-    public record DamageContext(Pawn Attacker, Pawn Receiver, int Damage);
-    public static readonly MultiEffectRule<DamageContext> Damage = new AnimationEffectRule<DamageContext>(
-        (DamageContext context) => new AnimationContext
+    public record TakeDamageContext(Pawn Pawn, int Damage);
+    public static readonly EffectRule<TakeDamageContext> TakeDamage = new MultiEffectRule<TakeDamageContext>(
+    ).Then(
+        (TakeDamageContext context) => GD.Print(context.Pawn)
+    ).Then(
+        (TakeDamageContext context) => context.Pawn.Get<AnimationComponent>()?.PlayText($"-{context.Damage}", Colors.Red)
+    ).Then(
+        (TakeDamageContext context) => context.Pawn.Get<HealthComponent>()?.ChangeHealth(-context.Damage)
+    ).ThenIf(
+        (TakeDamageContext context) => context.Pawn.Get<HealthComponent>()?.CurrentHealth <= 0,
+        (TakeDamageContext context) => context.Pawn.Get<HealthComponent>().Die()
+    );
+
+    public record AttackContext(Pawn Attacker, Pawn Receiver, int Damage);
+    public static readonly MultiEffectRule<AttackContext> Attack = new AnimationEffectRule<AttackContext>(
+        (AttackContext context) => new AnimationContext
         {
             Component = context.Attacker.Get<AnimationComponent>(),
             Name = "attack",
             Side = context.Attacker.Coords.SideTowards(context.Receiver.Coords),
         }
-    ).Skip().Then((DamageContext context) =>
-        {
-            context.Receiver.Get<AnimationComponent>().PlayText($"-{context.Damage}", Colors.Red);
-            context.Receiver.Get<HealthComponent>().ChangeHealth(-context.Damage);
-        }
+    ).Skip(
+    ).Then(
+        TakeDamage.WithSelect((AttackContext context) => new TakeDamageContext(context.Receiver, context.Damage))
     );
 
     public record PushContext(Pawn Pawn, VectorUtils.Direction Direction, int Strength);
@@ -94,71 +102,9 @@ public static class Effects
             Name = "attack",
             Side = context.Direction.ToVector2I().ToSide(),
         }
-    ).Skip().ThenIf(
+    ).Skip(
+    ).ThenIf(
         (PushAttackContext context) => (context.Receiver is not null),
         Push.WithSelect((PushAttackContext context) => new PushContext(context.Receiver, context.Direction, context.Strength))
     );
-}
-
-public static class SkillList
-{
-    public static Skill Move = new Skill
-    {
-        Name = "Move",
-        Target = Skill.TargetType.TILE,
-        MinTargetRange = 1,
-        MaxTargetRange = 1,
-        Effect = Effects.Move.WithSelect(
-            (Context context) => new Effects.MoveContext(context.SourcePawn, context.CoordsTarget)
-        ),
-    };
-
-    public static Skill Push = new Skill
-    {
-        Name = "Push",
-        Target = Skill.TargetType.DIRECTION,
-        MinTargetRange = 1,
-        MaxTargetRange = 1,
-        Effect = Effects.PushAttack.WithSelect(
-            (Context context) =>
-            {
-                Vector2I targetCoord = context.Origin + context.DirectionTarget.ToVector2I();
-                Pawn targetPawn = context.SourcePawn.Board.GetFirstPawnAt(targetCoord);
-                return new Effects.PushAttackContext(
-                    context.SourcePawn,
-                    targetPawn,
-                    context.DirectionTarget,
-                    Mathf.Max(1, context.SourcePawn.Get<SkillComponent>()?.PushStrength - targetPawn?.Get<SkillComponent>().Weight ?? 0)
-                );
-            }
-        ),
-    };
-    public static Skill SingleAttack = new Skill
-    {
-        Name = "SingleAttack",
-        Target = Skill.TargetType.ENTITY,
-        MinTargetRange = 1,
-        MaxTargetRange = 1,
-        Effect = Effects.Damage.WithSelect(
-            (Context context) =>
-            {
-                int damage = context.SourcePawn.Get<SkillComponent>()?.Damage ?? 10;
-                return new Effects.DamageContext(context.SourcePawn, context.PawnTarget, damage);
-            }
-        ),
-    };
-    public static Skill DoubleAttack = new Skill
-    {
-        Name = "DoubleAttack",
-        Target = Skill.TargetType.ENTITY,
-        MinTargetRange = 1,
-        MaxTargetRange = 1,
-        Effect = Effects.Damage.Copy().Repeat(2).WithSelect(
-            (Context context) =>
-            {
-                int damage = context.SourcePawn.Get<SkillComponent>()?.Damage ?? 10;
-                return new Effects.DamageContext(context.SourcePawn, context.PawnTarget, damage);
-            }
-        ),
-    };
 }

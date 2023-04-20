@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cifc0xka7x2ex"]
+
+[ext_resource type="Texture2D" uid="uid://65c23ennebom" path="res://Asset/Sprite/WindGrenade.png" id="1_42qe2"]
+[ext_resource type="Script" path="res://AnimationEffect/ProjectileAnimation/ProjectileAnimation.cs" id="1_nis2f"]
+
+[node name="Projectile" type="Node2D"]
+script = ExtResource("1_nis2f")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_42qe2")

@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://chflqyn177cbx"]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="PackedScene" uid="uid://3oqeqrqxqpre" path="res://Board/Pawn/player.tscn" id="1_frqbn"]
-[ext_resource type="Script" path="res://MainMenu/CharacterSelection.cs" id="1_rbxbw"]
-[ext_resource type="Script" path="res://MainMenu/OptionSelector.cs" id="3_ri0dx"]
+[ext_resource type="Script" path="res://Scene/MainMenu/CharacterSelection.cs" id="1_rbxbw"]
+[ext_resource type="Script" path="res://Scene/MainMenu/OptionSelector.cs" id="3_ri0dx"]
 
 [node name="CharacterSelection" type="Control" node_paths=PackedStringArray("player")]
 layout_mode = 3

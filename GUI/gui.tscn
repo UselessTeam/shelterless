@@ -58,6 +58,10 @@ text = "Attack"
 layout_mode = 2
 text = "Push"
 
+[node name="Grenade" type="Button" parent="SkillTargeting"]
+layout_mode = 2
+text = "Grenade"
+
 [node name="Move" type="Button" parent="SkillTargeting"]
 layout_mode = 2
 text = "Move"
@@ -75,5 +79,6 @@ text = "..."
 
 [connection signal="pressed" from="SkillTargeting/Attack" to="." method="SelectSkill" binds= ["attack"]]
 [connection signal="pressed" from="SkillTargeting/Push" to="." method="SelectSkill" binds= ["push"]]
+[connection signal="pressed" from="SkillTargeting/Grenade" to="." method="SelectSkill" binds= ["grenade"]]
 [connection signal="pressed" from="SkillTargeting/Move" to="." method="SelectSkill" binds= ["move"]]
 [connection signal="pressed" from="SkillTargeting/Cancel" to="." method="LooseFocus"]

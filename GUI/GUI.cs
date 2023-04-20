@@ -64,6 +64,7 @@ public partial class GUI : CanvasLayer
         Skill skill = skillName switch
         {
             "attack" => SkillList.SingleAttack,
+            "grenade" => SkillList.WindGrenade,
             "move" => SkillList.Move,
             "push" => SkillList.Push,
             _ => null,
