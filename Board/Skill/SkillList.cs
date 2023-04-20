@@ -92,9 +92,10 @@ public static class Effects
         {
             Component = context.Attacker.Get<AnimationComponent>(),
             Name = "attack",
-            Side = context.Attacker.Coords.SideTowards(context.Receiver.Coords),
+            Side = context.Direction.ToVector2I().ToSide(),
         }
-    ).Skip().Then(
+    ).Skip().ThenIf(
+        (PushAttackContext context) => (context.Receiver is not null),
         Push.WithSelect((PushAttackContext context) => new PushContext(context.Receiver, context.Direction, context.Strength))
     );
 }
@@ -123,8 +124,12 @@ public static class SkillList
             {
                 Vector2I targetCoord = context.Origin + context.DirectionTarget.ToVector2I();
                 Pawn targetPawn = context.SourcePawn.Board.GetFirstPawnAt(targetCoord);
-                return new Effects.PushAttackContext(context.SourcePawn, targetPawn, context.DirectionTarget,
-                            context.SourcePawn.Get<SkillComponent>().PushStrength - targetPawn.Get<SkillComponent>().Weight);
+                return new Effects.PushAttackContext(
+                    context.SourcePawn,
+                    targetPawn,
+                    context.DirectionTarget,
+                    Mathf.Max(1, context.SourcePawn.Get<SkillComponent>()?.PushStrength - targetPawn?.Get<SkillComponent>().Weight ?? 0)
+                );
             }
         ),
     };

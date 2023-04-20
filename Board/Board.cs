@@ -251,16 +251,6 @@ public static class VectorUtils
         };
     }
 
-    public static Sign ToSide(this Direction direction)
-    {
-        return direction switch
-        {
-            Direction.SE | Direction.E | Direction.NE => global::Sign.POSITIVE,
-            Direction.SW | Direction.W | Direction.NW => global::Sign.NEGATIVE,
-            _ => global::Sign.NEUTRAL,
-        };
-    }
-
     public static Direction ToDirection(this Vector2I vector)
     {
         if (vector == Vector2I.Zero)
@@ -307,6 +297,10 @@ public static class VectorUtils
         return (vector - other).Magnitude();
     }
 
+    public static Sign ToSide(this Vector2I vector)
+    {
+        return (2 * vector.X + vector.Y).Sign();
+    }
     public static Sign SideTowards(this Vector2I origin, Vector2I target)
     {
         Vector2I delta = (target - origin);
@@ -327,6 +321,15 @@ public static class VectorUtils
         else if (value < 0)
             return global::Sign.NEGATIVE;
         return global::Sign.NEUTRAL;
+    }
+    public static Sign ToSide(this Direction direction)
+    {
+        return direction switch
+        {
+            Direction.SE or Direction.E or Direction.NE => global::Sign.RIGHT,
+            Direction.SW or Direction.W or Direction.NW => global::Sign.LEFT,
+            _ => global::Sign.NEUTRAL,
+        };
     }
     public static Sign Opposite(this Sign value)
     {

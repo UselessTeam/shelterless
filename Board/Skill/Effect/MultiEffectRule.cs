@@ -44,10 +44,21 @@ public class MultiEffectRule<TContext> : EffectRule<TContext>
         SubEffects.Add(subEffect);
         return this;
     }
+    public MultiEffectRule<TContext> ThenIf(Func<TContext, bool> condition, EffectRule<TContext> subEffect)
+    {
+        SubEffects.Add(new ConditionalEffectRule<TContext>(condition, subEffect));
+        return this;
+    }
 
     public MultiEffectRule<TContext> Then(Action<TContext> subEffect)
     {
         SubEffects.Add(new FunctionEffectRule<TContext>(subEffect));
+        return this;
+    }
+
+    public MultiEffectRule<TContext> ThenIf(Func<TContext, bool> condition, Action<TContext> subEffect)
+    {
+        SubEffects.Add(new ConditionalEffectRule<TContext>(condition, new FunctionEffectRule<TContext>(subEffect)));
         return this;
     }
 
@@ -60,7 +71,7 @@ public class MultiEffectRule<TContext> : EffectRule<TContext>
         return this;
     }
 
-    public MultiEffectRule<TContext> Copy()
+    public virtual MultiEffectRule<TContext> Copy()
     {
         return new MultiEffectRule<TContext>(this);
     }

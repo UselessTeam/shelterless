@@ -18,6 +18,10 @@ public class AnimationEffectRule<TContext> : MultiEffectRule<TContext>
     {
         Selection = selection;
     }
+    public AnimationEffectRule(AnimationEffectRule<TContext> other) : base(other)
+    {
+        Selection = other.Selection;
+    }
 
     public override async Task ExecuteAsync(TContext context)
     {
@@ -27,5 +31,10 @@ public class AnimationEffectRule<TContext> : MultiEffectRule<TContext>
             animationContext.Side,
             TaskSequence.Create(context, SubEffects)
         );
+    }
+
+    public override AnimationEffectRule<TContext> Copy()
+    {
+        return new AnimationEffectRule<TContext>(this);
     }
 }

@@ -358,6 +358,7 @@ MaxHealth = 30
 [node name="Skill" type="Node" parent="."]
 script = ExtResource("14_4syjq")
 Damage = 15
+DoubleAttack = true
 
 [node name="Locomotion" type="Node" parent="."]
 script = ExtResource("3_5f7hk")
