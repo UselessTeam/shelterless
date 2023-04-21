@@ -335,7 +335,6 @@ script = ExtResource("9_fvil6")
 
 [node name="Locomotion" type="Node" parent="."]
 script = ExtResource("6_kmute")
-MovementProgress = 1.0
 
 [node name="Animation" type="Node" parent="."]
 script = ExtResource("7_8bl04")

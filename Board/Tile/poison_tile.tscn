@@ -37,3 +37,4 @@ sub_emitter = NodePath(".")
 process_material = SubResource("ParticleProcessMaterial_pd3fn")
 texture = ExtResource("2_v5f0q")
 explosiveness = 0.24
+local_coords = true

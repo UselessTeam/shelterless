@@ -12,7 +12,9 @@ public partial class Customizable : AnimatedSprite2D
     // Called when the node enters the scene tree for the first time.
     public override void _EnterTree()
     {
-        this.GetAncestor<Pawn>().Get<PlayerComponent>().RegisterCustomizable(this);
+        this.GetAncestor<Pawn>()?.Get<PlayerComponent>()?.RegisterCustomizable(this);
+        if (CharacterSelection.ChosenOptions != null)
+            SetOption(CharacterSelection.ChosenOptions[Id]);
     }
 
     public void SetOption(int option)

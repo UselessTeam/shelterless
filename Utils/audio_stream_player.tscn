@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://vvlg4k2hpatd"]
+
+[ext_resource type="AudioStream" uid="uid://dj4wivhbeqlp7" path="res://Asset/Sound/Shelterless.wav" id="1_t28ok"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_t28ok")
+autoplay = true
