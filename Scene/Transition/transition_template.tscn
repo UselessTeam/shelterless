@@ -196,7 +196,7 @@ _data = {
 [node name="TransitionTemplate" type="Node2D"]
 
 [node name="Textbox" parent="." instance=ExtResource("1_321ia")]
-TextList = PackedStringArray("How\'s it going adventurer? Nice to have company on this long travel!", "You\'re doing the silent bodygard thing, heh? Suit yourself I guess.", "....", "Oh crap! A monster over there!", "Time to earn your pay! I\'ll be hiding over here. Nothing you can\'t handle I suppose?")
+TextList = PackedStringArray("How\'s it going adventurer? Nice to have company on this long travel!", "You\'re doing the silent bodygard thing, heh? Suit yourself.", "....", "Oh crap! A monster over there!", "Time to earn your pay! I\'ll be hiding over here. Nothing you can\'t handle I suppose?")
 nextScene = ExtResource("2_r0p1h")
 
 [node name="Road" type="TileMap" parent="."]
@@ -204,7 +204,7 @@ tile_set = SubResource("TileSet_4eoap")
 format = 2
 layer_0/name = "World"
 layer_0/z_index = -1
-layer_0/tile_data = PackedInt32Array(131071, 0, 0, 0, 0, 0, 65536, 0, 0, 65537, 0, 0, 3, 0, 0, 5, 0, 0, 65540, 0, 0, 4, 0, 0, 65539, 0, 0, 65538, 0, 0, 1, 0, 0, 2, 0, 0, 6, 0, 0, 65541, 0, 0, 7, 0, 0, 65542, 0, 0, 65535, 0, 0, 131070, 0, 0, 65534, 0, 0, 131069, 0, 0, 65533, 0, 0, 131068, 0, 0, 65532, 0, 0, 131067, 0, 0, 65531, 0, 0, 131066, 0, 0, 65530, 0, 0, 131065, 0, 0, 65529, 0, 0, 131064, 0, 0, 65528, 0, 0, 131063, 0, 0, 8, 0, 0, 65543, 0, 0, 9, 0, 0, 65544, 0, 0, 10, 0, 0, 65545, 0, 0, 11, 0, 0, 65546, 0, 0, 12, 0, 0, 65547, 0, 0, 13, 0, 0, 65548, 0, 0, 14, 0, 0, 65549, 0, 0, 15, 0, 0, 65550, 0, 0, 16, 0, 0, 65551, 0, 0, 65552, 0, 0, 17, 0, 0, 18, 0, 0, 65553, 0, 0, 19, 0, 0, 65554, 0, 0, 20, 0, 0, 65555, 0, 0, 21, 0, 0, 65556, 0, 0, 65557, 0, 0, 22, 0, 0, 65558, 0, 0, 23, 0, 0, 65559, 0, 0, 24, 0, 0, 65560, 0, 0, 25, 0, 0, 65561, 0, 0, 65527, 0, 0, 131062, 0, 0, 65526, 0, 0, 131061, 0, 0, 65525, 0, 0, 131060, 0, 0, 65524, 0, 0, 131059, 0, 0, 65523, 0, 0, 131058, 0, 0, 65522, 0, 0, 131057, 0, 0, 65521, 0, 0, -65531, 0, 0, 131078, 0, 0, -65523, 1, 0, 196606, 1, 0, 131085, 2, 65536, -65527, 2, 65536, 131074, 2, 65536, -2, 2, 65536)
+layer_0/tile_data = PackedInt32Array(131071, 0, 0, 0, 0, 0, 65536, 0, 0, 65537, 0, 0, 3, 0, 0, 5, 0, 0, 65540, 0, 0, 4, 0, 0, 65539, 0, 0, 65538, 0, 0, 1, 0, 0, 2, 0, 0, 6, 0, 0, 65541, 0, 0, 7, 0, 0, 65542, 0, 0, 65535, 0, 0, 131070, 0, 0, 65534, 0, 0, 131069, 0, 0, 65533, 0, 0, 131068, 0, 0, 65532, 0, 0, 131067, 0, 0, 65531, 0, 0, 131066, 0, 0, 65530, 0, 0, 131065, 0, 0, 65529, 0, 0, 131064, 0, 0, 65528, 0, 0, 131063, 0, 0, 8, 0, 0, 65543, 0, 0, 9, 0, 0, 65544, 0, 0, 10, 0, 0, 65545, 0, 0, 11, 0, 0, 65546, 0, 0, 12, 0, 0, 65547, 0, 0, 13, 0, 0, 65548, 0, 0, 14, 0, 0, 65549, 0, 0, 15, 0, 0, 65550, 0, 0, 16, 0, 0, 65551, 0, 0, 65552, 0, 0, 17, 0, 0, 18, 0, 0, 65553, 0, 0, 19, 0, 0, 65554, 0, 0, 20, 0, 0, 65555, 0, 0, 21, 0, 0, 65556, 0, 0, 65557, 0, 0, 22, 0, 0, 65558, 0, 0, 23, 0, 0, 65559, 0, 0, 24, 0, 0, 65560, 0, 0, 25, 0, 0, 65561, 0, 0, 65527, 0, 0, 131062, 0, 0, 65526, 0, 0, 131061, 0, 0, 65525, 0, 0, 131060, 0, 0, 65524, 0, 0, 131059, 0, 0, 65523, 0, 0, 131058, 0, 0, 65522, 0, 0, 131057, 0, 0, 65521, 0, 0, -65531, 0, 0, 131078, 0, 0, -65523, 1, 0, 196606, 1, 0, 131085, 2, 65536, -65527, 2, 65536, 131074, 2, 65536, -2, 2, 65536, 196598, 0, 0, -6, 0, 0, 131089, 0, 0, -65515, 0, 0)
 layer_1/name = "GUI"
 layer_1/enabled = true
 layer_1/modulate = Color(1, 1, 1, 1)
@@ -213,24 +213,42 @@ layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array()
 script = ExtResource("2_e3umk")
-scrollingSpeed = 250.0
+scrollingSpeed = 1000.0
 
 [node name="RoadDecor" type="Node2D" parent="Road"]
-
-[node name="Boulder" type="Sprite2D" parent="Road/RoadDecor"]
-position = Vector2(3828, -354)
-texture = ExtResource("2_4yyqq")
 
 [node name="Tree" type="Sprite2D" parent="Road/RoadDecor"]
 z_index = 1
 position = Vector2(5750, 778)
 texture = ExtResource("5_6qeei")
 
+[node name="Tree2" type="Sprite2D" parent="Road/RoadDecor"]
+position = Vector2(-4628, -359)
+texture = ExtResource("5_6qeei")
+
+[node name="Tree3" type="Sprite2D" parent="Road/RoadDecor"]
+position = Vector2(16109, -359)
+texture = ExtResource("5_6qeei")
+
+[node name="Boulder" type="Sprite2D" parent="Road/RoadDecor"]
+position = Vector2(3828, -354)
+texture = ExtResource("2_4yyqq")
+
+[node name="Boulder2" type="Sprite2D" parent="Road/RoadDecor"]
+z_index = 1
+position = Vector2(14218, 767)
+texture = ExtResource("2_4yyqq")
+
+[node name="Boulder3" type="Sprite2D" parent="Road/RoadDecor"]
+z_index = 1
+position = Vector2(-6519, 767)
+texture = ExtResource("2_4yyqq")
+
 [node name="RightLimit" type="Node2D" parent="Road"]
-position = Vector2(14249, 406)
+position = Vector2(14209, 498)
 
 [node name="LeftLimit" type="Node2D" parent="Road"]
-position = Vector2(-6146, 406)
+position = Vector2(-6528, 508)
 
 [node name="Camera" parent="." instance=ExtResource("8_h4mro")]
 position = Vector2(1782, 480)
