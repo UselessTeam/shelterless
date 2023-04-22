@@ -68,8 +68,10 @@ public partial class Board : TileMap
         {
             GD.Print("Player turn");
             await RunPlayerTurn();
+            await RunPlayerEndTurn();
             GD.Print("Monster turn");
             await RunMonsterTurn();
+            await RunMonsterEndTurn();
         }
     }
     public async Task RunPlayerTurn()
@@ -81,6 +83,17 @@ public partial class Board : TileMap
         }
         Busy = false;
     }
+    public async Task RunPlayerEndTurn()
+    {
+        foreach (Pawn pawn in GetPawnsWith<PlayerComponent>())
+        {
+            TileType tileType = pawn.Board.GetTileType(pawn.Coords);
+            if (tileType == TileType.Poisoned || tileType == TileType.Burning)
+            {
+                await Effects.TakeDamage.ExecuteAsync(new Effects.TakeDamageContext(pawn, 5));
+            }
+        }
+    }
 
     public async Task RunMonsterTurn()
     {
@@ -91,7 +104,17 @@ public partial class Board : TileMap
         }
         Busy = false;
     }
-
+    public async Task RunMonsterEndTurn()
+    {
+        foreach (Pawn pawn in GetPawnsWith<MonsterAIComponent>())
+        {
+            TileType tileType = pawn.Board.GetTileType(pawn.Coords);
+            if (tileType == TileType.Burning)
+            {
+                await Effects.TakeDamage.ExecuteAsync(new Effects.TakeDamageContext(pawn, 5));
+            }
+        }
+    }
     private static List<Vector2I> BuildPath(Dictionary<Vector2I, Vector2I> steps, Vector2I begin, Vector2I end)
     {
         List<Vector2I> path = new List<Vector2I>();
