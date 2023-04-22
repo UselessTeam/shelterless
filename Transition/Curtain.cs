@@ -5,7 +5,7 @@ public partial class Curtain : ColorRect
 	[Export]
 	public PackedScene NextScene;
 	
-	public override void _Ready(){
+	public override void _EnterTree(){
 		OpenCurtain();
 	}
 
