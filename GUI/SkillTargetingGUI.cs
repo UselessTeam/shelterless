@@ -1,11 +1,16 @@
 
 
+using System;
 using Godot;
 
 public partial class SkillTargetingGUI : Control
 {
     [Signal]
     public delegate void SkillReadyEventHandler(Context context);
+
+    //The button passed as an arg will no be cleared 
+    event Action<Button> ClearButtons;
+
     private Board focusedBoard;
     private Context context;
     const int GUI_TILE_LAYER = 1;
@@ -16,10 +21,42 @@ public partial class SkillTargetingGUI : Control
         RED = 1,
         GREEN = 2,
     }
+
+    public override void _Ready()
+    {
+        base._Ready();
+
+        var gui = this.GetAncestor<GUI>();
+        foreach (var skill in gui.AvailableSkills)
+        {
+            var buttonNode = new Button()
+            {
+                Text = skill,
+                ToggleMode = true,
+            };
+            ClearButtons += (button)=> {
+                if (buttonNode != button) buttonNode.ButtonPressed = false;
+            };
+            AddChild(buttonNode);
+            buttonNode.Connect(Button.SignalName.Toggled,
+                Callable.From<bool>((isPressed) =>
+                {
+                    if(isPressed){
+                        ClearButtons?.Invoke(buttonNode);
+                        gui.SelectSkill(skill.ToLower());
+                    }
+                    else
+                        gui.LooseFocus();
+                }
+            ));
+        }
+    }
+    
     private void Clear()
     {
         focusedBoard?.ClearLayer(GUI_TILE_LAYER);
         context = null;
+        ClearButtons(null);
     }
     public void Cancel()
     {

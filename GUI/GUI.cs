@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 public partial class GUI : CanvasLayer
 {
     [Export]
+    public string[] AvailableSkills;
+
+    [Export]
     Label DebugText;
     [Signal]
     public delegate void FinishControlEventHandler();
@@ -21,7 +24,7 @@ public partial class GUI : CanvasLayer
         controlledPawn = null;
         await context.Run();
         EmitSignal(SignalName.FinishControl);
-    }
+   }
 
     public static GUI Main
     {
@@ -53,7 +56,7 @@ public partial class GUI : CanvasLayer
     {
         base._Ready();
         SkillTargeting = GetNode<SkillTargetingGUI>("SkillTargeting");
-    }
+   }
 
     public void SelectSkill(string skillName)
     {

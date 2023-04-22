@@ -11,6 +11,7 @@ anchors_preset = 0
 mouse_filter = 2
 
 [node name="GUI" parent="." instance=ExtResource("2_rw7i6")]
+AvailableSkills = PackedStringArray("Move", "Attack", "Push", "Grenade")
 
 [node name="Board" parent="." instance=ExtResource("1_ui17o")]
 y_sort_enabled = true

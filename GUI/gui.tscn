@@ -30,6 +30,7 @@ color = Color(0.231373, 0.717647, 0.752941, 1)
 
 [node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("DebugText")]
 script = ExtResource("1_2mpgr")
+AvailableSkills = PackedStringArray("Attack", "Push", "Grenade", "Move")
 DebugText = NodePath("DebugText")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
@@ -50,35 +51,9 @@ grow_vertical = 0
 alignment = 1
 script = ExtResource("2_77ei4")
 
-[node name="Attack" type="Button" parent="SkillTargeting"]
-layout_mode = 2
-text = "Attack"
-
-[node name="Push" type="Button" parent="SkillTargeting"]
-layout_mode = 2
-text = "Push"
-
-[node name="Grenade" type="Button" parent="SkillTargeting"]
-layout_mode = 2
-text = "Grenade"
-
-[node name="Move" type="Button" parent="SkillTargeting"]
-layout_mode = 2
-text = "Move"
-
-[node name="Cancel" type="Button" parent="SkillTargeting"]
-layout_mode = 2
-text = "Cancel"
-
 [node name="DebugText" type="Label" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 26.0
 grow_horizontal = 2
 text = "..."
-
-[connection signal="pressed" from="SkillTargeting/Attack" to="." method="SelectSkill" binds= ["attack"]]
-[connection signal="pressed" from="SkillTargeting/Push" to="." method="SelectSkill" binds= ["push"]]
-[connection signal="pressed" from="SkillTargeting/Grenade" to="." method="SelectSkill" binds= ["grenade"]]
-[connection signal="pressed" from="SkillTargeting/Move" to="." method="SelectSkill" binds= ["move"]]
-[connection signal="pressed" from="SkillTargeting/Cancel" to="." method="LooseFocus"]
