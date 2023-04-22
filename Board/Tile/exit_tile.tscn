@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://bi587cyhd3eqv"]
+
+[ext_resource type="Texture2D" uid="uid://cbk02hshyy2qn" path="res://Asset/Sprite/Hexagon.png" id="1_riw6x"]
+[ext_resource type="Texture2D" uid="uid://oo1eeuqndhw8" path="res://Asset/Sprite/white_arrow.png" id="2_pxjyf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6pbhb"]
+font_size = 120
+
+[sub_resource type="Animation" id="Animation_hqck8"]
+resource_name = "exit"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WhiteArrow:position:x")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-40.0, 40.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ldw1v"]
+_data = {
+"exit": SubResource("Animation_hqck8")
+}
+
+[node name="ExitTile" type="Node2D"]
+z_index = -1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_riw6x")
+
+[node name="WhiteArrow" type="Sprite2D" parent="."]
+position = Vector2(-32.1034, 84)
+scale = Vector2(0.327278, 0.249346)
+texture = ExtResource("2_pxjyf")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -142.0
+offset_top = -147.0
+offset_right = 105.0
+offset_bottom = 21.0
+text = "EXIT"
+label_settings = SubResource("LabelSettings_6pbhb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ldw1v")
+}

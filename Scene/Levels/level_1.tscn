@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://xenjkir2xqau"]
+
+[ext_resource type="PackedScene" uid="uid://dfc5tnay8o2xl" path="res://GUI/gui.tscn" id="1_2nj0o"]
+[ext_resource type="PackedScene" uid="uid://hcr70lroaqnq" path="res://Transition/curtain.tscn" id="2_5csgk"]
+[ext_resource type="PackedScene" uid="uid://ufnqkere3tx1" path="res://Board/board.tscn" id="4_hwt4y"]
+[ext_resource type="PackedScene" uid="uid://3oqeqrqxqpre" path="res://Board/Pawn/player.tscn" id="5_ihoyl"]
+[ext_resource type="PackedScene" uid="uid://cf3kyhf5ume" path="res://Board/Pawn/rock.tscn" id="6_ne7m4"]
+
+[node name="Level1" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="GUI" parent="." instance=ExtResource("1_2nj0o")]
+AvailableSkills = PackedStringArray("Move", "Attack")
+
+[node name="Curtain" parent="GUI" instance=ExtResource("2_5csgk")]
+
+[node name="Board" parent="." instance=ExtResource("4_hwt4y")]
+y_sort_enabled = true
+layer_0/z_index = -100
+layer_0/tile_data = PackedInt32Array(65537, 0, 0, 196607, 3, 65536, 65536, 0, 0, 131072, 0, 0, 2, 0, 0, 3, 0, 0, 65538, 2, 65536, 0, 0, 0, 131071, 0, 0, 5, 4, 65536, 4, 4, 65536)
+layer_1/z_index = -100
+
+[node name="Player" parent="Board" instance=ExtResource("5_ihoyl")]
+position = Vector2(732, 624)
+
+[node name="Rock" parent="." instance=ExtResource("6_ne7m4")]
+position = Vector2(2697, 277)

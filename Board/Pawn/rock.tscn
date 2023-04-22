@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cf3kyhf5ume"]
+
+[ext_resource type="Script" path="res://Board/Pawn/Pawn.cs" id="1_nnj3i"]
+[ext_resource type="PackedScene" uid="uid://dxt5d05bnilph" path="res://Board/Pawn/Component/health.tscn" id="2_ktsk8"]
+[ext_resource type="Script" path="res://Board/Pawn/Component/SkillComponent.cs" id="3_sflou"]
+[ext_resource type="Texture2D" uid="uid://dncgbliqdq48w" path="res://Asset/Boulder.png" id="4_2jc01"]
+
+[node name="Rock" type="Node2D"]
+script = ExtResource("1_nnj3i")
+
+[node name="Health" parent="." instance=ExtResource("2_ktsk8")]
+position = Vector2(12, 51)
+CurrentHealth = 60
+MaxHealth = 60
+
+[node name="Skill" type="Node" parent="."]
+script = ExtResource("3_sflou")
+Damage = 15
+Weight = 1000
+
+[node name="Sprites" type="Node2D" parent="."]
+position = Vector2(10, -215)
+
+[node name="Boulder" type="Sprite2D" parent="."]
+position = Vector2(0, -253)
+texture = ExtResource("4_2jc01")

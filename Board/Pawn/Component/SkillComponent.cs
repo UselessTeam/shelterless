@@ -13,7 +13,7 @@ public partial class SkillComponent : Component
     [Export(PropertyHint.Range, "1,4")]
     public int PushStrength = 3;
 
-    [Export(PropertyHint.Range, "0,2")]
+    [Export(PropertyHint.Range, "0,2,or_greater")]
     public int Weight;
     // Reduces the distance this unit is pushed
 }
