@@ -42,7 +42,7 @@ resource_name = "FireTile"
 scenes/1/scene = ExtResource("3_477uo")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_jfl3k"]
-resource_name = "ExitTile"
+resource_name = "Exit"
 scenes/1/scene = ExtResource("5_yxxg8")
 
 [sub_resource type="TileSet" id="TileSet_4eoap"]
@@ -67,13 +67,20 @@ format = 2
 layer_0/name = "World"
 layer_0/z_index = -1
 layer_0/tile_data = PackedInt32Array(131071, 0, 0, 0, 0, 0, 65536, 0, 0, 131072, 0, 0, 131073, 0, 0, 196608, 0, 0, 196609, 0, 0, 131074, 0, 0, 65537, 0, 0, 196611, 0, 0, 131076, 0, 0, 3, 0, 0, 5, 0, 0, 65540, 0, 0, 4, 0, 0, 65539, 0, 0, 131075, 0, 0, 65538, 0, 0, 1, 0, 0, -65535, 0, 0, 2, 0, 0, 196610, 0, 0, 65535, 3, 65536, 131070, 2, 65536, -65534, 0, 0, 65541, 4, 65536)
-layer_1/name = "GUI"
+layer_1/name = "FireLayer"
 layer_1/enabled = true
 layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array()
+layer_2/name = "GUI"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = false
+layer_2/y_sort_origin = 0
+layer_2/z_index = 0
+layer_2/tile_data = PackedInt32Array()
 script = ExtResource("2_aev3t")
 
 [node name="Camera" parent="." instance=ExtResource("2_j4q03")]

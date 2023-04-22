@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://c60qfbt4et2ir"]
+
+[ext_resource type="Script" path="res://Scene/MainMenu/OptionSelector.cs" id="1_vdhtx"]
+
+[sub_resource type="Theme" id="Theme_wj861"]
+default_font_size = 50
+
+[node name="HBoxContainer" type="HBoxContainer"]
+size_flags_vertical = 4
+theme = SubResource("Theme_wj861")
+script = ExtResource("1_vdhtx")
+Id = 1
+
+[node name="Left" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "<"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+
+[node name="Right" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+text = ">
+"

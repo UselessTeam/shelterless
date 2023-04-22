@@ -1,6 +1,10 @@
-Lvl 0
+Lvl 0-1
 How's it going adventurer? Nice to have company on this long travel!
 You're doing the silent bodygard thing, heh? Suit yourself I guess.
 ....
+Damn it! A rock is blocking the path.
+I suppose you'll manage to break it with that big hammer of yours?
+
+Lvl 1-2
 Oh crap! A monster over there!
 Time to earn your pay! I'll be hiding over here. Nothing you can't handle I suppose?

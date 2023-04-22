@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3i201gdf08e7"]
+[gd_scene load_steps=6 format=3 uid="uid://b3i201gdf08e7"]
 
 [ext_resource type="PackedScene" uid="uid://ufnqkere3tx1" path="res://Board/board.tscn" id="1_ui17o"]
 [ext_resource type="PackedScene" uid="uid://hcr70lroaqnq" path="res://Transition/curtain.tscn" id="2_eh7cf"]
 [ext_resource type="PackedScene" uid="uid://dfc5tnay8o2xl" path="res://GUI/gui.tscn" id="2_rw7i6"]
 [ext_resource type="PackedScene" uid="uid://3oqeqrqxqpre" path="res://Board/Pawn/player.tscn" id="3_dwcch"]
-[ext_resource type="PackedScene" uid="uid://3ur23rmrgdsp" path="res://Scene/StoryScenes/transition_1-2.tscn" id="3_s0os4"]
 [ext_resource type="PackedScene" uid="uid://bmltbsnh1d57f" path="res://Board/Pawn/Monsters/bee.tscn" id="5_84pow"]
 
 [node name="TestGUI" type="Control"]
@@ -16,7 +15,7 @@ mouse_filter = 2
 AvailableSkills = PackedStringArray("Move", "Attack", "Push", "Wind Grenade", "Fire Grenade")
 
 [node name="Curtain" parent="GUI" instance=ExtResource("2_eh7cf")]
-NextScene = ExtResource("3_s0os4")
+NextScene = "res://Scene/StoryScenes/transition_template.tscn"
 
 [node name="Board" parent="." instance=ExtResource("1_ui17o")]
 y_sort_enabled = true

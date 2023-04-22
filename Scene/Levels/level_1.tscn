@@ -19,7 +19,7 @@ AvailableSkills = PackedStringArray("Move", "Attack")
 [node name="Board" parent="." instance=ExtResource("4_hwt4y")]
 y_sort_enabled = true
 layer_0/z_index = -100
-layer_0/tile_data = PackedInt32Array(65537, 0, 0, 196607, 3, 65536, 65536, 0, 0, 131072, 0, 0, 2, 0, 0, 3, 0, 0, 65538, 2, 65536, 0, 0, 0, 131071, 0, 0, 5, 4, 65536, 4, 4, 65536)
+layer_0/tile_data = PackedInt32Array(65537, 0, 0, 196607, 3, 65536, 65536, 0, 0, 131072, 0, 0, 2, 0, 0, 3, 0, 0, 65538, 2, 65536, 0, 0, 0, 131071, 0, 0, 4, 4, 65536)
 layer_1/z_index = -100
 
 [node name="Player" parent="Board" instance=ExtResource("5_ihoyl")]

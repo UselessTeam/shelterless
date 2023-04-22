@@ -2,8 +2,8 @@ using Godot;
 
 public partial class Curtain : ColorRect
 {
-	[Export]
-	public PackedScene NextScene;
+	[Export(PropertyHint.File, "*.tscn")]
+	public string NextScene;
 	
 	public override void _EnterTree(){
 		OpenCurtain();
@@ -15,7 +15,7 @@ public partial class Curtain : ColorRect
 		var curtainAnimation = GetNode<AnimationPlayer>("AnimationPlayer");
 		curtainAnimation.Play("close");
 		curtainAnimation.AnimationFinished += _ =>
-				GetTree().ChangeSceneToPacked(NextScene);
+				GetTree().ChangeSceneToFile(NextScene);
 	}
 
 	

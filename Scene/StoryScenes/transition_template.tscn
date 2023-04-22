@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://sgc6x7q2her7"]
+[gd_scene load_steps=25 format=3 uid="uid://sgc6x7q2her7"]
 
 [ext_resource type="PackedScene" uid="uid://baf47ocwgpoo5" path="res://Transition/textbox.tscn" id="1_ntndf"]
 [ext_resource type="PackedScene" uid="uid://hcr70lroaqnq" path="res://Transition/curtain.tscn" id="2_17ba4"]
@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://3oqeqrqxqpre" path="res://Board/Pawn/player.tscn" id="10_yeygv"]
 [ext_resource type="Script" path="res://Transition/TransitionAnimation.cs" id="11_mgn4x"]
 [ext_resource type="Texture2D" uid="uid://jxuhhlq565hn" path="res://Asset/Sprite/Merchant.png" id="12_73u3j"]
-[ext_resource type="PackedScene" uid="uid://b3i201gdf08e7" path="res://Scene/Debug/test_gui.tscn" id="14_4u4g3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vpoy7"]
 resource_name = "NormalTile"
@@ -308,7 +307,6 @@ script = ExtResource("11_mgn4x")
 TextList = PackedStringArray("How\'s it going adventurer? Nice to have company on this long travel!", "You\'re doing the silent bodygard thing, heh? Suit yourself.", "....", "Oh crap! A monster over there!", "Time to earn your pay! I\'ll be hiding over here. Nothing you can\'t handle I suppose?")
 
 [node name="Curtain" parent="Textbox" instance=ExtResource("2_17ba4")]
-NextScene = ExtResource("14_4u4g3")
 
 [editable path="Player"]
 [editable path="Textbox"]
