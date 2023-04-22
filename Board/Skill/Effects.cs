@@ -26,7 +26,7 @@ public static partial class Effects
     ).Then(
         (TakeDamageContext context) => GD.Print(context.Pawn)
     ).Then(
-        (TakeDamageContext context) => context.Pawn.Get<AnimationComponent>()?.PlayText($"-{context.Damage}", Colors.Red)
+        (TakeDamageContext context) => context.Pawn.Get<HealthComponent>()?.PlayText($"-{context.Damage}", Colors.Red)
     ).Then(
         (TakeDamageContext context) => context.Pawn.Get<HealthComponent>()?.ChangeHealth(-context.Damage)
     ).ThenIf(

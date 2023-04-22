@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bumeppjfjbouo"]
+
+[ext_resource type="PackedScene" uid="uid://1yqx8d11fav0" path="res://Board/Pawn/rock.tscn" id="1_ref0t"]
+[ext_resource type="Texture2D" uid="uid://caofhnsrbexbi" path="res://Asset/Sprite/Tree.png" id="2_f3iww"]
+
+[node name="Tree" instance=ExtResource("1_ref0t")]
+
+[node name="Health" parent="." index="0"]
+CurrentHealth = 30
+MaxHealth = 30
+
+[node name="Boulder" parent="Sprites" index="0"]
+texture = ExtResource("2_f3iww")

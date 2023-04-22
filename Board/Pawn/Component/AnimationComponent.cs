@@ -50,17 +50,6 @@ public partial class AnimationComponent : Component
         await taskSequence.Join();
     }
 
-    public void PlayText(string text)
-    {
-        PlayText(text, Colors.White);
-    }
-
-    public void PlayText(string text, Color color)
-    {
-        TextAnimation animation = TextAnimation.Create(text, color);
-        Pawn.AddChild(animation);
-    }
-
     public void Trigger()
     {
         try

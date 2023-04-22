@@ -17,6 +17,10 @@ public partial class MonsterAIComponent : Component
     }
     public void Decide(Context context)
     {
+        if (Pawn.Board.Player is null)
+        {
+            return;
+        }
         int distanceToPlayer = Pawn.Coords.Distance(Pawn.Board.Player.Coords);
         if (distanceToPlayer >= 2)
         {

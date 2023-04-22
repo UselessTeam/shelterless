@@ -65,7 +65,7 @@ public partial class Board : TileMap
     private async Task RunGame()
     {
         GD.Print("Running Game");
-        while (true)
+        while (GetFirstPawnWith<PlayerComponent>() is not null)
         {
             GD.Print("Player turn");
             await RunPlayerTurn();
@@ -74,6 +74,7 @@ public partial class Board : TileMap
             await RunMonsterTurn();
             await RunMonsterEndTurn();
         }
+        GetNode<Curtain>("../GUI/Curtain").CloseCurtainAndRestartScene();
     }
     public async Task RunPlayerTurn()
     {

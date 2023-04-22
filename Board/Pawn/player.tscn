@@ -326,6 +326,8 @@ script = ExtResource("1_13sq6")
 script = ExtResource("8_4erq0")
 
 [node name="Health" parent="." instance=ExtResource("3_k5eed")]
+CurrentHealth = 80
+MaxHealth = 80
 
 [node name="Skill" type="Node" parent="."]
 script = ExtResource("9_fvil6")

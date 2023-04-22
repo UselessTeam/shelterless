@@ -50,6 +50,17 @@ public partial class HealthComponent : Component
         _healthBar.Value = CurrentHealth;
     }
 
+    public void PlayText(string text)
+    {
+        PlayText(text, Colors.White);
+    }
+
+    public void PlayText(string text, Color color)
+    {
+        TextAnimation animation = TextAnimation.Create(text, color);
+        Pawn.AddChild(animation);
+    }
+
     public async Task Die()
     {
         EmitSignal(SignalName.Death);
