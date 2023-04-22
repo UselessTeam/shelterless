@@ -109,26 +109,40 @@ public static partial class Effects
         Push.WithSelect((PushAttackContext context) => new PushContext(context.Receiver, context.Direction, context.Strength))
     );
 
-    public record ThrowProjectileContext(Pawn Attacker, Vector2I Receiver);
-    public static readonly EffectRule<ThrowProjectileContext> ThrowProjectile = new AnimationEffectRule<ThrowProjectileContext>(
+    public record ThrowProjectileContext(Pawn Attacker, Vector2I Target);
+    private static readonly AnimationEffectRule<ThrowProjectileContext> ThrowProjectile = new AnimationEffectRule<ThrowProjectileContext>(
         (ThrowProjectileContext context) => new AnimationContext
         {
             Component = context.Attacker.Get<AnimationComponent>(),
             Name = "throw",
-            Side = context.Attacker.Coords.SideTowards(context.Receiver),
+            Side = context.Attacker.Coords.SideTowards(context.Target),
         }
-    ).Skip(
-    ).Then(
-        new MultiEffectRule<ThrowProjectileContext>().Then(
-            (ThrowProjectileContext context) =>
+    );
+
+    private static IEnumerable<PushContext> PushAround(ThrowProjectileContext context)
+    {
+        foreach (VectorUtils.Direction direction in VectorUtils.Directions)
+        {
+            Pawn pawn = context.Attacker.Board.GetFirstPawnAt(context.Target + direction.ToVector2I());
+            if (pawn is not null)
             {
-                Vector2 origin = context.Attacker.Board.MapToLocal(context.Attacker.Coords) + 20f * Vector2.Up;
-                Vector2 destination = context.Attacker.Board.MapToLocal(context.Receiver);
-                return ProjectileAnimation.CreateAndWait(
-                        context.Attacker.GetNode<Node2D>("ProjectileHolder"), destination);
+                yield return new Effects.PushContext(pawn, direction, 1);
             }
+        }
+    }
+    public static readonly EffectRule<ThrowProjectileContext> ThrowWindGrenade = ThrowProjectile.Copy().Skip().Then(
+        new MultiEffectRule<ThrowProjectileContext>().Then(
+            (System.Func<ThrowProjectileContext, System.Threading.Tasks.Task>)((ThrowProjectileContext context) =>
+            {
+                Vector2 origin = context.Attacker.Board.MapToLocal(context.Attacker.Coords) + 30f * Vector2.Up;
+                Vector2 destination = context.Attacker.Board.MapToLocal((Vector2I)context.Target);
+                return ProjectileAnimation.CreateAndWait(
+                    context.Attacker.GetNode<Node2D>("ProjectileHolder"),
+                    destination
+                );
+            })
         ).Then(
-            new ForEachEffectRule<ThrowProjectileContext, Effects.PushContext>(
+            new ForEachEffectRule<ThrowProjectileContext, PushContext>(
                 PushAround,
                 Effects.Push,
                 parallel: true
@@ -136,15 +150,47 @@ public static partial class Effects
         )
     );
 
-    private static IEnumerable<PushContext> PushAround(ThrowProjectileContext context)
+    public record ChangeTileContext(Board Board, Vector2I Tile);
+    private static IEnumerable<ChangeTileContext> SelectArea(ThrowProjectileContext context)
     {
+        Board board = context.Attacker.Board;
+        yield return new ChangeTileContext(board, context.Target);
         foreach (VectorUtils.Direction direction in VectorUtils.Directions)
         {
-            Pawn pawn = context.Attacker.Board.GetFirstPawnAt(context.Receiver + direction.ToVector2I());
-            if (pawn is not null)
+            Vector2I tile = context.Target + direction.ToVector2I();
+            if (board.Exists(tile))
             {
-                yield return new Effects.PushContext(pawn, direction, 1);
+                yield return new ChangeTileContext(board, tile);
             }
         }
     }
+    public static readonly EffectRule<ThrowProjectileContext> ThrowFireGrenade = ThrowProjectile.Copy().Skip().Then(
+        new MultiEffectRule<ThrowProjectileContext>().Then(
+            (System.Func<ThrowProjectileContext, System.Threading.Tasks.Task>)((ThrowProjectileContext context) =>
+            {
+                Vector2 origin = context.Attacker.Board.MapToLocal(context.Attacker.Coords) + 30f * Vector2.Up;
+                Vector2 destination = context.Attacker.Board.MapToLocal(context.Target);
+                return ProjectileAnimation.CreateAndWait(
+                    context.Attacker.GetNode<Node2D>("ProjectileHolder"),
+                    destination,
+                    fire: true
+                );
+            })
+        ).Then(
+            new ForEachEffectRule<ThrowProjectileContext, ChangeTileContext>(
+                SelectArea,
+                new FunctionEffectRule<ChangeTileContext>(
+                    (ChangeTileContext context) =>
+                    {
+                        TileType tileType = context.Board.GetTileType(context.Tile);
+                        if (tileType == TileType.Poisoned)
+                        {
+                            context.Board.LitTile(context.Tile);
+                        }
+                    }
+                ),
+                parallel: true
+            )
+        )
+    );
 }

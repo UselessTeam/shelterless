@@ -5,17 +5,18 @@ using System.Threading.Tasks;
 
 public partial class ProjectileAnimation : Node2D
 {
-    public static ProjectileAnimation Create(Vector2 start, Vector2 end)
+    public static ProjectileAnimation Create(Vector2 start, Vector2 end, bool fire = false)
     {
         ProjectileAnimation obj = ResourceLoader.Load<PackedScene>("res://AnimationEffect/ProjectileAnimation/projectile_animation.tscn").Instantiate<ProjectileAnimation>();
         obj.Start = start;
         obj.End = end;
+        obj.Fire = fire;
         return obj;
     }
 
-    public static async Task CreateAndWait(Node2D parent, Vector2 end)
+    public static async Task CreateAndWait(Node2D parent, Vector2 end, bool fire = false)
     {
-        ProjectileAnimation obj = Create(parent.GlobalPosition, end);
+        ProjectileAnimation obj = Create(parent.GlobalPosition, end, fire);
         parent.AddChild(obj);
         await parent.ToSignal(obj, SignalName.Done);
     }
@@ -25,12 +26,17 @@ public partial class ProjectileAnimation : Node2D
     float Height = 200f;
     Vector2 Start;
     Vector2 End;
-    float Duration = 0.8f;
+    bool Fire;
+    float Duration = 0.5f;
     float time = 0f;
     public override void _Ready()
     {
         base._Ready();
         Sprite2D sprite = GetNode<Sprite2D>("Sprite");
+        if (Fire)
+        {
+            sprite.Texture = ResourceLoader.Load<Texture2D>("res://Asset/Sprite/FireGrenade.png");
+        }
     }
 
     public override void _Process(double delta)
