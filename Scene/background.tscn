@@ -1,0 +1,138 @@
+[gd_scene load_steps=13 format=3 uid="uid://rbqlc3eiqabr"]
+
+[ext_resource type="Script" path="res://Transition/ForegroundMovement.cs" id="1_0cdbp"]
+[ext_resource type="Texture2D" uid="uid://duoia2nevalpb" path="res://Asset/Background/background.PNG" id="1_x0w7v"]
+[ext_resource type="Texture2D" uid="uid://uwydt1yoabq1" path="res://Asset/Background/tree2.PNG" id="3_3y84n"]
+[ext_resource type="Texture2D" uid="uid://usohip2jjvrc" path="res://Asset/Background/tree1.PNG" id="3_e4txq"]
+[ext_resource type="Texture2D" uid="uid://p2ptaeqxmgtp" path="res://Asset/Background/foreground.png" id="3_kjuse"]
+[ext_resource type="Texture2D" uid="uid://bj4y2q5h01p4b" path="res://Asset/Background/tree3.PNG" id="6_tuhqh"]
+
+[sub_resource type="Shader" id="Shader_2kast"]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise: filter_nearest, repeat_enable;
+const float speedScale = 1.0;
+
+void fragment() {
+	vec2 uv = vec2(UV.x + TIME*speedScale*0.12, UV.y);
+	COLOR.rgba = texture(noise, uv).rgba;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ushmb"]
+resource_local_to_scene = true
+shader = SubResource("Shader_2kast")
+shader_parameter/noise = ExtResource("3_e4txq")
+
+[sub_resource type="Shader" id="Shader_t4c0n"]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise: filter_nearest, repeat_enable;
+const float speedScale = 0.8;
+
+void fragment() {
+	vec2 uv = vec2(UV.x + TIME*speedScale*0.12, UV.y);
+	COLOR.rgba = texture(noise, uv).rgba;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_247bp"]
+resource_local_to_scene = true
+shader = SubResource("Shader_t4c0n")
+shader_parameter/noise = ExtResource("3_3y84n")
+
+[sub_resource type="Shader" id="Shader_y0rqx"]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise: filter_nearest, repeat_enable;
+const float speedScale = 1.2;
+
+void fragment() {
+	vec2 uv = vec2(UV.x + TIME*speedScale*0.12, UV.y);
+	COLOR.rgba = texture(noise, uv).rgba;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ejp78"]
+resource_local_to_scene = true
+shader = SubResource("Shader_y0rqx")
+shader_parameter/noise = ExtResource("6_tuhqh")
+
+[node name="Control" type="Control" node_paths=PackedStringArray("MovingForeground", "FixedForeground")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_0cdbp")
+MovingForeground = NodePath("CanvasLayer2/Control")
+FixedForeground = NodePath("CanvasLayer2/Foreground")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_x0w7v")
+expand_mode = 1
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="Foreground" type="TextureRect" parent="CanvasLayer2"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_kjuse")
+expand_mode = 1
+
+[node name="Control" type="Control" parent="CanvasLayer2"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Tree1" type="TextureRect" parent="CanvasLayer2/Control"]
+material = SubResource("ShaderMaterial_ushmb")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_e4txq")
+expand_mode = 1
+
+[node name="Tree2" type="TextureRect" parent="CanvasLayer2/Control"]
+material = SubResource("ShaderMaterial_247bp")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_3y84n")
+expand_mode = 1
+
+[node name="Tree3" type="TextureRect" parent="CanvasLayer2/Control"]
+material = SubResource("ShaderMaterial_ejp78")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_tuhqh")
+expand_mode = 1

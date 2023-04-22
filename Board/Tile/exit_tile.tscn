@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bi587cyhd3eqv"]
+[gd_scene load_steps=7 format=3 uid="uid://bi587cyhd3eqv"]
 
 [ext_resource type="Texture2D" uid="uid://cbk02hshyy2qn" path="res://Asset/Sprite/Hexagon.png" id="1_riw6x"]
 [ext_resource type="Texture2D" uid="uid://oo1eeuqndhw8" path="res://Asset/Sprite/white_arrow.png" id="2_pxjyf"]
+[ext_resource type="Script" path="res://Board/Tile/ExitTileAnimation.cs" id="3_6phfl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6pbhb"]
 font_size = 120
@@ -35,7 +36,7 @@ z_index = -1
 texture = ExtResource("1_riw6x")
 
 [node name="WhiteArrow" type="Sprite2D" parent="."]
-position = Vector2(-32.1034, 84)
+position = Vector2(-40, 84)
 scale = Vector2(0.327278, 0.249346)
 texture = ExtResource("2_pxjyf")
 
@@ -51,3 +52,4 @@ label_settings = SubResource("LabelSettings_6pbhb")
 libraries = {
 "": SubResource("AnimationLibrary_ldw1v")
 }
+script = ExtResource("3_6phfl")

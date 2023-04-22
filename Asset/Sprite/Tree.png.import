@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dncgbliqdq48w"
-path="res://.godot/imported/Boulder.png-e7556b5ce508c7102280f90b5d11efb9.ctex"
+uid="uid://caofhnsrbexbi"
+path="res://.godot/imported/Tree.png-048187c079dd26eb36ab62c5e6354305.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/Boulder.png"
-dest_files=["res://.godot/imported/Boulder.png-e7556b5ce508c7102280f90b5d11efb9.ctex"]
+source_file="res://Asset/Sprite/Tree.png"
+dest_files=["res://.godot/imported/Tree.png-048187c079dd26eb36ab62c5e6354305.ctex"]
 
 [params]
 

@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cf3kyhf5ume"]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://Board/Pawn/Pawn.cs" id="1_nnj3i"]
 [ext_resource type="PackedScene" uid="uid://dxt5d05bnilph" path="res://Board/Pawn/Component/health.tscn" id="2_ktsk8"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/SkillComponent.cs" id="3_sflou"]
-[ext_resource type="Texture2D" uid="uid://dncgbliqdq48w" path="res://Asset/Boulder.png" id="4_2jc01"]
+[ext_resource type="Texture2D" uid="uid://dncgbliqdq48w" path="res://Asset/Sprite/Boulder.png" id="4_2jc01"]
 
 [node name="Rock" type="Node2D"]
 script = ExtResource("1_nnj3i")

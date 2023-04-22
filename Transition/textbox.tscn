@@ -54,7 +54,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 4
-color = Color(0, 0.454902, 0.454902, 1)
+color = Color(0.145098, 0.12549, 0.207843, 0.545098)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ColorRect"]
 custom_minimum_size = Vector2(0, 64)

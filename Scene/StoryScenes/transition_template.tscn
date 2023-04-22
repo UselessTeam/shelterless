@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://sgc6x7q2her7"]
+[gd_scene load_steps=26 format=3 uid="uid://dhmkp5d2enng5"]
 
 [ext_resource type="PackedScene" uid="uid://baf47ocwgpoo5" path="res://Transition/textbox.tscn" id="1_ntndf"]
 [ext_resource type="PackedScene" uid="uid://hcr70lroaqnq" path="res://Transition/curtain.tscn" id="2_17ba4"]
@@ -7,12 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://c7jl4g6uxuugf" path="res://Board/Tile/poison_tile.tscn" id="4_4ja5r"]
 [ext_resource type="PackedScene" uid="uid://gtlppc1a3fmj" path="res://Board/Tile/fire_tile.tscn" id="5_jqmmi"]
 [ext_resource type="Script" path="res://Transition/TransitionScrolling.cs" id="6_117ul"]
-[ext_resource type="Texture2D" uid="uid://caofhnsrbexbi" path="res://Asset/Tree.png" id="7_1xvdy"]
-[ext_resource type="Texture2D" uid="uid://dncgbliqdq48w" path="res://Asset/Boulder.png" id="8_kqvva"]
+[ext_resource type="Texture2D" uid="uid://caofhnsrbexbi" path="res://Asset/Sprite/Tree.png" id="6_ysotj"]
+[ext_resource type="Texture2D" uid="uid://dncgbliqdq48w" path="res://Asset/Sprite/Boulder.png" id="7_iklh7"]
 [ext_resource type="PackedScene" uid="uid://e33luquuut21" path="res://Board/camera_2d.tscn" id="9_3w7g0"]
 [ext_resource type="PackedScene" uid="uid://3oqeqrqxqpre" path="res://Board/Pawn/player.tscn" id="10_yeygv"]
 [ext_resource type="Script" path="res://Transition/TransitionAnimation.cs" id="11_mgn4x"]
 [ext_resource type="Texture2D" uid="uid://jxuhhlq565hn" path="res://Asset/Sprite/Merchant.png" id="12_73u3j"]
+[ext_resource type="PackedScene" uid="uid://rbqlc3eiqabr" path="res://Scene/background.tscn" id="14_a1g4a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vpoy7"]
 resource_name = "NormalTile"
@@ -216,29 +217,29 @@ scrollingSpeed = 250.0
 [node name="Tree" type="Sprite2D" parent="Road/RoadDecor"]
 z_index = 1
 position = Vector2(5750, 778)
-texture = ExtResource("7_1xvdy")
+texture = ExtResource("6_ysotj")
 
 [node name="Tree2" type="Sprite2D" parent="Road/RoadDecor"]
 position = Vector2(-4628, -359)
-texture = ExtResource("7_1xvdy")
+texture = ExtResource("6_ysotj")
 
 [node name="Tree3" type="Sprite2D" parent="Road/RoadDecor"]
 position = Vector2(16109, -359)
-texture = ExtResource("7_1xvdy")
+texture = ExtResource("6_ysotj")
 
 [node name="Boulder" type="Sprite2D" parent="Road/RoadDecor"]
 position = Vector2(3828, -354)
-texture = ExtResource("8_kqvva")
+texture = ExtResource("7_iklh7")
 
 [node name="Boulder2" type="Sprite2D" parent="Road/RoadDecor"]
 z_index = 1
 position = Vector2(14218, 767)
-texture = ExtResource("8_kqvva")
+texture = ExtResource("7_iklh7")
 
 [node name="Boulder3" type="Sprite2D" parent="Road/RoadDecor"]
 z_index = 1
 position = Vector2(-6519, 767)
-texture = ExtResource("8_kqvva")
+texture = ExtResource("7_iklh7")
 
 [node name="RightLimit" type="Node2D" parent="Road"]
 position = Vector2(14209, 498)
@@ -247,7 +248,7 @@ position = Vector2(14209, 498)
 position = Vector2(-6528, 508)
 
 [node name="Camera" parent="." instance=ExtResource("9_3w7g0")]
-position = Vector2(1782, 480)
+position = Vector2(1782, 350)
 zoom = Vector2(0.34, 0.34)
 script = null
 
@@ -307,6 +308,9 @@ script = ExtResource("11_mgn4x")
 TextList = PackedStringArray("How\'s it going adventurer? Nice to have company on this long travel!")
 
 [node name="Curtain" parent="Textbox" instance=ExtResource("2_17ba4")]
+
+[node name="CanvasLayer" parent="." instance=ExtResource("14_a1g4a")]
+UseMovingForeground = true
 
 [editable path="Player"]
 [editable path="Textbox"]

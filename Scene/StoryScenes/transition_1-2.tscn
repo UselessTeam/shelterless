@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://cmtqhpdmb4lke"]
 
-[ext_resource type="PackedScene" uid="uid://sgc6x7q2her7" path="res://Scene/StoryScenes/transition_template.tscn" id="1_g0go1"]
+[ext_resource type="PackedScene" uid="uid://dhmkp5d2enng5" path="res://Scene/StoryScenes/transition_template.tscn" id="1_g0go1"]
 
 [node name="Transition" instance=ExtResource("1_g0go1")]
 
 [node name="Textbox" parent="." index="4"]
-TextList = PackedStringArray("How\'s it going adventurer? Nice to have company on this long travel!", "You\'re doing the silent bodygard thing, heh? Suit yourself.", "....", "Damn it! A rock is blocking the path.", "I suppose you\'ll manage to break it with that big hammer of yours?")
+TextList = PackedStringArray("That rock didn\'t stand a chance.")
 
 [editable path="Player"]
 [editable path="Textbox"]

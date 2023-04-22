@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3i201gdf08e7"]
+[gd_scene load_steps=7 format=3 uid="uid://b3i201gdf08e7"]
 
 [ext_resource type="PackedScene" uid="uid://ufnqkere3tx1" path="res://Board/board.tscn" id="1_ui17o"]
 [ext_resource type="PackedScene" uid="uid://hcr70lroaqnq" path="res://Transition/curtain.tscn" id="2_eh7cf"]
 [ext_resource type="PackedScene" uid="uid://dfc5tnay8o2xl" path="res://GUI/gui.tscn" id="2_rw7i6"]
 [ext_resource type="PackedScene" uid="uid://3oqeqrqxqpre" path="res://Board/Pawn/player.tscn" id="3_dwcch"]
 [ext_resource type="PackedScene" uid="uid://bmltbsnh1d57f" path="res://Board/Pawn/Monsters/bee.tscn" id="5_84pow"]
+[ext_resource type="PackedScene" uid="uid://rbqlc3eiqabr" path="res://Scene/background.tscn" id="6_lure8"]
 
 [node name="TestGUI" type="Control"]
 layout_mode = 3
@@ -28,3 +29,5 @@ position = Vector2(1571, 696)
 
 [node name="Bee" parent="Board" instance=ExtResource("5_84pow")]
 position = Vector2(3100, 634)
+
+[node name="CanvasLayer" parent="." instance=ExtResource("6_lure8")]
