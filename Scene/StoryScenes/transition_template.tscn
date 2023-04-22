@@ -304,7 +304,7 @@ libraries = {
 script = ExtResource("11_mgn4x")
 
 [node name="Textbox" parent="." instance=ExtResource("1_ntndf")]
-TextList = PackedStringArray("How\'s it going adventurer? Nice to have company on this long travel!", "You\'re doing the silent bodygard thing, heh? Suit yourself.", "....", "Oh crap! A monster over there!", "Time to earn your pay! I\'ll be hiding over here. Nothing you can\'t handle I suppose?")
+TextList = PackedStringArray("How\'s it going adventurer? Nice to have company on this long travel!")
 
 [node name="Curtain" parent="Textbox" instance=ExtResource("2_17ba4")]
 

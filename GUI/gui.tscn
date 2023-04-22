@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfc5tnay8o2xl"]
+[gd_scene load_steps=9 format=3 uid="uid://dfc5tnay8o2xl"]
 
 [ext_resource type="Script" path="res://GUI/GUI.cs" id="1_2mpgr"]
 [ext_resource type="Script" path="res://GUI/SkillTargetingGUI.cs" id="2_77ei4"]
@@ -28,6 +28,14 @@ scale_max = 6.0
 scale_curve = SubResource("CurveTexture_bj7ej")
 color = Color(0.231373, 0.717647, 0.752941, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4gv8q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8qll"]
+
+[sub_resource type="Theme" id="Theme_cl0hd"]
+Button/styles/focus = SubResource("StyleBoxEmpty_4gv8q")
+Button/styles/pressed = SubResource("StyleBoxFlat_p8qll")
+
 [node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("DebugText")]
 script = ExtResource("1_2mpgr")
 AvailableSkills = PackedStringArray("Attack", "Push", "Grenade", "Move")
@@ -48,6 +56,7 @@ anchor_bottom = 1.0
 offset_top = -31.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = SubResource("Theme_cl0hd")
 alignment = 1
 script = ExtResource("2_77ei4")
 

@@ -9,12 +9,16 @@ public partial class GUI : CanvasLayer
 
     [Export]
     Label DebugText;
+
     [Signal]
     public delegate void FinishControlEventHandler();
+
     private Pawn controlledPawn;
     public async Task ControlPawn(Pawn pawn)
     {
         controlledPawn = pawn;
+        if(_prepareSkill!= null)
+            SelectSkill(_prepareSkill);
         Context context = (Context)(await ToSignal(SkillTargeting, SkillTargetingGUI.SignalName.SkillReady))[0];
         if (controlledPawn != context.SourcePawn)
         {
@@ -58,10 +62,14 @@ public partial class GUI : CanvasLayer
         SkillTargeting = GetNode<SkillTargetingGUI>("SkillTargeting");
     }
 
+    string _prepareSkill = null;
+    
     public void SelectSkill(string skillName)
     {
         if (controlledPawn is null)
         {
+            _prepareSkill = skillName;
+            GD.Print("Will prepare");
             return;
         }
         Skill skill = skillName switch

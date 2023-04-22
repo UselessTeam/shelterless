@@ -33,7 +33,7 @@ atlas = ExtResource("3_1v01e")
 region = Rect2(30.179, 129.196, 516.428, 370.018)
 
 [sub_resource type="LabelSettings" id="LabelSettings_mmqi5"]
-font_size = 18
+font_size = 28
 
 [node name="Textbox" type="CanvasLayer" node_paths=PackedStringArray("_textBox")]
 script = ExtResource("1_njkje")
@@ -46,7 +46,7 @@ process_material = SubResource("ParticleProcessMaterial_5y8gw")
 lifetime = 2.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
-custom_minimum_size = Vector2(0, 64)
+custom_minimum_size = Vector2(0, 100)
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -59,14 +59,11 @@ color = Color(0, 0.454902, 0.454902, 1)
 [node name="HBoxContainer" type="HBoxContainer" parent="ColorRect"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -64.0
-offset_right = 183.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="ColorRect/HBoxContainer"]
 layout_mode = 2
@@ -75,12 +72,14 @@ expand_mode = 3
 flip_h = true
 
 [node name="HSplitContainer" type="HSplitContainer" parent="ColorRect/HBoxContainer"]
-custom_minimum_size = Vector2(20, 0)
+custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 
 [node name="Text" type="Label" parent="ColorRect/HBoxContainer"]
-custom_minimum_size = Vector2(0, 64)
+clip_contents = true
+custom_minimum_size = Vector2(950, 90)
 layout_mode = 2
-text = "This is the Text
-"
+size_flags_horizontal = 4
+text = "This is the text - Super LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONG"
 label_settings = SubResource("LabelSettings_mmqi5")
+autowrap_mode = 1
