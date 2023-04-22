@@ -304,13 +304,16 @@ libraries = {
 }
 script = ExtResource("11_mgn4x")
 
+[node name="Background" parent="." instance=ExtResource("14_a1g4a")]
+UseMovingForeground = true
+
 [node name="Textbox" parent="." instance=ExtResource("1_ntndf")]
 TextList = PackedStringArray("How\'s it going adventurer? Nice to have company on this long travel!")
 
-[node name="Curtain" parent="Textbox" instance=ExtResource("2_17ba4")]
+[node name="ColorRect" parent="Textbox" index="1"]
+mouse_filter = 2
 
-[node name="CanvasLayer" parent="." instance=ExtResource("14_a1g4a")]
-UseMovingForeground = true
+[node name="Curtain" parent="Textbox" instance=ExtResource("2_17ba4")]
 
 [editable path="Player"]
 [editable path="Textbox"]

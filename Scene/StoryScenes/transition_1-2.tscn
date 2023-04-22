@@ -4,7 +4,7 @@
 
 [node name="Transition" instance=ExtResource("1_g0go1")]
 
-[node name="Textbox" parent="." index="4"]
+[node name="Textbox" parent="." index="5"]
 TextList = PackedStringArray("That rock didn\'t stand a chance.")
 
 [editable path="Player"]

@@ -61,6 +61,7 @@ alignment = 1
 script = ExtResource("2_77ei4")
 
 [node name="DebugText" type="Label" parent="."]
+visible = false
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 26.0

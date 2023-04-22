@@ -4,7 +4,10 @@
 
 [node name="TransitionTemplate" instance=ExtResource("1_68uyj")]
 
-[node name="Textbox" parent="." index="4"]
+[node name="Background" parent="." index="4"]
+mouse_filter = 2
+
+[node name="Textbox" parent="." index="5"]
 TextList = PackedStringArray("How\'s it going adventurer? Nice to have company on this long travel!", "...", "You\'re doing the silent bodygard thing, heh? Suit yourself.", "....", "Damn it! A rock is blocking the path.", " I suppose you\'ll be able to break it with that big hammer of yours?")
 
 [node name="Curtain" parent="Textbox" index="2"]

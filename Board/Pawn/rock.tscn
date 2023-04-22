@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=5 format=3 uid="uid://1yqx8d11fav0"]
 
 [ext_resource type="Script" path="res://Board/Pawn/Pawn.cs" id="1_nnj3i"]
 [ext_resource type="PackedScene" uid="uid://dxt5d05bnilph" path="res://Board/Pawn/Component/health.tscn" id="2_ktsk8"]
@@ -10,8 +10,8 @@ script = ExtResource("1_nnj3i")
 
 [node name="Health" parent="." instance=ExtResource("2_ktsk8")]
 position = Vector2(12, 51)
-CurrentHealth = 60
-MaxHealth = 60
+CurrentHealth = 45
+MaxHealth = 45
 
 [node name="Skill" type="Node" parent="."]
 script = ExtResource("3_sflou")
@@ -21,6 +21,6 @@ Weight = 1000
 [node name="Sprites" type="Node2D" parent="."]
 position = Vector2(10, -215)
 
-[node name="Boulder" type="Sprite2D" parent="."]
-position = Vector2(0, -253)
+[node name="Boulder" type="Sprite2D" parent="Sprites"]
+position = Vector2(-10, -38)
 texture = ExtResource("4_2jc01")

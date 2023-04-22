@@ -1,12 +1,67 @@
-[gd_scene load_steps=6 format=3 uid="uid://fr8eqp4koohq"]
+[gd_scene load_steps=16 format=3 uid="uid://fr8eqp4koohq"]
 
 [ext_resource type="PackedScene" uid="uid://3oqeqrqxqpre" path="res://Board/Pawn/player.tscn" id="1_frqbn"]
 [ext_resource type="Script" path="res://Scene/MainMenu/CharacterSelection.cs" id="1_rbxbw"]
 [ext_resource type="PackedScene" uid="uid://c60qfbt4et2ir" path="res://Scene/MainMenu/CustomizationSelector.tscn" id="3_gtg3i"]
 [ext_resource type="PackedScene" uid="uid://hcr70lroaqnq" path="res://Transition/curtain.tscn" id="4_uj6yh"]
+[ext_resource type="PackedScene" uid="uid://rbqlc3eiqabr" path="res://Scene/background.tscn" id="5_36ax1"]
+[ext_resource type="Texture2D" uid="uid://usohip2jjvrc" path="res://Asset/Background/tree1.PNG" id="6_2emc8"]
+[ext_resource type="Texture2D" uid="uid://uwydt1yoabq1" path="res://Asset/Background/tree2.PNG" id="7_v0q1e"]
+[ext_resource type="Texture2D" uid="uid://bj4y2q5h01p4b" path="res://Asset/Background/tree3.PNG" id="8_jy8b5"]
 
 [sub_resource type="Theme" id="Theme_t0hgv"]
 default_font_size = 40
+
+[sub_resource type="Shader" id="Shader_2kast"]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise: filter_nearest, repeat_enable;
+const float speedScale = 1.0;
+
+void fragment() {
+	vec2 uv = vec2(UV.x + TIME*speedScale*0.12, UV.y);
+	COLOR.rgba = texture(noise, uv).rgba;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_63tub"]
+resource_local_to_scene = true
+shader = SubResource("Shader_2kast")
+shader_parameter/noise = ExtResource("6_2emc8")
+
+[sub_resource type="Shader" id="Shader_t4c0n"]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise: filter_nearest, repeat_enable;
+const float speedScale = 0.8;
+
+void fragment() {
+	vec2 uv = vec2(UV.x + TIME*speedScale*0.12, UV.y);
+	COLOR.rgba = texture(noise, uv).rgba;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_el2cg"]
+resource_local_to_scene = true
+shader = SubResource("Shader_t4c0n")
+shader_parameter/noise = ExtResource("7_v0q1e")
+
+[sub_resource type="Shader" id="Shader_y0rqx"]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise: filter_nearest, repeat_enable;
+const float speedScale = 1.2;
+
+void fragment() {
+	vec2 uv = vec2(UV.x + TIME*speedScale*0.12, UV.y);
+	COLOR.rgba = texture(noise, uv).rgba;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bm37v"]
+resource_local_to_scene = true
+shader = SubResource("Shader_y0rqx")
+shader_parameter/noise = ExtResource("8_jy8b5")
 
 [node name="CharacterSelection" type="Control" node_paths=PackedStringArray("player")]
 layout_mode = 3
@@ -24,6 +79,9 @@ position = Vector2(592, 367.53)
 
 [node name="Player" parent="Camera2D" instance=ExtResource("1_frqbn")]
 position = Vector2(-30.9999, 376.47)
+
+[node name="Health" parent="Camera2D/Player" index="1"]
+visible = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -79,4 +137,22 @@ grow_vertical = 0
 theme = SubResource("Theme_t0hgv")
 text = " Start => "
 
+[node name="Control" parent="." instance=ExtResource("5_36ax1")]
+offset_left = 3844.78
+offset_top = 615.603
+offset_right = 3884.78
+offset_bottom = 655.603
+
+[node name="Tree1" parent="Control/CanvasLayer2/Control" index="0"]
+material = SubResource("ShaderMaterial_63tub")
+
+[node name="Tree2" parent="Control/CanvasLayer2/Control" index="1"]
+material = SubResource("ShaderMaterial_el2cg")
+
+[node name="Tree3" parent="Control/CanvasLayer2/Control" index="2"]
+material = SubResource("ShaderMaterial_bm37v")
+
 [connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Curtain" method="CloseCurtainAndChangeScene"]
+
+[editable path="Camera2D/Player"]
+[editable path="Control"]

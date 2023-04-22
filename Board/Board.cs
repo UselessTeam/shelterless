@@ -95,9 +95,13 @@ public partial class Board : TileMap
                 GD.Print("Changing scene...");
                 break;
             }
-            if (tileType == TileType.Poisoned || tileType == TileType.Burning)
+            if (tileType == TileType.Poisoned)
             {
                 await Effects.TakeDamage.ExecuteAsync(new Effects.TakeDamageContext(pawn, 5));
+            }
+            if (tileType == TileType.Burning)
+            {
+                await Effects.TakeDamage.ExecuteAsync(new Effects.TakeDamageContext(pawn, 10));
             }
         }
     }
@@ -118,7 +122,7 @@ public partial class Board : TileMap
             TileType tileType = pawn.Board.GetTileType(pawn.Coords);
             if (tileType == TileType.Burning)
             {
-                await Effects.TakeDamage.ExecuteAsync(new Effects.TakeDamageContext(pawn, 5));
+                await Effects.TakeDamage.ExecuteAsync(new Effects.TakeDamageContext(pawn, 25));
             }
         }
     }

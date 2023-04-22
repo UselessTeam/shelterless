@@ -329,6 +329,8 @@ script = ExtResource("8_4erq0")
 
 [node name="Skill" type="Node" parent="."]
 script = ExtResource("9_fvil6")
+Damage = 15
+PushStrength = 4
 
 [node name="Locomotion" type="Node" parent="."]
 script = ExtResource("6_kmute")
