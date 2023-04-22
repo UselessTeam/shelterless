@@ -4,3 +4,5 @@
 .vscode/
 # Backups
 *~
+# Builds
+[Bb]uild/
