@@ -1,33 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://blyl635dpo0bg"]
+[gd_scene load_steps=4 format=3 uid="uid://blyl635dpo0bg"]
 
-[ext_resource type="PackedScene" uid="uid://dfc5tnay8o2xl" path="res://GUI/gui.tscn" id="1_2nj0o"]
-[ext_resource type="PackedScene" uid="uid://hcr70lroaqnq" path="res://Transition/curtain.tscn" id="2_5csgk"]
-[ext_resource type="PackedScene" uid="uid://ufnqkere3tx1" path="res://Board/board.tscn" id="4_hwt4y"]
-[ext_resource type="PackedScene" uid="uid://3oqeqrqxqpre" path="res://Board/Pawn/player.tscn" id="5_ihoyl"]
+[ext_resource type="PackedScene" uid="uid://dgtcc7qccwkn6" path="res://Scene/Levels/level_template.tscn" id="1_txh67"]
+[ext_resource type="PackedScene" uid="uid://bumeppjfjbouo" path="res://Board/Pawn/tree.tscn" id="3_d1djr"]
 [ext_resource type="PackedScene" uid="uid://1yqx8d11fav0" path="res://Board/Pawn/rock.tscn" id="6_ne7m4"]
-[ext_resource type="PackedScene" uid="uid://rbqlc3eiqabr" path="res://Scene/background.tscn" id="6_nkcnx"]
 
-[node name="Level1" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-mouse_filter = 2
+[node name="Level1" instance=ExtResource("1_txh67")]
 
-[node name="GUI" parent="." instance=ExtResource("1_2nj0o")]
-AvailableSkills = PackedStringArray("Move", "Attack")
+[node name="Board" parent="." index="1"]
+layer_0/tile_data = PackedInt32Array(65537, 0, 0, 196607, 3, 65536, 65536, 0, 0, 131072, 0, 0, 65538, 2, 65536, 4, 4, 65536, 2, 0, 0, 3, 0, 0, 131071, 0, 0, 0, 0, 0)
 
-[node name="Curtain" parent="GUI" instance=ExtResource("2_5csgk")]
-NextScene = "res://Scene/StoryScenes/transition_1-2.tscn"
+[node name="Player" parent="Board" index="3"]
+position = Vector2(742, 649)
 
-[node name="Board" parent="." instance=ExtResource("4_hwt4y")]
-y_sort_enabled = true
-layer_0/z_index = -100
-layer_0/tile_data = PackedInt32Array(65537, 0, 0, 196607, 3, 65536, 65536, 0, 0, 131072, 0, 0, 2, 0, 0, 3, 0, 0, 65538, 2, 65536, 0, 0, 0, 131071, 0, 0, 4, 4, 65536)
-layer_1/z_index = -100
+[node name="Rock" parent="Board" index="4" instance=ExtResource("6_ne7m4")]
+position = Vector2(2676, 271)
 
-[node name="Player" parent="Board" instance=ExtResource("5_ihoyl")]
-position = Vector2(732, 624)
-
-[node name="Rock" parent="Board" instance=ExtResource("6_ne7m4")]
-position = Vector2(2690, 281)
-
-[node name="CanvasLayer" parent="." instance=ExtResource("6_nkcnx")]
+[node name="Tree" parent="Board" index="5" instance=ExtResource("3_d1djr")]
+position = Vector2(358, 265)

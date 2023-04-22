@@ -37,3 +37,4 @@ position = Vector2(1163, 302)
 position = Vector2(1534, 632)
 
 [node name="CanvasLayer" parent="." instance=ExtResource("6_78m33")]
+layout_mode = 1

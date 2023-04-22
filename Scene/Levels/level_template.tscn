@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgtcc7qccwkn6"]
+
+[ext_resource type="PackedScene" uid="uid://dfc5tnay8o2xl" path="res://GUI/gui.tscn" id="1_ijpmr"]
+[ext_resource type="PackedScene" uid="uid://hcr70lroaqnq" path="res://Transition/curtain.tscn" id="2_qwlyc"]
+[ext_resource type="PackedScene" uid="uid://ufnqkere3tx1" path="res://Board/board.tscn" id="3_l5t7s"]
+[ext_resource type="PackedScene" uid="uid://3oqeqrqxqpre" path="res://Board/Pawn/player.tscn" id="4_kgtvt"]
+[ext_resource type="PackedScene" uid="uid://rbqlc3eiqabr" path="res://Scene/background.tscn" id="6_mo2gv"]
+
+[node name="Level?" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="GUI" parent="." instance=ExtResource("1_ijpmr")]
+AvailableSkills = PackedStringArray("Move", "Attack")
+
+[node name="Curtain" parent="GUI" instance=ExtResource("2_qwlyc")]
+NextScene = "res://Scene/StoryScenes/transition_1-2.tscn"
+
+[node name="Board" parent="." instance=ExtResource("3_l5t7s")]
+y_sort_enabled = true
+layer_0/z_index = -100
+layer_0/tile_data = PackedInt32Array(65537, 0, 0, 196607, 3, 65536, 65536, 0, 0, 131072, 0, 0, 65538, 2, 65536, 196609, 4, 65536, 262143, 1, 0, 196608, 0, 0, 131073, 0, 0, 131074, 0, 0)
+layer_1/z_index = -100
+
+[node name="Player" parent="Board" instance=ExtResource("4_kgtvt")]
+position = Vector2(1125, 1007)
+
+[node name="CanvasLayer" parent="." instance=ExtResource("6_mo2gv")]
+layout_mode = 1
