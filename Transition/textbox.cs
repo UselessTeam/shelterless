@@ -7,8 +7,6 @@ public partial class textbox : CanvasLayer
 
     [Export(PropertyHint.MultilineText)] string[] TextList = new[] { "" };
 
-	[Export] PackedScene nextScene; 
-
     int currentTextIndex = 0;
 
     // Called when the node enters the scene tree for the first time.
@@ -27,10 +25,7 @@ public partial class textbox : CanvasLayer
 				_textBox.Text = TextList[currentTextIndex];
 				currentTextIndex++;
 			} else {
-				var curtainAnimation = GetNode<AnimationPlayer>("Curtain/AnimationPlayer");
-				curtainAnimation.Play("close");
-				curtainAnimation.AnimationFinished += _ =>
-						GetTree().ChangeSceneToPacked(nextScene);
+				GetNode<Curtain>("Curtain").CloseCurtainAndChangeScene();
 			}
         }
     }

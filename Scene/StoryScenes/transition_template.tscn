@@ -1,35 +1,36 @@
-[gd_scene load_steps=25 format=3 uid="uid://cc270bf7s7ocy"]
+[gd_scene load_steps=26 format=3 uid="uid://sgc6x7q2her7"]
 
-[ext_resource type="PackedScene" uid="uid://c2cpmmiwrryha" path="res://Scene/Transition/textbox.tscn" id="1_321ia"]
-[ext_resource type="Texture2D" uid="uid://cbk02hshyy2qn" path="res://Asset/Sprite/Hexagon.png" id="1_ubpv3"]
-[ext_resource type="Texture2D" uid="uid://dncgbliqdq48w" path="res://Asset/Boulder.png" id="2_4yyqq"]
-[ext_resource type="PackedScene" uid="uid://3oqeqrqxqpre" path="res://Board/Pawn/player.tscn" id="2_dasyi"]
-[ext_resource type="Script" path="res://Scene/Transition/TransitionScrolling.cs" id="2_e3umk"]
-[ext_resource type="Texture2D" uid="uid://cw0fuueqmt2c7" path="res://Asset/Sprite/TileHole.png" id="2_krlrn"]
-[ext_resource type="PackedScene" uid="uid://b3i201gdf08e7" path="res://Scene/Debug/test_gui.tscn" id="2_r0p1h"]
-[ext_resource type="PackedScene" uid="uid://c7jl4g6uxuugf" path="res://Board/Tile/poison_tile.tscn" id="3_0gq3n"]
-[ext_resource type="Texture2D" uid="uid://jxuhhlq565hn" path="res://Asset/Sprite/Merchant.png" id="3_0h14x"]
-[ext_resource type="PackedScene" uid="uid://gtlppc1a3fmj" path="res://Board/Tile/fire_tile.tscn" id="4_5g5as"]
-[ext_resource type="Script" path="res://Scene/Transition/TransitionAnimation.cs" id="4_nf6bh"]
-[ext_resource type="Texture2D" uid="uid://caofhnsrbexbi" path="res://Asset/Tree.png" id="5_6qeei"]
-[ext_resource type="PackedScene" uid="uid://e33luquuut21" path="res://Board/camera_2d.tscn" id="8_h4mro"]
+[ext_resource type="PackedScene" uid="uid://baf47ocwgpoo5" path="res://Transition/textbox.tscn" id="1_ntndf"]
+[ext_resource type="PackedScene" uid="uid://hcr70lroaqnq" path="res://Transition/curtain.tscn" id="2_17ba4"]
+[ext_resource type="Texture2D" uid="uid://cbk02hshyy2qn" path="res://Asset/Sprite/Hexagon.png" id="2_aoylx"]
+[ext_resource type="Texture2D" uid="uid://cw0fuueqmt2c7" path="res://Asset/Sprite/TileHole.png" id="3_0g2qc"]
+[ext_resource type="PackedScene" uid="uid://c7jl4g6uxuugf" path="res://Board/Tile/poison_tile.tscn" id="4_4ja5r"]
+[ext_resource type="PackedScene" uid="uid://gtlppc1a3fmj" path="res://Board/Tile/fire_tile.tscn" id="5_jqmmi"]
+[ext_resource type="Script" path="res://Transition/TransitionScrolling.cs" id="6_117ul"]
+[ext_resource type="Texture2D" uid="uid://caofhnsrbexbi" path="res://Asset/Tree.png" id="7_1xvdy"]
+[ext_resource type="Texture2D" uid="uid://dncgbliqdq48w" path="res://Asset/Boulder.png" id="8_kqvva"]
+[ext_resource type="PackedScene" uid="uid://e33luquuut21" path="res://Board/camera_2d.tscn" id="9_3w7g0"]
+[ext_resource type="PackedScene" uid="uid://3oqeqrqxqpre" path="res://Board/Pawn/player.tscn" id="10_yeygv"]
+[ext_resource type="Script" path="res://Transition/TransitionAnimation.cs" id="11_mgn4x"]
+[ext_resource type="Texture2D" uid="uid://jxuhhlq565hn" path="res://Asset/Sprite/Merchant.png" id="12_73u3j"]
+[ext_resource type="PackedScene" uid="uid://b3i201gdf08e7" path="res://Scene/Debug/test_gui.tscn" id="14_4u4g3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vpoy7"]
 resource_name = "NormalTile"
-texture = ExtResource("1_ubpv3")
+texture = ExtResource("2_aoylx")
 texture_region_size = Vector2i(768, 512)
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_31ph5"]
-texture = ExtResource("2_krlrn")
+texture = ExtResource("3_0g2qc")
 texture_region_size = Vector2i(768, 504)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i4q7o"]
 resource_name = "GUITile"
-texture = ExtResource("1_ubpv3")
+texture = ExtResource("2_aoylx")
 texture_region_size = Vector2i(768, 504)
 0:0/next_alternative_id = 3
 0:0/0 = 0
@@ -41,11 +42,11 @@ texture_region_size = Vector2i(768, 504)
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_p75ja"]
 resource_name = "PoisonTile"
-scenes/1/scene = ExtResource("3_0gq3n")
+scenes/1/scene = ExtResource("4_4ja5r")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_muuwf"]
 resource_name = "FireTile"
-scenes/1/scene = ExtResource("4_5g5as")
+scenes/1/scene = ExtResource("5_jqmmi")
 
 [sub_resource type="TileSet" id="TileSet_4eoap"]
 tile_shape = 3
@@ -195,10 +196,6 @@ _data = {
 
 [node name="TransitionTemplate" type="Node2D"]
 
-[node name="Textbox" parent="." instance=ExtResource("1_321ia")]
-TextList = PackedStringArray("How\'s it going adventurer? Nice to have company on this long travel!", "You\'re doing the silent bodygard thing, heh? Suit yourself.", "....", "Oh crap! A monster over there!", "Time to earn your pay! I\'ll be hiding over here. Nothing you can\'t handle I suppose?")
-nextScene = ExtResource("2_r0p1h")
-
 [node name="Road" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_4eoap")
 format = 2
@@ -212,37 +209,37 @@ layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array()
-script = ExtResource("2_e3umk")
-scrollingSpeed = 1000.0
+script = ExtResource("6_117ul")
+scrollingSpeed = 250.0
 
 [node name="RoadDecor" type="Node2D" parent="Road"]
 
 [node name="Tree" type="Sprite2D" parent="Road/RoadDecor"]
 z_index = 1
 position = Vector2(5750, 778)
-texture = ExtResource("5_6qeei")
+texture = ExtResource("7_1xvdy")
 
 [node name="Tree2" type="Sprite2D" parent="Road/RoadDecor"]
 position = Vector2(-4628, -359)
-texture = ExtResource("5_6qeei")
+texture = ExtResource("7_1xvdy")
 
 [node name="Tree3" type="Sprite2D" parent="Road/RoadDecor"]
 position = Vector2(16109, -359)
-texture = ExtResource("5_6qeei")
+texture = ExtResource("7_1xvdy")
 
 [node name="Boulder" type="Sprite2D" parent="Road/RoadDecor"]
 position = Vector2(3828, -354)
-texture = ExtResource("2_4yyqq")
+texture = ExtResource("8_kqvva")
 
 [node name="Boulder2" type="Sprite2D" parent="Road/RoadDecor"]
 z_index = 1
 position = Vector2(14218, 767)
-texture = ExtResource("2_4yyqq")
+texture = ExtResource("8_kqvva")
 
 [node name="Boulder3" type="Sprite2D" parent="Road/RoadDecor"]
 z_index = 1
 position = Vector2(-6519, 767)
-texture = ExtResource("2_4yyqq")
+texture = ExtResource("8_kqvva")
 
 [node name="RightLimit" type="Node2D" parent="Road"]
 position = Vector2(14209, 498)
@@ -250,12 +247,12 @@ position = Vector2(14209, 498)
 [node name="LeftLimit" type="Node2D" parent="Road"]
 position = Vector2(-6528, 508)
 
-[node name="Camera" parent="." instance=ExtResource("8_h4mro")]
+[node name="Camera" parent="." instance=ExtResource("9_3w7g0")]
 position = Vector2(1782, 480)
 zoom = Vector2(0.34, 0.34)
 script = null
 
-[node name="Player" parent="." instance=ExtResource("2_dasyi")]
+[node name="Player" parent="." instance=ExtResource("10_yeygv")]
 position = Vector2(1866, 257)
 script = null
 
@@ -295,7 +292,7 @@ rotation = 0.279568
 libraries = {
 "": SubResource("AnimationLibrary_ddsg7")
 }
-script = ExtResource("4_nf6bh")
+script = ExtResource("11_mgn4x")
 
 [node name="Merchant" type="Node2D" parent="."]
 position = Vector2(-9, 217)
@@ -304,13 +301,20 @@ position = Vector2(-9, 217)
 position = Vector2(1517, 398)
 scale = Vector2(-1.1, 1.1)
 skew = 0.0649861
-texture = ExtResource("3_0h14x")
+texture = ExtResource("12_73u3j")
 offset = Vector2(0, -250)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Merchant"]
 libraries = {
 "": SubResource("AnimationLibrary_uas2t")
 }
-script = ExtResource("4_nf6bh")
+script = ExtResource("11_mgn4x")
+
+[node name="Textbox" parent="." instance=ExtResource("1_ntndf")]
+TextList = PackedStringArray("How\'s it going adventurer? Nice to have company on this long travel!", "You\'re doing the silent bodygard thing, heh? Suit yourself.", "....", "Oh crap! A monster over there!", "Time to earn your pay! I\'ll be hiding over here. Nothing you can\'t handle I suppose?")
+
+[node name="Curtain" parent="Textbox" instance=ExtResource("2_17ba4")]
+NextScene = ExtResource("14_4u4g3")
 
 [editable path="Player"]
+[editable path="Textbox"]
