@@ -1,7 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://bmltbsnh1d57f"]
 
 [ext_resource type="Script" path="res://Board/Pawn/Pawn.cs" id="1_7earx"]
-[ext_resource type="Script" path="res://Board/Pawn/Component/HealthComponent.cs" id="2_65uff"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/LocomotionComponent.cs" id="3_5f7hk"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/AnimationComponent.cs" id="4_ra3og"]
 [ext_resource type="Texture2D" uid="uid://crw0wauifqgb0" path="res://Asset/Sprite/BeeMonster/BeeBody.png" id="5_ot7sq"]
@@ -13,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dfl4wwfnui6w2" path="res://Asset/Sprite/BeeMonster/BeeRightWing.png" id="11_3kidm"]
 [ext_resource type="Texture2D" uid="uid://b1233luib67rv" path="res://Asset/Sprite/BeeMonster/BeeLeftWing.png" id="11_p80hb"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/MonsterAIComponent.cs" id="13_a4300"]
+[ext_resource type="PackedScene" uid="uid://dxt5d05bnilph" path="res://Board/Pawn/Component/health.tscn" id="14_1naed"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/SkillComponent.cs" id="14_4syjq"]
 
 [sub_resource type="Animation" id="Animation_uuy1l"]
@@ -350,15 +350,15 @@ _data = {
 [node name="Bee" type="Node2D"]
 script = ExtResource("1_7earx")
 
-[node name="Health" type="Node" parent="."]
-script = ExtResource("2_65uff")
-CurrentHealth = 30
-MaxHealth = 30
-
 [node name="Skill" type="Node" parent="."]
 script = ExtResource("14_4syjq")
 Damage = 15
 DoubleAttack = true
+
+[node name="Health" parent="." instance=ExtResource("14_1naed")]
+position = Vector2(-27, -66)
+CurrentHealth = 30
+MaxHealth = 30
 
 [node name="Locomotion" type="Node" parent="."]
 script = ExtResource("3_5f7hk")

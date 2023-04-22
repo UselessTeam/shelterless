@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://c00j0wfrycny8"]
 
 [ext_resource type="Script" path="res://Board/Pawn/Pawn.cs" id="1_ah1ak"]
-[ext_resource type="Script" path="res://Board/Pawn/Component/HealthComponent.cs" id="2_jcylr"]
+[ext_resource type="PackedScene" uid="uid://dxt5d05bnilph" path="res://Board/Pawn/Component/health.tscn" id="2_ron3x"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/LocomotionComponent.cs" id="3_yb6px"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/AnimationComponent.cs" id="4_gt67d"]
 [ext_resource type="Texture2D" uid="uid://dmxp8bj6dfn58" path="res://Asset/Sprite/BlobMonster/BlobShadow.png" id="5_qydqa"]
@@ -197,8 +197,10 @@ _data = {
 [node name="Blob" type="Node2D"]
 script = ExtResource("1_ah1ak")
 
-[node name="Health" type="Node" parent="."]
-script = ExtResource("2_jcylr")
+[node name="Health" parent="." instance=ExtResource("2_ron3x")]
+position = Vector2(26, 40)
+CurrentHealth = 80
+MaxHealth = 80
 
 [node name="Skill" type="Node" parent="."]
 script = ExtResource("10_ln4mn")

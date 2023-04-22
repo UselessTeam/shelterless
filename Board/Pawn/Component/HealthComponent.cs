@@ -15,6 +15,17 @@ public partial class HealthComponent : Component
     [Signal]
     public delegate void DeathEventHandler();
 
+
+    ProgressBar _healthBar;
+
+    public override void _Ready()
+    {
+        base._Ready();
+        _healthBar = GetNode<ProgressBar>("ProgressBar");
+        _healthBar.MaxValue = MaxHealth;
+        _healthBar.Value = CurrentHealth;
+    }
+
     public void ChangeHealth(int value)
     {
         SetHealth(CurrentHealth + value);
@@ -35,6 +46,7 @@ public partial class HealthComponent : Component
             EmitSignal(SignalName.HealthChanged, CurrentHealth, value);
             CurrentHealth = value;
         }
+        _healthBar.Value = CurrentHealth;
     }
 
     public void Die()

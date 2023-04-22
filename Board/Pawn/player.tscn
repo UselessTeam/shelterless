@@ -1,7 +1,7 @@
 [gd_scene load_steps=33 format=3 uid="uid://3oqeqrqxqpre"]
 
 [ext_resource type="Script" path="res://Board/Pawn/Pawn.cs" id="1_13sq6"]
-[ext_resource type="Script" path="res://Board/Pawn/Component/HealthComponent.cs" id="2_11mjc"]
+[ext_resource type="PackedScene" uid="uid://dxt5d05bnilph" path="res://Board/Pawn/Component/health.tscn" id="3_k5eed"]
 [ext_resource type="Texture2D" uid="uid://brtsqyg45ixjv" path="res://Asset/Sprite/Player/PlayerShadow.png" id="6_fdiax"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/LocomotionComponent.cs" id="6_kmute"]
 [ext_resource type="Script" path="res://Board/Pawn/Component/AnimationComponent.cs" id="7_8bl04"]
@@ -325,10 +325,7 @@ script = ExtResource("1_13sq6")
 [node name="Player" type="Node" parent="."]
 script = ExtResource("8_4erq0")
 
-[node name="Health" type="Node" parent="."]
-script = ExtResource("2_11mjc")
-CurrentHealth = 200
-MaxHealth = 200
+[node name="Health" parent="." instance=ExtResource("3_k5eed")]
 
 [node name="Skill" type="Node" parent="."]
 script = ExtResource("9_fvil6")

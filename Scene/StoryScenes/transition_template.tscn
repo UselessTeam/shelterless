@@ -260,6 +260,7 @@ script = null
 script = null
 
 [node name="Health" parent="Player" index="1"]
+visible = false
 script = null
 
 [node name="Skill" parent="Player" index="2"]
@@ -268,10 +269,10 @@ script = null
 [node name="Locomotion" parent="Player" index="3"]
 script = null
 
-[node name="Animation" parent="Player" index="5"]
+[node name="Animation" parent="Player" index="4"]
 script = null
 
-[node name="Sprites" parent="Player" index="6"]
+[node name="Sprites" parent="Player" index="5"]
 scale = Vector2(-1, 1)
 
 [node name="LeftLeg" parent="Player/Sprites/Legs" index="0"]
