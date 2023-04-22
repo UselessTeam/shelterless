@@ -26,11 +26,14 @@ public class AnimationEffectRule<TContext> : MultiEffectRule<TContext>
     public override async Task ExecuteAsync(TContext context)
     {
         AnimationContext animationContext = Selection(context);
-        await animationContext.Component.Play(
-            animationContext.Name,
-            animationContext.Side,
-            TaskSequence.Create(context, SubEffects)
-        );
+        if (animationContext.Component is not null)
+        {
+            await animationContext.Component.Play(
+                animationContext.Name,
+                animationContext.Side,
+                TaskSequence.Create(context, SubEffects)
+            );
+        }
     }
 
     public override AnimationEffectRule<TContext> Copy()

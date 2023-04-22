@@ -91,10 +91,19 @@ public partial class SkillTargetingGUI : Control
         }
         if (context.SourceSkill.Target == Skill.TargetType.ENTITY)
         {
-            if (context.SourcePawn.Board.GetFirstPawnAt(coords) is null)
+            return context.SourcePawn.Board.GetFirstPawnAt(coords) is not null;
+        }
+        if (context.SourceSkill.Target == Skill.TargetType.TILE)
+        {
+            if (!context.SourcePawn.Board.Exists(coords))
             {
                 return false;
             }
+            if (context.SourceSkill.MustBeEmpty)
+            {
+                return context.SourcePawn.Board.GetFirstPawnAt(coords) is null;
+            }
+            return true;
         }
         return true;
     }

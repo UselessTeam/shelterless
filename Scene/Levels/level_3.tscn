@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://hcr70lroaqnq" path="res://Transition/curtain.tscn" id="2_ldjap"]
 [ext_resource type="PackedScene" uid="uid://ufnqkere3tx1" path="res://Board/board.tscn" id="3_gexkm"]
 [ext_resource type="PackedScene" uid="uid://3oqeqrqxqpre" path="res://Board/Pawn/player.tscn" id="4_bjr4v"]
-[ext_resource type="PackedScene" path="res://Board/Pawn/rock.tscn" id="5_0n8s0"]
+[ext_resource type="PackedScene" uid="uid://1yqx8d11fav0" path="res://Board/Pawn/rock.tscn" id="5_0n8s0"]
 [ext_resource type="PackedScene" uid="uid://rbqlc3eiqabr" path="res://Scene/background.tscn" id="6_78m33"]
 [ext_resource type="PackedScene" uid="uid://d21df0d4cqnbv" path="res://Board/Pawn/Monsters/blue.tscn" id="6_d7udj"]
 

@@ -12,6 +12,7 @@ public static class SkillList
         Target = Skill.TargetType.TILE,
         MinTargetRange = 1,
         MaxTargetRange = 1,
+        MustBeEmpty = true,
         Effect = Effects.Move.WithSelect(
             (Context context) => new Effects.MoveContext(context.SourcePawn, context.CoordsTarget)
         ),

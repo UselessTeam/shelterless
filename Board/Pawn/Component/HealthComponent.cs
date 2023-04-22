@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class HealthComponent : Component
 {
@@ -49,9 +50,10 @@ public partial class HealthComponent : Component
         _healthBar.Value = CurrentHealth;
     }
 
-    public void Die()
+    public async Task Die()
     {
         EmitSignal(SignalName.Death);
+        await ToSignal(GetTree().CreateTimer(0.3), "timeout");
         Pawn.QueueFree();
     }
 }

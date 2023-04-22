@@ -72,6 +72,12 @@ public class MultiEffectRule<TContext> : EffectRule<TContext>
         return this;
     }
 
+    public MultiEffectRule<TContext> ThenIf(Func<TContext, bool> condition, Func<TContext, Task> subEffect)
+    {
+        SubEffects.Add(new ConditionalEffectRule<TContext>(condition, new AsyncFunctionEffectRule<TContext>(subEffect)));
+        return this;
+    }
+
     public MultiEffectRule<TContext> Repeat(int repeat)
     {
         for (int i = 1; i < repeat; i++)

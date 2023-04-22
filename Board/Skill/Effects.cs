@@ -31,7 +31,7 @@ public static partial class Effects
         (TakeDamageContext context) => context.Pawn.Get<HealthComponent>()?.ChangeHealth(-context.Damage)
     ).ThenIf(
         (TakeDamageContext context) => context.Pawn.Get<HealthComponent>()?.CurrentHealth <= 0,
-        (TakeDamageContext context) => context.Pawn.Get<HealthComponent>().Die()
+        async (TakeDamageContext context) => await context.Pawn.Get<HealthComponent>().Die()
     );
 
     public record AttackContext(Pawn Attacker, Pawn Receiver, int Damage);
@@ -75,7 +75,7 @@ public static partial class Effects
             }
         ).ThenIf(
             (PushAugmentedContext context) => context.Burns > 0,
-            TakeDamage.WithSelect((PushAugmentedContext context) => new TakeDamageContext(context.Pawn, 5 * context.Burns))
+            TakeDamage.WithSelect((PushAugmentedContext context) => new TakeDamageContext(context.Pawn, 25 * context.Burns))
         )
     ).WithSelect((PushContext context) =>
         {

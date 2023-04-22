@@ -97,11 +97,11 @@ public partial class Board : TileMap
             }
             if (tileType == TileType.Poisoned)
             {
-                await Effects.TakeDamage.ExecuteAsync(new Effects.TakeDamageContext(pawn, 5));
+                await Effects.TakeDamage.ExecuteAsync(new Effects.TakeDamageContext(pawn, 15));
             }
             if (tileType == TileType.Burning)
             {
-                await Effects.TakeDamage.ExecuteAsync(new Effects.TakeDamageContext(pawn, 10));
+                await Effects.TakeDamage.ExecuteAsync(new Effects.TakeDamageContext(pawn, 25));
             }
         }
     }
@@ -111,6 +111,10 @@ public partial class Board : TileMap
         Busy = true;
         foreach (Pawn pawn in GetPawnsWith<MonsterAIComponent>())
         {
+            if (pawn.IsQueuedForDeletion())
+            {
+                continue;
+            }
             await pawn.Get<MonsterAIComponent>().RunTurn();
         }
         Busy = false;
@@ -119,6 +123,10 @@ public partial class Board : TileMap
     {
         foreach (Pawn pawn in GetPawnsWith<MonsterAIComponent>())
         {
+            if (pawn.IsQueuedForDeletion())
+            {
+                continue;
+            }
             TileType tileType = pawn.Board.GetTileType(pawn.Coords);
             if (tileType == TileType.Burning)
             {
