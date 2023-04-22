@@ -65,7 +65,8 @@ public static class SkillList
         ).Then(
             new ForEachEffectRule<Context, Effects.PushContext>(
                 PushAround,
-                Effects.Push
+                Effects.Push,
+                parallel: true
             )
         )
     };
