@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 
 public static partial class Effects
@@ -107,4 +108,43 @@ public static partial class Effects
         (PushAttackContext context) => (context.Receiver is not null),
         Push.WithSelect((PushAttackContext context) => new PushContext(context.Receiver, context.Direction, context.Strength))
     );
+
+    public record ThrowProjectileContext(Pawn Attacker, Vector2I Receiver);
+    public static readonly EffectRule<ThrowProjectileContext> ThrowProjectile = new AnimationEffectRule<ThrowProjectileContext>(
+        (ThrowProjectileContext context) => new AnimationContext
+        {
+            Component = context.Attacker.Get<AnimationComponent>(),
+            Name = "throw",
+            Side = context.Attacker.Coords.SideTowards(context.Receiver),
+        }
+    ).Skip(
+    ).Then(
+        new MultiEffectRule<ThrowProjectileContext>().Then(
+            (ThrowProjectileContext context) =>
+            {
+                Vector2 origin = context.Attacker.Board.MapToLocal(context.Attacker.Coords) + 20f * Vector2.Up;
+                Vector2 destination = context.Attacker.Board.MapToLocal(context.Receiver);
+                return ProjectileAnimation.CreateAndWait(
+                        context.Attacker.GetNode<Node2D>("ProjectileHolder"), destination);
+            }
+        ).Then(
+            new ForEachEffectRule<ThrowProjectileContext, Effects.PushContext>(
+                PushAround,
+                Effects.Push,
+                parallel: true
+            )
+        )
+    );
+
+    private static IEnumerable<PushContext> PushAround(ThrowProjectileContext context)
+    {
+        foreach (VectorUtils.Direction direction in VectorUtils.Directions)
+        {
+            Pawn pawn = context.Attacker.Board.GetFirstPawnAt(context.Receiver + direction.ToVector2I());
+            if (pawn is not null)
+            {
+                yield return new Effects.PushContext(pawn, direction, 1);
+            }
+        }
+    }
 }

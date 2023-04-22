@@ -13,9 +13,9 @@ public partial class ProjectileAnimation : Node2D
         return obj;
     }
 
-    public static async Task CreateAndWait(Node parent, Vector2 start, Vector2 end)
+    public static async Task CreateAndWait(Node2D parent, Vector2 end)
     {
-        ProjectileAnimation obj = Create(start, end);
+        ProjectileAnimation obj = Create(parent.GlobalPosition, end);
         parent.AddChild(obj);
         await parent.ToSignal(obj, SignalName.Done);
     }

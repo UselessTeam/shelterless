@@ -268,10 +268,10 @@ script = null
 [node name="Locomotion" parent="Player" index="3"]
 script = null
 
-[node name="Animation" parent="Player" index="4"]
+[node name="Animation" parent="Player" index="5"]
 script = null
 
-[node name="Sprites" parent="Player" index="5"]
+[node name="Sprites" parent="Player" index="6"]
 scale = Vector2(-1, 1)
 
 [node name="LeftLeg" parent="Player/Sprites/Legs" index="0"]

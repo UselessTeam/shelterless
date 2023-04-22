@@ -38,35 +38,17 @@ public static class SkillList
         ),
     };
 
-    private static IEnumerable<Effects.PushContext> PushAround(Context context)
-    {
-        foreach (VectorUtils.Direction direction in VectorUtils.Directions)
-        {
-            Pawn pawn = context.SourcePawn.Board.GetFirstPawnAt(context.CoordsTarget + direction.ToVector2I());
-            if (pawn is not null)
-            {
-                yield return new Effects.PushContext(pawn, direction, 1);
-            }
-        }
-    }
+
     public static Skill WindGrenade = new Skill
     {
         Name = "WindGrenade",
         Target = Skill.TargetType.TILE,
         MinTargetRange = 2,
         MaxTargetRange = 4,
-        Effect = new MultiEffectRule<Context>().Then(
-            (Context context) =>
-            {
-                Vector2 origin = context.SourcePawn.Board.MapToLocal(context.SourcePawn.Coords) + 20f * Vector2.Up;
-                Vector2 destination = context.SourcePawn.Board.MapToLocal(context.CoordsTarget);
-                return ProjectileAnimation.CreateAndWait(context.SourcePawn, origin, destination);
-            }
-        ).Then(
-            new ForEachEffectRule<Context, Effects.PushContext>(
-                PushAround,
-                Effects.Push,
-                parallel: true
+        Effect = Effects.ThrowProjectile.WithSelect(
+            (Context context) => new Effects.ThrowProjectileContext(
+                Attacker: context.SourcePawn,
+                Receiver: context.CoordsTarget           
             )
         )
     };
