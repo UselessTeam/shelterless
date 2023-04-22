@@ -13,6 +13,7 @@ public enum TileType : int
     Poison = Poisoned,
     Burning = 3,
     Fire = Burning,
+    EndMap = 4,
 }
 
 public partial class Board : TileMap
@@ -88,6 +89,12 @@ public partial class Board : TileMap
         foreach (Pawn pawn in GetPawnsWith<PlayerComponent>())
         {
             TileType tileType = pawn.Board.GetTileType(pawn.Coords);
+            if (tileType == TileType.EndMap)
+            {
+                GetNode<Curtain>("../GUI/Curtain").CloseCurtainAndChangeScene();
+                GD.Print("Changing scene...");
+                break;
+            }
             if (tileType == TileType.Poisoned || tileType == TileType.Burning)
             {
                 await Effects.TakeDamage.ExecuteAsync(new Effects.TakeDamageContext(pawn, 5));

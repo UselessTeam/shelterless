@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" path="res://Board/camera_2d.tscn" id="2_j4q03"]
 [ext_resource type="PackedScene" uid="uid://c7jl4g6uxuugf" path="res://Board/Tile/poison_tile.tscn" id="2_ows5b"]
 [ext_resource type="PackedScene" uid="uid://gtlppc1a3fmj" path="res://Board/Tile/fire_tile.tscn" id="3_477uo"]
-[ext_resource type="PackedScene" uid="uid://d21df0d4cqnbv" path="res://Board/Pawn/Monsters/blue.tscn" id="5_dnals"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vpoy7"]
 resource_name = "NormalTile"
@@ -41,6 +40,12 @@ scenes/1/scene = ExtResource("2_ows5b")
 resource_name = "FireTile"
 scenes/1/scene = ExtResource("3_477uo")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2dsiy"]
+resource_name = "EndMap"
+texture = ExtResource("1_g75ad")
+texture_region_size = Vector2i(768, 504)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_4eoap"]
 tile_shape = 3
 tile_layout = 2
@@ -54,6 +59,7 @@ sources/128 = SubResource("TileSetAtlasSource_i4q7o")
 sources/2 = SubResource("TileSetScenesCollectionSource_p75ja")
 sources/3 = SubResource("TileSetScenesCollectionSource_muuwf")
 sources/1 = SubResource("TileSetAtlasSource_31ph5")
+sources/4 = SubResource("TileSetAtlasSource_2dsiy")
 
 [node name="Board" type="TileMap"]
 position = Vector2(0, -4)
@@ -85,9 +91,6 @@ MinZoomTicks = -1
 MaxZoomTicks = 3
 ZoomRatio = 1.2
 CurrentZoomTicks = -1
-
-[node name="Blue" parent="." instance=ExtResource("5_dnals")]
-position = Vector2(3452, 1013)
 
 [node name="TopLeftLimit" type="Node2D" parent="."]
 position = Vector2(-1129, -1163)
