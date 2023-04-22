@@ -48,7 +48,7 @@ public static partial class Effects
     );
 
     public record PushContext(Pawn Pawn, VectorUtils.Direction Direction, int Strength);
-    public record PushAugmentedContext(Pawn Pawn, VectorUtils.Direction Direction, Vector2I Destination, int Crush);
+    public record PushAugmentedContext(Pawn Pawn, VectorUtils.Direction Direction, Vector2I Destination, int Crush, int Burns);
     public static readonly EffectRule<PushContext> Push = new AnimationEffectRule<PushAugmentedContext>(
         (PushAugmentedContext context) =>
         {
@@ -63,34 +63,49 @@ public static partial class Effects
         {
             context.Pawn.Get<LocomotionComponent>()?.StartMovement(context.Destination);
         }
-    ).Then((PushAugmentedContext context) =>
-        {
-            context.Pawn.Get<LocomotionComponent>()?.EndMovement(context.Destination);
-            if (context.Crush > 0)
+    ).Then(
+        new MultiEffectRule<PushAugmentedContext>().Then(
+            (PushAugmentedContext context) =>
             {
-                GD.Print($"TODO: monster 'crushed' by {context.Crush} tiles");
+                context.Pawn.Get<LocomotionComponent>()?.EndMovement(context.Destination);
+                if (context.Crush > 0)
+                {
+                    GD.Print($"TODO: monster 'crushed' by {context.Crush} tiles, and burned '{context.Burns}' times");
+                }
             }
-        }
+        ).ThenIf(
+            (PushAugmentedContext context) => context.Burns > 0,
+            TakeDamage.WithSelect((PushAugmentedContext context) => new TakeDamageContext(context.Pawn, 5 * context.Burns))
+        )
     ).WithSelect((PushContext context) =>
         {
             int pushed = 0;
             int crushed = 0;
+            int burns = 0;
+            Vector2I destination = context.Pawn.Coords;
             int strength = context.Strength;
             while (strength > 0)
             {
-                if (!context.Pawn.Board.Walkable(context.Pawn.Coords + context.Direction.ToVector2I() * (pushed + 1)))
+                Vector2I potentialDestination = destination + context.Direction.ToVector2I();
+                if (!context.Pawn.Board.Walkable(potentialDestination))
                 {
                     crushed = strength;
                     break;
                 }
+                if (context.Pawn.Board.GetTileType(potentialDestination) == TileType.Burning)
+                {
+                    burns += 1;
+                }
                 pushed += 1;
                 strength -= 1;
+                destination = potentialDestination;
             }
             return new PushAugmentedContext(
                 Pawn: context.Pawn,
                 Direction: context.Direction,
                 Destination: context.Pawn.Coords + context.Direction.ToVector2I() * pushed,
-                Crush: crushed
+                Crush: crushed,
+                Burns: burns
             );
         }
     );
