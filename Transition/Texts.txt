@@ -6,5 +6,32 @@ Damn it! A rock is blocking the path.
 I suppose you'll manage to break it with that big hammer of yours?
 
 Lvl 1-2
-Oh crap! A monster over there!
+That rock didn't stand a chance.
+Oh crap! The noise attracted a monster!
 Time to earn your pay! I'll be hiding over here. Nothing you can't handle I suppose?
+
+Lvl 2-3
+Impressive, you do know how to hit hard!
+But you should be careful! Sometimes it's better to let mother nature de the dirty work.
+Monsters sure are immune to poison, but fire will make quick work of them!
+Look another lonely monster overthere, why don't you try pushing it into a fire pit?
+
+Lvl 3-4
+Nicely done! Althouth the screams of agony he shouted as he was being scorched alive will do us no good!
+Let's get out of here!
+Just in case, take this.
+These are fire grenades! Just throw one and you'll light a whole pool of poison on fire!
+OH CRAP OH CRAP! SOme monsters managed to find us!
+Time to make yourself useful!
+
+Lvl 4-5
+That was a close call! Thanks for your help back there!
+OH NO! Even MOOOOORE monsters! 
+Let's waste no time! Here is another one of my precious wares.
+It's a wind grenade. Throw it somewhere, and it will push away all monsters around it!
+Be ready for the final battle!
+
+Lvl 5-end
+Great work back there! I think we finally got away from them...
+Look, we can see our destination in the distance!
+Thanks for everything. Hope to see you again for more adventures!
