@@ -30,7 +30,6 @@ color = Color(0.231373, 0.717647, 0.752941, 1)
 
 [node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("DebugText")]
 script = ExtResource("1_2mpgr")
-AvailableSkills = PackedStringArray("Attack", "Push", "Grenade", "Move")
 DebugText = NodePath("DebugText")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]

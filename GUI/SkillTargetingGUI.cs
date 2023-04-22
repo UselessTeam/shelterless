@@ -13,7 +13,7 @@ public partial class SkillTargetingGUI : Control
 
     private Board focusedBoard;
     private Context context;
-    const int GUI_TILE_LAYER = 1;
+    const int GUI_TILE_LAYER = 2;
     const int GUI_TILE_SET = 128;
     enum GUITile : int
     {
@@ -34,16 +34,18 @@ public partial class SkillTargetingGUI : Control
                 Text = skill,
                 ToggleMode = true,
             };
-            ClearButtons += (button)=> {
+            ClearButtons += (button) =>
+            {
                 if (buttonNode != button) buttonNode.ButtonPressed = false;
             };
             AddChild(buttonNode);
             buttonNode.Connect(Button.SignalName.Toggled,
                 Callable.From<bool>((isPressed) =>
                 {
-                    if(isPressed){
+                    if (isPressed)
+                    {
                         ClearButtons?.Invoke(buttonNode);
-                        gui.SelectSkill(skill.ToLower());
+                        gui.SelectSkill(skill.ToLower().Replace(' ', '-'));
                     }
                     else
                         gui.LooseFocus();
@@ -51,7 +53,7 @@ public partial class SkillTargetingGUI : Control
             ));
         }
     }
-    
+
     private void Clear()
     {
         focusedBoard?.ClearLayer(GUI_TILE_LAYER);

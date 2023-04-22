@@ -24,7 +24,7 @@ public partial class GUI : CanvasLayer
         controlledPawn = null;
         await context.Run();
         EmitSignal(SignalName.FinishControl);
-   }
+    }
 
     public static GUI Main
     {
@@ -56,7 +56,7 @@ public partial class GUI : CanvasLayer
     {
         base._Ready();
         SkillTargeting = GetNode<SkillTargetingGUI>("SkillTargeting");
-   }
+    }
 
     public void SelectSkill(string skillName)
     {
@@ -67,9 +67,10 @@ public partial class GUI : CanvasLayer
         Skill skill = skillName switch
         {
             "attack" => SkillList.SingleAttack,
-            "grenade" => SkillList.WindGrenade,
-            "move" => SkillList.Move,
             "push" => SkillList.Push,
+            "wind-grenade" => SkillList.WindGrenade,
+            "fire-grenade" => SkillList.FireGrenade,
+            "move" => SkillList.Move,
             _ => null,
         };
         if (skill is null)

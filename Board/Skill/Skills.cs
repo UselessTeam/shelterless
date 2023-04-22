@@ -48,7 +48,52 @@ public static class SkillList
         Effect = Effects.ThrowProjectile.WithSelect(
             (Context context) => new Effects.ThrowProjectileContext(
                 Attacker: context.SourcePawn,
-                Receiver: context.CoordsTarget           
+                Receiver: context.CoordsTarget
+            )
+        )
+    };
+
+    public record ChangeTileContext(Board Board, Vector2I Tile);
+    private static IEnumerable<ChangeTileContext> SelectArea(Context context)
+    {
+        Board board = context.SourcePawn.Board;
+        yield return new ChangeTileContext(board, context.CoordsTarget);
+        foreach (VectorUtils.Direction direction in VectorUtils.Directions)
+        {
+            Vector2I tile = context.CoordsTarget + direction.ToVector2I();
+            if (board.Exists(tile))
+            {
+                yield return new ChangeTileContext(board, tile);
+            }
+        }
+    }
+    public static Skill FireGrenade = new Skill
+    {
+        Name = "FireGrenade",
+        Target = Skill.TargetType.TILE,
+        MinTargetRange = 1,
+        MaxTargetRange = 3,
+        Effect = new MultiEffectRule<Context>().Then(
+            (Context context) =>
+            {
+                Vector2 origin = context.SourcePawn.Board.MapToLocal(context.SourcePawn.Coords) + 30f * Vector2.Up;
+                Vector2 destination = context.SourcePawn.Board.MapToLocal(context.CoordsTarget);
+                return ProjectileAnimation.CreateAndWait(context.SourcePawn, origin, destination);
+            }
+        ).Then(
+            new ForEachEffectRule<Context, ChangeTileContext>(
+                SelectArea,
+                new FunctionEffectRule<ChangeTileContext>(
+                    (ChangeTileContext context) =>
+                    {
+                        TileType tileType = context.Board.GetTileType(context.Tile);
+                        if (tileType == TileType.Poisoned)
+                        {
+                            context.Board.LitTile(context.Tile);
+                        }
+                    }
+                ),
+                parallel: true
             )
         )
     };
@@ -82,4 +127,17 @@ public static class SkillList
             }
         ),
     };
+}
+
+internal record struct NewStruct(Board board, Vector2I CoordsTarget)
+{
+    public static implicit operator (Board board, Vector2I CoordsTarget)(NewStruct value)
+    {
+        return (value.board, value.CoordsTarget);
+    }
+
+    public static implicit operator NewStruct((Board board, Vector2I CoordsTarget) value)
+    {
+        return new NewStruct(value.board, value.CoordsTarget);
+    }
 }

@@ -3,6 +3,18 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+public enum TileType : int
+{
+    Void = -1,
+    Normal = 0,
+    Hollow = 1,
+    Hole = Hollow,
+    Poisoned = 2,
+    Poison = Poisoned,
+    Burning = 3,
+    Fire = Burning,
+}
+
 public partial class Board : TileMap
 {
     private Dictionary<Vector2I, HashSet<Pawn>> PawnByCoords = new Dictionary<Vector2I, HashSet<Pawn>>();
@@ -127,7 +139,20 @@ public partial class Board : TileMap
 
     public bool Exists(Vector2I coords)
     {
-        return GetCellSourceId(0, coords) >= 0;
+        return TileType.Void != GetTileType(coords);
+    }
+
+    public TileType GetTileType(Vector2I coords)
+    {
+        if (GetCellSourceId(1, coords) == (int)TileType.Burning)
+        {
+            return TileType.Burning;
+        }
+        return (TileType)GetCellSourceId(0, coords);
+    }
+    public void LitTile(Vector2I coords)
+    {
+        SetCell(1, coords, (int)global::TileType.Burning, new Vector2I(0, 0), alternativeTile: 1);
     }
 
     public bool Walkable(Vector2I coords)
