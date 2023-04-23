@@ -197,9 +197,14 @@ public partial class Board : TileMap
         }
         return (TileType)GetCellSourceId(0, coords);
     }
-    public void LitTile(Vector2I coords)
+    public async Task LitTile(Vector2I coords)
     {
         SetCell(1, coords, (int)global::TileType.Burning, new Vector2I(0, 0), alternativeTile: 1);
+        Pawn pawn = GetFirstPawnAt(coords);
+        if (pawn is not null)
+        {
+            await Effects.TakeDamage.ExecuteAsync(new Effects.TakeDamageContext(pawn, 25));
+        }
     }
 
     public bool Walkable(Vector2I coords)

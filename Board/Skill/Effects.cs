@@ -194,13 +194,13 @@ public static partial class Effects
         ).Then(
             new ForEachEffectRule<ThrowProjectileContext, ChangeTileContext>(
                 SelectArea,
-                new FunctionEffectRule<ChangeTileContext>(
-                    (ChangeTileContext context) =>
+                new AsyncFunctionEffectRule<ChangeTileContext>(
+                    async (ChangeTileContext context) =>
                     {
                         TileType tileType = context.Board.GetTileType(context.Tile);
                         if (tileType == TileType.Poisoned)
                         {
-                            context.Board.LitTile(context.Tile);
+                            await context.Board.LitTile(context.Tile);
                         }
                     }
                 ),

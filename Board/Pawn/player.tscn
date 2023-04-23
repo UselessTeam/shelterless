@@ -170,6 +170,22 @@ tracks/2/keys = {
 "values": [0.0, -0.523599, 0.225147, -0.523599, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_aitrm"]
+resource_name = "pushed"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Locomotion:MovementProgress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
 [sub_resource type="Animation" id="Animation_ltlkn"]
 resource_name = "throw"
 length = 1.1
@@ -261,22 +277,6 @@ tracks/6/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_aitrm"]
-resource_name = "pushed"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Locomotion:MovementProgress")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_448gm"]
 _data = {
 "attack": SubResource("Animation_5i56o"),
@@ -343,6 +343,8 @@ script = ExtResource("1_13sq6")
 script = ExtResource("8_4erq0")
 
 [node name="Health" parent="." instance=ExtResource("3_k5eed")]
+CurrentHealth = 80
+MaxHealth = 80
 
 [node name="Skill" type="Node" parent="."]
 script = ExtResource("9_fvil6")
