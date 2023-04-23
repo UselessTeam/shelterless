@@ -12,10 +12,10 @@ anchors_preset = 0
 mouse_filter = 2
 
 [node name="GUI" parent="." instance=ExtResource("1_ijpmr")]
-AvailableSkills = PackedStringArray("Move", "Attack")
+AvailableSkills = PackedStringArray("Move", "Attack", "Push", "Fire Grenade", "Wind Grenade")
 
 [node name="Curtain" parent="GUI" instance=ExtResource("2_qwlyc")]
-NextScene = "res://Scene/StoryScenes/transition_1-2.tscn"
+NextScene = "res://Scene/Transition/transition_1-2.tscn"
 
 [node name="Board" parent="." instance=ExtResource("3_l5t7s")]
 y_sort_enabled = true
@@ -28,3 +28,5 @@ position = Vector2(1125, 1007)
 
 [node name="CanvasLayer" parent="." instance=ExtResource("6_mo2gv")]
 layout_mode = 1
+
+[editable path="Board"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctfdatn230ki0"]
+
+[ext_resource type="PackedScene" uid="uid://dhmkp5d2enng5" path="res://Scene/Transition/transition_template.tscn" id="1_g0go1"]
+
+[node name="Transition1-2" instance=ExtResource("1_g0go1")]
+
+[node name="Textbox" parent="." index="5"]
+TextList = PackedStringArray("That rock didn\'t stand a chance.", "Oh crap! The noise attracted a monster!", "Time to earn your pay! I\'ll be hiding over here. Nothing you can\'t handle I suppose?")
+
+[node name="Curtain" parent="Textbox" index="2"]
+NextScene = "res://Scene/Level/level_2.tscn"
+
+[editable path="Player"]
+[editable path="Textbox"]

@@ -95,7 +95,7 @@ public partial class SkillTargetingGUI : Control
         }
         if (context.SourceSkill.Target == Skill.TargetType.TILE)
         {
-            if (!context.SourcePawn.Board.Exists(coords))
+            if (!context.SourcePawn?.Board.Exists(coords) ?? true)
             {
                 return false;
             }

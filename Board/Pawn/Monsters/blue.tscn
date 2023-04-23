@@ -229,7 +229,6 @@ MaxHealth = 50
 
 [node name="Skill" type="Node" parent="."]
 script = ExtResource("10_q1cyj")
-Damage = 15
 Weight = 1
 
 [node name="Locomotion" type="Node" parent="."]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bv4up78t3deq5"]
+
+[ext_resource type="PackedScene" uid="uid://dhmkp5d2enng5" path="res://Scene/Transition/transition_template.tscn" id="1_b4lxm"]
+
+[node name="Transition5-end" instance=ExtResource("1_b4lxm")]
+
+[node name="Textbox" parent="." index="5"]
+TextList = PackedStringArray("Great work back there! I think we finally got away from them...", "Look, we can see our destination in the distance!", "Thanks for everything. Hope to see you again for more adventures!")
+
+[node name="Curtain" parent="Textbox" index="2"]
+NextScene = "res://Scene/Transition/transition_end.tscn"
+
+[editable path="Player"]
+[editable path="Textbox"]

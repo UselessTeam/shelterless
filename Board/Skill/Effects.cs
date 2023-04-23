@@ -23,15 +23,14 @@ public static partial class Effects
 
     public record TakeDamageContext(Pawn Pawn, int Damage);
     public static readonly EffectRule<TakeDamageContext> TakeDamage = new MultiEffectRule<TakeDamageContext>(
+    ).Skip(
     ).Then(
-        (TakeDamageContext context) => GD.Print(context.Pawn)
+        (TakeDamageContext context) => context.Pawn?.Get<HealthComponent>()?.PlayText($"-{context.Damage}", Colors.Red)
     ).Then(
-        (TakeDamageContext context) => context.Pawn.Get<HealthComponent>()?.PlayText($"-{context.Damage}", Colors.Red)
-    ).Then(
-        (TakeDamageContext context) => context.Pawn.Get<HealthComponent>()?.ChangeHealth(-context.Damage)
+        (TakeDamageContext context) => context.Pawn?.Get<HealthComponent>()?.ChangeHealth(-context.Damage)
     ).ThenIf(
-        (TakeDamageContext context) => context.Pawn.Get<HealthComponent>()?.CurrentHealth <= 0,
-        async (TakeDamageContext context) => await context.Pawn.Get<HealthComponent>().Die()
+        (TakeDamageContext context) => context.Pawn?.Get<HealthComponent>()?.CurrentHealth <= 0,
+        async (TakeDamageContext context) => await context.Pawn?.Get<HealthComponent>()?.Die()
     );
 
     public record AttackContext(Pawn Attacker, Pawn Receiver, int Damage);
@@ -141,7 +140,8 @@ public static partial class Effects
             Pawn pawn = context.Attacker.Board.GetFirstPawnAt(context.Target + direction.ToVector2I());
             if (pawn is not null)
             {
-                yield return new Effects.PushContext(pawn, direction, 1);
+                int push = Mathf.Max(1, (context.Attacker.Get<SkillComponent>()?.PushStrength - pawn?.Get<SkillComponent>().Weight - 1) ?? 0);
+                yield return new Effects.PushContext(pawn, direction, push);
             }
         }
     }

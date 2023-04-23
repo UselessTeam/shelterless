@@ -199,13 +199,14 @@ script = ExtResource("1_ah1ak")
 
 [node name="Health" parent="." instance=ExtResource("2_ron3x")]
 position = Vector2(26, 40)
-CurrentHealth = 80
-MaxHealth = 80
+CurrentHealth = 100
+MaxHealth = 100
 
 [node name="Skill" type="Node" parent="."]
 script = ExtResource("10_ln4mn")
-Damage = 25
+Damage = 30
 PushStrength = 1
+Weight = 2
 
 [node name="Locomotion" type="Node" parent="."]
 script = ExtResource("3_yb6px")

@@ -16,7 +16,7 @@ mouse_filter = 2
 AvailableSkills = PackedStringArray("Move", "Attack", "Push", "Wind Grenade", "Fire Grenade")
 
 [node name="Curtain" parent="GUI" instance=ExtResource("2_eh7cf")]
-NextScene = "res://Scene/StoryScenes/transition_template.tscn"
+NextScene = "res://Scene/Transition/transition_template.tscn"
 
 [node name="Board" parent="." instance=ExtResource("1_ui17o")]
 y_sort_enabled = true

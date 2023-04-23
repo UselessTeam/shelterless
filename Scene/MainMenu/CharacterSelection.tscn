@@ -122,7 +122,7 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
 [node name="Curtain" parent="CanvasLayer" instance=ExtResource("4_uj6yh")]
-NextScene = "res://Scene/StoryScenes/transition_0-1.tscn"
+NextScene = "res://Scene/Transition/transition_0-1.tscn"
 
 [node name="Button" type="Button" parent="CanvasLayer"]
 anchors_preset = 3
@@ -138,6 +138,7 @@ theme = SubResource("Theme_t0hgv")
 text = " Start => "
 
 [node name="Control" parent="." instance=ExtResource("5_36ax1")]
+layout_mode = 1
 offset_left = 3844.78
 offset_top = 615.603
 offset_right = 3884.78

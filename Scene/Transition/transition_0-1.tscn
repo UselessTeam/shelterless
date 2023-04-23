@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkrxdupu7sdih"]
+[gd_scene load_steps=2 format=3 uid="uid://c214iiqe64dqj"]
 
-[ext_resource type="PackedScene" uid="uid://dhmkp5d2enng5" path="res://Scene/StoryScenes/transition_template.tscn" id="1_68uyj"]
+[ext_resource type="PackedScene" uid="uid://dhmkp5d2enng5" path="res://Scene/Transition/transition_template.tscn" id="1_68uyj"]
 
-[node name="TransitionTemplate" instance=ExtResource("1_68uyj")]
+[node name="Transition0-1" instance=ExtResource("1_68uyj")]
 
 [node name="Background" parent="." index="4"]
 mouse_filter = 2
@@ -11,7 +11,7 @@ mouse_filter = 2
 TextList = PackedStringArray("How\'s it going adventurer? Nice to have company on this long travel!", "...", "You\'re doing the silent bodygard thing, heh? Suit yourself.", "....", "Damn it! A rock is blocking the path.", " I suppose you\'ll be able to break it with that big hammer of yours?")
 
 [node name="Curtain" parent="Textbox" index="2"]
-NextScene = "res://Scene/Levels/level_1.tscn"
+NextScene = "res://Scene/Level/level_1.tscn"
 
 [editable path="Player"]
 [editable path="Textbox"]

@@ -17,7 +17,7 @@ public partial class MonsterAIComponent : Component
     }
     public void Decide(Context context)
     {
-        if (Pawn.Board.Player is null)
+        if (Pawn.Board.Player is null || Pawn.Board.Player.IsQueuedForDeletion())
         {
             return;
         }

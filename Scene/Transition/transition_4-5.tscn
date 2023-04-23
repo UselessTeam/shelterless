@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://f2is8mmje03u"]
+
+[ext_resource type="PackedScene" uid="uid://dhmkp5d2enng5" path="res://Scene/Transition/transition_template.tscn" id="1_tb2vm"]
+
+[node name="Transition4-5" instance=ExtResource("1_tb2vm")]
+
+[node name="Textbox" parent="." index="5"]
+TextList = PackedStringArray("That was a close call! Thanks for your help back there!", "OH NO, NOT AGAIN! Even MOOOOORE monsters!", "Let\'s waste no time! Here is another one of my precious wares.", "It\'s a wind grenade. Throw it somewhere, and it will push away all monsters around it!", "Be ready for the final battle!")
+
+[node name="Curtain" parent="Textbox" index="2"]
+NextScene = "res://Scene/Level/level_5.tscn"
+
+[editable path="Player"]
+[editable path="Textbox"]

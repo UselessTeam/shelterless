@@ -65,7 +65,7 @@ public partial class Board : TileMap
     private async Task RunGame()
     {
         GD.Print("Running Game");
-        while (GetFirstPawnWith<PlayerComponent>() is not null)
+        while (GetFirstPawnWith<PlayerComponent>() is not null && !GetFirstPawnWith<PlayerComponent>().IsQueuedForDeletion())
         {
             GD.Print("Player turn");
             await RunPlayerTurn();
@@ -81,6 +81,10 @@ public partial class Board : TileMap
         Busy = true;
         foreach (Pawn pawn in GetPawnsWith<PlayerComponent>())
         {
+            if (pawn.IsQueuedForDeletion())
+            {
+                continue;
+            }
             await GUI.Main.ControlPawn(Player);
         }
         Busy = false;

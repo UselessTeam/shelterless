@@ -5,3 +5,6 @@
 [node name="Camera2D" type="Camera2D"]
 zoom = Vector2(0.1, 0.1)
 script = ExtResource("1_fe077")
+MinZoomTicks = -4
+MaxZoomTicks = 3
+ZoomRatio = 1.2

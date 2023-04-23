@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://3ntk7crlu8s6"]
+
+[ext_resource type="PackedScene" uid="uid://dhmkp5d2enng5" path="res://Scene/Transition/transition_template.tscn" id="1_p2y76"]
+
+[node name="Transition3-4" instance=ExtResource("1_p2y76")]
+
+[node name="Textbox" parent="." index="5"]
+TextList = PackedStringArray("Nicely done! Although the screams of agony they shouted as they were being scorched alive will do us no good!", "Let\'s get out of here!", "Just in case, take this.", "These are fire grenades! Just throw one and you\'ll light a whole pool of poison on fire!", "OH CRAP OH CRAP! Some monsters managed to find us!", "Time to make yourself useful!")
+
+[node name="Curtain" parent="Textbox" index="2"]
+NextScene = "res://Scene/Level/level_4.tscn"
+
+[editable path="Player"]
+[editable path="Textbox"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3hyw4tf50pcr"]
+
+[ext_resource type="PackedScene" uid="uid://dhmkp5d2enng5" path="res://Scene/Transition/transition_template.tscn" id="1_lng88"]
+
+[node name="TransitionEnd" instance=ExtResource("1_lng88")]
+
+[node name="Textbox" parent="." index="5"]
+TextList = PackedStringArray("...", "...", "That\'s it, the game is done!", "...", "...", "Nothing left to see", "...", "Promise", "...", "Erm...", "...", "You can close the window", "...", "Please?...", "...", "...", ":|", "I guess I\'ll close it myself then")
+
+[node name="Curtain" parent="Textbox" index="2"]
+NextScene = "quit"
+
+[editable path="Player"]
+[editable path="Textbox"]

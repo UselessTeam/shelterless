@@ -352,13 +352,13 @@ script = ExtResource("1_7earx")
 
 [node name="Skill" type="Node" parent="."]
 script = ExtResource("14_4syjq")
-Damage = 15
+Damage = 25
 DoubleAttack = true
 
 [node name="Health" parent="." instance=ExtResource("14_1naed")]
 position = Vector2(-27, -66)
-CurrentHealth = 30
-MaxHealth = 30
+CurrentHealth = 40
+MaxHealth = 40
 
 [node name="Locomotion" type="Node" parent="."]
 script = ExtResource("3_5f7hk")

@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyso1bo4i48xr"]
+
+[ext_resource type="PackedScene" uid="uid://dgtcc7qccwkn6" path="res://Scene/Level/level_template.tscn" id="1_f4enn"]
+[ext_resource type="PackedScene" uid="uid://bumeppjfjbouo" path="res://Board/Pawn/tree.tscn" id="2_1lqrv"]
+[ext_resource type="PackedScene" uid="uid://1yqx8d11fav0" path="res://Board/Pawn/rock.tscn" id="3_lvwxt"]
+[ext_resource type="PackedScene" uid="uid://d21df0d4cqnbv" path="res://Board/Pawn/Monsters/blue.tscn" id="4_c350k"]
+
+[node name="Level?" instance=ExtResource("1_f4enn")]
+
+[node name="GUI" parent="." index="0"]
+AvailableSkills = PackedStringArray("Move", "Attack", "Push")
+
+[node name="Curtain" parent="GUI" index="3"]
+NextScene = "res://Scene/Transition/transition_3-4.tscn"
+
+[node name="Board" parent="." index="1"]
+layer_0/tile_data = PackedInt32Array(65537, 0, 0, 196607, 0, 0, 65536, 0, 0, 131072, 0, 0, 131073, 3, 65536, 196608, 2, 65536, 196609, 2, 65536, 196610, 3, 65536, 131075, 3, 65536, 131074, 0, 0, 65539, 0, 0, 4, 0, 0, 65540, 0, 0, 5, 4, 65536, 65541, 4, 65536, 65538, 0, 0, 196606, 0, 0)
+
+[node name="TopLeftLimit" parent="Board" index="1"]
+position = Vector2(-1824, -1112)
+
+[node name="BottomRightLimit" parent="Board" index="2"]
+position = Vector2(6280, 2229)
+
+[node name="Player" parent="Board" index="3"]
+position = Vector2(370, 1014)
+
+[node name="Tree" parent="Board" index="4" instance=ExtResource("2_1lqrv")]
+position = Vector2(739, 630)
+
+[node name="Rock" parent="Board" index="5" instance=ExtResource("3_lvwxt")]
+position = Vector2(2257, 630)
+
+[node name="Blue" parent="Board" index="6" instance=ExtResource("4_c350k")]
+position = Vector2(1167, 958)
+
+[node name="Blue2" parent="Board" index="7" instance=ExtResource("4_c350k")]
+position = Vector2(1516, 1336)
+
+[editable path="Board"]

@@ -86,10 +86,6 @@ script = ExtResource("2_aev3t")
 [node name="Camera" parent="." instance=ExtResource("2_j4q03")]
 position = Vector2(1986, 545)
 zoom = Vector2(0.34, 0.34)
-MinZoomTicks = -1
-MaxZoomTicks = 3
-ZoomRatio = 1.2
-CurrentZoomTicks = -1
 
 [node name="TopLeftLimit" type="Node2D" parent="."]
 position = Vector2(-1129, -1163)

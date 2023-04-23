@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cw6m45csxiffw"]
+
+[ext_resource type="PackedScene" uid="uid://dhmkp5d2enng5" path="res://Scene/Transition/transition_template.tscn" id="1_mggtg"]
+
+[node name="Transition2-3" instance=ExtResource("1_mggtg")]
+
+[node name="Textbox" parent="." index="5"]
+TextList = PackedStringArray("Impressive, you do know how to hit hard!", "But you should be careful, sometimes it\'s better to let mother nature de the dirty work.", "Monsters sure are immune to poison, but fire will make quick work of them!", "Look a pair of lonely monsters over there, why don\'t you try pushing them into a fire pit?")
+
+[node name="Curtain" parent="Textbox" index="2"]
+NextScene = "res://Scene/Level/level_3.tscn"
+
+[editable path="Player"]
+[editable path="Textbox"]
