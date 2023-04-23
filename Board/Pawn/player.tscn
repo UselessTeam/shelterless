@@ -351,7 +351,6 @@ PushStrength = 4
 
 [node name="Locomotion" type="Node" parent="."]
 script = ExtResource("6_kmute")
-MovementProgress = 1.0
 
 [node name="Animation" type="Node" parent="."]
 script = ExtResource("7_8bl04")
@@ -387,20 +386,16 @@ texture = ExtResource("20_rwvfx")
 
 [node name="Torso" type="Node2D" parent="Sprites"]
 position = Vector2(8, 102)
-rotation = -0.110703
-scale = Vector2(1, 0.914286)
 
 [node name="RightArm" type="Node2D" parent="Sprites/Torso"]
 position = Vector2(-11, -131)
-rotation = -0.0867677
 
 [node name="RightArmSprite" type="Sprite2D" parent="Sprites/Torso/RightArm"]
 position = Vector2(3, 29)
 texture = ExtResource("7_h4cbo")
 
 [node name="Spear" type="Node2D" parent="Sprites/Torso/RightArm"]
-position = Vector2(-194.355, 67.9206)
-rotation = -0.954446
+position = Vector2(-113, 83)
 
 [node name="SpearSprite" type="Sprite2D" parent="Sprites/Torso/RightArm/Spear"]
 position = Vector2(113, -83)
@@ -435,7 +430,6 @@ texture = ExtResource("18_23jok")
 
 [node name="LeftArm" type="Node2D" parent="Sprites/Torso"]
 position = Vector2(29, -144)
-rotation = 0.77343
 
 [node name="LeftArmSprite" type="Sprite2D" parent="Sprites/Torso/LeftArm"]
 position = Vector2(-39, 43)

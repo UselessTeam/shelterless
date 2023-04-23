@@ -5,7 +5,7 @@
 [node name="TransitionEnd" instance=ExtResource("1_lng88")]
 
 [node name="Textbox" parent="." index="5"]
-TextList = PackedStringArray("...", "...", "That\'s it, the game is done!", "...", "...", "Nothing left to see", "...", "Promise", "...", "Erm...", "...", "You can close the window", "...", "Please?...", "...", "...", ":|", "I guess I\'ll close it myself then")
+TextList = PackedStringArray("...", "...", "That\'s it, the game is done!", "...", "...", "Nothing left to see", "...", "Promise", "...", "Erm...", "...", "You can close the window", "...", "Please?...", "...", "Come on, man. It\'s 3AM, I\'ve been busting my ass off on this game jam for a whole week..", "Please, just.... Close the window.", "Fine, I\'ll close it myself then.", "(Kids these days...) ")
 
 [node name="Curtain" parent="Textbox" index="2"]
 NextScene = "quit"
