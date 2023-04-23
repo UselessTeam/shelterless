@@ -5,7 +5,7 @@
 [node name="Transition5-end" instance=ExtResource("1_b4lxm")]
 
 [node name="Textbox" parent="." index="5"]
-TextList = PackedStringArray("Great work back there! I think we finally got away from them...", "Look, we can see our destination in the distance!", "Thanks for everything. Hope to see you again for more adventures!")
+TextList = PackedStringArray("Oh man that was a close call...", "Great work back there! I think we finally got away from them.", "Look, we can see our destination in the distance!", "Thanks for everything. Hope to see you again for more adventures!")
 
 [node name="Curtain" parent="Textbox" index="2"]
 NextScene = "res://Scene/Transition/transition_end.tscn"

@@ -210,6 +210,7 @@ Weight = 2
 
 [node name="Locomotion" type="Node" parent="."]
 script = ExtResource("3_yb6px")
+MovementProgress = 1.0
 
 [node name="Animation" type="Node" parent="."]
 script = ExtResource("4_gt67d")

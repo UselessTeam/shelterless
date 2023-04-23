@@ -54,6 +54,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 4
+mouse_filter = 1
 color = Color(0.145098, 0.12549, 0.207843, 0.545098)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ColorRect"]
@@ -80,6 +81,6 @@ clip_contents = true
 custom_minimum_size = Vector2(950, 90)
 layout_mode = 2
 size_flags_horizontal = 4
-text = "This is the text - Super LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONG"
+text = "This is the text - Super LOOOOOOOOOOOOOOOONG LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONG"
 label_settings = SubResource("LabelSettings_mmqi5")
-autowrap_mode = 1
+autowrap_mode = 2

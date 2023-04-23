@@ -7,6 +7,8 @@ public partial class textbox : CanvasLayer
 
     [Export(PropertyHint.MultilineText)] string[] TextList = new[] { "" };
 
+    [Export] bool ChangeSceneAfterDialog = true;
+
     int currentTextIndex = 0;
 
     // Called when the node enters the scene tree for the first time.
@@ -24,9 +26,11 @@ public partial class textbox : CanvasLayer
 			if(currentTextIndex < TextList.Length){
 				_textBox.Text = TextList[currentTextIndex];
 				currentTextIndex++;
-			} else {
+			} else if(ChangeSceneAfterDialog) {
 				GetNode<Curtain>("Curtain").CloseCurtainAndChangeScene();
-			}
+			} else {
+                QueueFree();
+            }
         }
     }
 }

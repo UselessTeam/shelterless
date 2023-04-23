@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://drt17wxvlitqq"]
+
+[ext_resource type="PackedScene" uid="uid://h2ipanbumgst" path="res://Scene/Level/level_5.tscn" id="1_p5w76"]
+[ext_resource type="PackedScene" uid="uid://baf47ocwgpoo5" path="res://Transition/textbox.tscn" id="2_rjaa5"]
+
+[node name="Level5" instance=ExtResource("1_p5w76")]
+
+[node name="GUI" parent="." index="0"]
+layer = 2
+
+[node name="CanvasLayer" parent="." index="2"]
+mouse_filter = 2
+
+[node name="Textbox" parent="." index="3" instance=ExtResource("2_rjaa5")]
+TextList = PackedStringArray("Over there! Try throwing the wind grenade at those bees! ")
+ChangeSceneAfterDialog = false
+
+[editable path="Board"]

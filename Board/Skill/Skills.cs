@@ -44,7 +44,7 @@ public static class SkillList
     {
         Name = "WindGrenade",
         Target = Skill.TargetType.TILE,
-        MinTargetRange = 2,
+        MinTargetRange = 1,
         MaxTargetRange = 4,
         Effect = Effects.ThrowWindGrenade.WithSelect(
             (Context context) => new Effects.ThrowProjectileContext(

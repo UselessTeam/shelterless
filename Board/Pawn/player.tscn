@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://3oqeqrqxqpre"]
+[gd_scene load_steps=34 format=3 uid="uid://3oqeqrqxqpre"]
 
 [ext_resource type="Script" path="res://Board/Pawn/Pawn.cs" id="1_13sq6"]
 [ext_resource type="PackedScene" uid="uid://dxt5d05bnilph" path="res://Board/Pawn/Component/health.tscn" id="3_k5eed"]
@@ -261,10 +261,27 @@ tracks/6/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_aitrm"]
+resource_name = "pushed"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Locomotion:MovementProgress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_448gm"]
 _data = {
 "attack": SubResource("Animation_5i56o"),
 "move": SubResource("Animation_tw5xv"),
+"pushed": SubResource("Animation_aitrm"),
 "throw": SubResource("Animation_ltlkn")
 }
 
@@ -326,8 +343,6 @@ script = ExtResource("1_13sq6")
 script = ExtResource("8_4erq0")
 
 [node name="Health" parent="." instance=ExtResource("3_k5eed")]
-CurrentHealth = 80
-MaxHealth = 80
 
 [node name="Skill" type="Node" parent="."]
 script = ExtResource("9_fvil6")
@@ -336,6 +351,7 @@ PushStrength = 4
 
 [node name="Locomotion" type="Node" parent="."]
 script = ExtResource("6_kmute")
+MovementProgress = 1.0
 
 [node name="Animation" type="Node" parent="."]
 script = ExtResource("7_8bl04")
@@ -371,16 +387,20 @@ texture = ExtResource("20_rwvfx")
 
 [node name="Torso" type="Node2D" parent="Sprites"]
 position = Vector2(8, 102)
+rotation = -0.110703
+scale = Vector2(1, 0.914286)
 
 [node name="RightArm" type="Node2D" parent="Sprites/Torso"]
 position = Vector2(-11, -131)
+rotation = -0.0867677
 
 [node name="RightArmSprite" type="Sprite2D" parent="Sprites/Torso/RightArm"]
 position = Vector2(3, 29)
 texture = ExtResource("7_h4cbo")
 
 [node name="Spear" type="Node2D" parent="Sprites/Torso/RightArm"]
-position = Vector2(-113, 83)
+position = Vector2(-194.355, 67.9206)
+rotation = -0.954446
 
 [node name="SpearSprite" type="Sprite2D" parent="Sprites/Torso/RightArm/Spear"]
 position = Vector2(113, -83)
@@ -415,6 +435,7 @@ texture = ExtResource("18_23jok")
 
 [node name="LeftArm" type="Node2D" parent="Sprites/Torso"]
 position = Vector2(29, -144)
+rotation = 0.77343
 
 [node name="LeftArmSprite" type="Sprite2D" parent="Sprites/Torso/LeftArm"]
 position = Vector2(-39, 43)
